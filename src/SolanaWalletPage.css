@@ -26,41 +26,60 @@ html, body, #root {
   height: 100%;
   width: 100%;
   background-color: var(--background);
+  color: var(--text-primary);
 }
 
 .wallet-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--surface);
+  background-color: transparent;
 }
 
-/* Make header full width */
+/* Improved header with better alignment */
 .wallet-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background-color: var(--surface);
+  background-color: rgba(26, 31, 54, 0.8);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
+/* Improved balance display */
 .balance-display {
   padding: 0.75rem 1.25rem;
-  background-color: var(--background);
+  background-color: rgba(45, 55, 72, 0.5);
   border-radius: 0.5rem;
   font-weight: 500;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px rgba(74, 245, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.balance-display::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+/* Enhanced wallet button */
 .wallet-connect-button {
   position: relative;
-  z-index: 1;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-primary);
   border: none;
   padding: 0.875rem 1.75rem;
   border-radius: 0.5rem;
@@ -68,26 +87,21 @@ html, body, #root {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(65, 105, 225, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .wallet-connect-button:hover {
   background-color: var(--primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.wallet-connect-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(74, 245, 255, 0.4);
 }
 
 .wallet-connect-button:active {
   transform: translateY(0);
-  box-shadow: none;
-}
-.wallet-connect-button:active {
-  transform: translateY(0);
-  box-shadow: none;
+  box-shadow: 0 0 10px rgba(74, 245, 255, 0.3);
 }
 
 .main-content {
@@ -95,42 +109,66 @@ html, body, #root {
   padding: 2rem;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Center the main content */
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
+/* Improved vehicle list */
 .vehicle-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
+/* Enhanced vehicle cards */
 .vehicle-card {
   display: flex;
   align-items: center;
-  background-color: var(--surface);
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--card-surface);
+  padding: 1.75rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vehicle-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  opacity: 0.8;
 }
 
 .vehicle-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(74, 245, 255, 0.15);
 }
 
 .vehicle-image {
-  width: 120px;
+  width: 140px;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
   object-fit: cover;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.vehicle-card:hover .vehicle-image {
+  transform: scale(1.05);
 }
 
 .vehicle-text {
@@ -138,29 +176,69 @@ html, body, #root {
 }
 
 .vehicle-name {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
 }
 
 .vehicle-details {
-  font-size: 0.875rem;
+  font-size: 0.925rem;
   color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-/* Make footer full width if there is one */
 .wallet-footer {
   width: 100%;
   padding: 1.5rem 2rem;
-  background-color: var(--surface);
+  background-color: rgba(26, 31, 54, 0.8);
+  backdrop-filter: blur(10px);
   border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Address display style */
+.wallet-address {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(45, 55, 72, 0.3);
+  border-radius: 0.5rem;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--border-color);
+}
+
+/* Section headings */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: 3px;
 }
 
 @media (max-width: 768px) {
   .wallet-header {
     padding: 1rem;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
   }
   
@@ -177,11 +255,23 @@ html, body, #root {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 1.5rem;
   }
 
   .vehicle-image {
     width: 100%;
     max-width: 200px;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
