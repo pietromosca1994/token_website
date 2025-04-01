@@ -7,6 +7,7 @@ import {getVehiclesByDevLicenseAndOwner} from './utils'
 import './SolanaWalletPage.css';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
+import {Footer} from './footer.tsx'
 
 interface Vehicle {
   id: string;
@@ -22,6 +23,8 @@ interface SolanaWalletPageProps {
   email: string | null;
   walletAddress: string | null;
 }
+
+
 
 export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletPageProps) {
   const { publicKey } = useWallet();
@@ -81,10 +84,12 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
 
   return (
     <div className="wallet-page">
+      {/* // background */}
       <div className="globe-background">
         <GlobeVisualization />
       </div>
       
+      {/* // header component */}
       <header className="header">
         <div className="wallet-info">
           {publicKey && balance !== null && (
@@ -97,6 +102,7 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
         <WalletMultiButton className="wallet-connect-button" />
       </header>
       
+      {/* // main content */}
       <main className="main-content">
         <div className="content-container">
           <div className="auth-info">
@@ -138,11 +144,7 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
         </div>
       </main>
       
-      <footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2025 Eagle Labs. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
