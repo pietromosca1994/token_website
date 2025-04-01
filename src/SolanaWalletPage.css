@@ -1,4 +1,6 @@
 :root {
+  --header-bg: #1a1c20;
+  --footer-bg: #1a1c20;
   --primary-color: #4169e1;
   --primary-hover: #0097a7;
   --accent-color: #4af5ff;
@@ -37,7 +39,7 @@ html, body, #root {
 }
 
 /* Improved header with better alignment */
-.wallet-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,6 +140,7 @@ html, body, #root {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(5px); /* Adds a slight blur effect for depth */
 }
 
 .vehicle-card::after {
@@ -189,10 +192,10 @@ html, body, #root {
   line-height: 1.6;
 }
 
-.wallet-footer {
+.footer {
   width: 100%;
   padding: 1.5rem 2rem;
-  background-color: rgba(26, 31, 54, 0.8);
+  background-color: var(--footer-bg);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--border-color);
   text-align: center;
@@ -235,7 +238,7 @@ html, body, #root {
 }
 
 @media (max-width: 768px) {
-  .wallet-header {
+  .header {
     padding: 1rem;
     flex-wrap: wrap;
     justify-content: center;

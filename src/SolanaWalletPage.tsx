@@ -86,16 +86,15 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
       </div>
       
       <header className="header">
-        <div className="header-content">
-          <div className="wallet-info">
-            {publicKey && balance !== null && (
-              <div className="balance-display">
-                Balance: {balance.toFixed(2)} SOL
-              </div>
-            )}
-          </div>
-          <WalletMultiButton className="wallet-connect-button" />
+        <div className="wallet-info">
+          {publicKey && balance !== null && (
+            <div className="balance-display">
+              Balance: {balance !== null ? balance.toFixed(2) + " SOL" : "Fetching..."}
+            </div>
+          )}
         </div>
+        
+        <WalletMultiButton className="wallet-connect-button" />
       </header>
       
       <main className="main-content">
@@ -138,6 +137,7 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
         </div>
         </div>
       </main>
+      
       <footer className="footer">
         <div className="footer-content">
           <p>&copy; 2025 Eagle Labs. All rights reserved.</p>

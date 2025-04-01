@@ -101,14 +101,14 @@ function Home() {
   }, []); // Empty dependency array to run only once on mount
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="main-page">
+      <div className="globe-background">
+          <GlobeVisualization />
+      </div>
+      
       <Header />
       
-      <div className="main-content">
-        <div className="globe-background">
-          <GlobeVisualization />
-        </div>
-        
+      <main className="main-content">
         <div className="content-container">
           <div className="cards-stack">
             <CustomDimoButton 
@@ -123,7 +123,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
       
       <Footer />
     </div>
