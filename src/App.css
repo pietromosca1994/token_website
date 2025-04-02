@@ -26,10 +26,6 @@ html, body, #root {
   color: var(--text-primary);
 }
 
-html, body{
-  overflow: hidden;
-}
-
 /* Header Styles */
 .header {
   display: flex;
@@ -96,7 +92,7 @@ html, body{
 }
 
 .globe-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

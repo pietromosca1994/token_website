@@ -15,7 +15,7 @@ function AboutUs() {
 
       <Header />
 
-      <main className="main-content">
+<main className="main-content" style={{ overflowY: 'auto' }}>
         <div className="about-container">
           {/* Headline & Introduction */}
           <section className="about-section hero-section">

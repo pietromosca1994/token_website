@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 type ThreeScene = {
@@ -7,22 +7,72 @@ type ThreeScene = {
   renderer: THREE.WebGLRenderer;
   meshWave?: THREE.Mesh;
   clock?: THREE.Clock;
+  stars?: THREE.Points;
 };
 
 const GlobeVisualization = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const threeScene = useRef<ThreeScene | null>(null);
+  const [documentHeight, setDocumentHeight] = useState<number>(0);
+
+  // Add this useEffect to set the body background color
+  useEffect(() => {
+    // Save original background color to restore later if needed
+    const originalBackground = document.body.style.backgroundColor;
+    
+    // Set the background color to match space theme
+    document.body.style.backgroundColor = '#000000';
+    document.documentElement.style.backgroundColor = '#000000';
+    
+    // Add overflow handling to ensure scrolling works properly
+    document.body.style.overflow = 'auto';
+    
+    return () => {
+      // Restore original styles when component unmounts
+      document.body.style.backgroundColor = originalBackground;
+    };
+  }, []);
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    // Function to update document height state
+    const updateDocumentHeight = () => {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+      );
+      setDocumentHeight(height);
+    };
+
+    // Initial height measurement
+    updateDocumentHeight();
+
+    // Setup resize observer to update height when content changes
+    const resizeObserver = new ResizeObserver(() => {
+      updateDocumentHeight();
+    });
+    
+    resizeObserver.observe(document.body);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mountRef.current || documentHeight === 0) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     const clock = new THREE.Clock();
     
     let meshWave: THREE.Mesh | undefined;
     let waveRadius: number;
+    let stars: THREE.Points;
     
     threeScene.current = { scene, camera, renderer, clock };
     mountRef.current.appendChild(renderer.domElement);
@@ -31,30 +81,56 @@ const GlobeVisualization = () => {
     const axialTilt = THREE.MathUtils.degToRad(10);
     const waveColor = 0x646CFF;
 
+    const createStarField = () => {
+      // Calculate how many stars we need based on document height
+      const contentRatio = documentHeight / window.innerHeight;
+      // Increase star count for denser field
+      const starCount = Math.max(5000, Math.floor(1500 * contentRatio));
+      
+      const starGeometry = new THREE.BufferGeometry();
+      const starVertices = [];
+      
+      // Create stars distributed through the entire scrollable area
+      for (let i = 0; i < starCount; i++) {
+        const x = (Math.random() - 0.5) * 2000;
+        // Extend y-range based on document height (add extra padding)
+        const heightFactor = contentRatio * 2.0; // Increased from 1.5 for more stars
+        const y = (Math.random() - 0.5) * 2000 * heightFactor;
+        const z = -Math.random() * 1500 - 200; // Increased depth for more parallax
+        starVertices.push(x, y, z);
+      }
+      
+      starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+      
+      // Varying star sizes for more realistic look
+      const starSizes = new Float32Array(starCount);
+      for (let i = 0; i < starCount; i++) {
+        starSizes[i] = Math.random() * 2.0 + 0.5;
+      }
+      starGeometry.setAttribute('size', new THREE.Float32BufferAttribute(starSizes, 1));
+      
+      const starMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 1.0,
+        sizeAttenuation: true,
+        transparent: true,
+        opacity: 0.7
+      });
+      
+      stars = new THREE.Points(starGeometry, starMaterial);
+      scene.add(stars);
+      
+      return stars;
+    };
+
     const createResponsiveSphere = () => {
       const screenWidth = window.innerWidth;
       // Increase waveRadius for a larger base size
       waveRadius = screenWidth < 600 ? screenWidth / 20 : screenWidth / 120; // Increased from 40 and 130
 
-      const starGeometry = new THREE.BufferGeometry();
-      const starVertices = [];
-      for (let i = 0; i < 1000; i++) {
-        const x = (Math.random() - 0.5) * 2000;
-        const y = (Math.random() - 0.5) * 2000;
-        const z = -Math.random() * 1000 - 200;
-        starVertices.push(x, y, z);
-      }
-      starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-      
-      const starMaterial = new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: Math.random() * 1.5 + 0.5,
-        transparent: true,
-        opacity: 0.6
-      });
-      
-      const stars = new THREE.Points(starGeometry, starMaterial);
-      scene.add(stars);
+      // Create extended star field
+      stars = createStarField();
+      threeScene.current!.stars = stars;
 
       // Increase geometry size slightly for larger waves
       const geometryWave = new THREE.IcosahedronGeometry(waveRadius * 1.2, 32); // Scaled up from waveRadius
@@ -286,9 +362,36 @@ const GlobeVisualization = () => {
       threeScene.current.renderer.setSize(parentWidth, parentHeight);
       threeScene.current.camera.aspect = parentWidth / parentHeight;
       threeScene.current.camera.updateProjectionMatrix();
+      
+      // Recreate stars when window is resized to adjust to new document height
+      if (threeScene.current.stars) {
+        scene.remove(threeScene.current.stars);
+        threeScene.current.stars = createStarField();
+      }
+    };
+
+    // Handle scroll to parallax effect
+    const handleScroll = () => {
+      if (!threeScene.current?.stars) return;
+      
+      // Calculate scroll position as percentage of page
+      const scrollY = window.scrollY;
+      const documentHeight = Math.max(
+        document.body.scrollHeight, 
+        document.documentElement.scrollHeight
+      );
+      const windowHeight = window.innerHeight;
+      const maxScroll = documentHeight - windowHeight;
+      const scrollPercent = scrollY / maxScroll;
+      
+      // Move stars slightly based on scroll position
+      // The camera stays fixed, but we move the stars to create parallax
+      const starsPositionY = scrollPercent * -50; // Adjust this value to control parallax intensity
+      threeScene.current.stars.position.y = starsPositionY;
     };
 
     window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -310,7 +413,7 @@ const GlobeVisualization = () => {
           child.rotation.z = Math.sin(elapsedTime * 0.1) * 0.02;
         }
         
-        if (child instanceof THREE.Points && !(child.material instanceof THREE.ShaderMaterial)) {
+        if (child instanceof THREE.Points && !(child.material instanceof THREE.ShaderMaterial) && child !== stars) {
           child.rotation.y += rotationAngle * 0.2;
           const scalePulse = 1.0 + 0.05 * Math.sin(elapsedTime * 0.3);
           child.scale.set(scalePulse, scalePulse, scalePulse);
@@ -351,18 +454,19 @@ const GlobeVisualization = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       if (threeScene.current?.renderer && mountRef.current) {
         mountRef.current.removeChild(threeScene.current.renderer.domElement);
       }
       threeScene.current = null;
     };
-  }, []);
+  }, [documentHeight]);
 
   return (
     <div
       ref={mountRef}
       style={{
-        position: 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',

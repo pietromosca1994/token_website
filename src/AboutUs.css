@@ -3,22 +3,24 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 /* General Section Styling */
 .about-section {
   margin-bottom: 60px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #1a2b3c;
+  color: var(--text-primary);
   text-align: center;
   position: relative;
   padding-bottom: 15px;
@@ -32,26 +34,27 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #3498db, #2c3e50);
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
 }
 
 .section-content {
   font-size: 1.1rem;
   line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 /* Hero Section */
 .hero-section {
   text-align: center;
   padding: 60px 30px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.95));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(240, 248, 255, 0.1));
 }
 
 .headline {
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 20px;
-  background: linear-gradient(45deg, #1a2b3c, #3498db);
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-hover));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -63,7 +66,7 @@
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
-  color: #455a64;
+  color: var(--text-secondary);
 }
 
 /* Mission & Vision */
@@ -78,36 +81,40 @@
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mission-box {
-  background: linear-gradient(135deg, #e8f5fe, #f5f9ff);
-  border-left: 4px solid #3498db;
+  background: linear-gradient(135deg, rgba(232, 245, 254, 0.1), rgba(245, 249, 255, 0.1));
+  border-left: 4px solid var(--accent-color);
 }
 
 .vision-box {
-  background: linear-gradient(135deg, #f5f9ff, #e8f5fe);
-  border-left: 4px solid #2c3e50;
+  background: linear-gradient(135deg, rgba(245, 249, 255, 0.1), rgba(232, 245, 254, 0.1));
+  border-left: 4px solid var(--accent-hover);
 }
 
 .mission-box h3, .vision-box h3 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #1a2b3c;
+  color: var(--text-primary);
 }
 
 /* Team Section */
 .core-values {
   margin: 30px 0;
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.1);
   padding: 20px;
   border-radius: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .core-values h3 {
   font-size: 1.4rem;
   margin-bottom: 15px;
-  color: #1a2b3c;
+  color: var(--text-primary);
   text-align: center;
 }
 
@@ -121,14 +128,16 @@
 
 .values-list li {
   padding: 15px;
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .values-list li span {
   font-weight: bold;
-  color: #3498db;
+  color: var(--accent-color);
 }
 
 .team-profiles {
@@ -149,26 +158,28 @@
   height: 120px;
   border-radius: 50%;
   margin: 0 auto 15px;
-  background-color: #e0e0e0;
+  background-color: rgba(224, 224, 224, 0.1);
   background-size: cover;
   background-position: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Replace with actual images in production */
-.profile-1 { background-color: #90caf9; }
-.profile-2 { background-color: #80deea; }
-.profile-3 { background-color: #a5d6a7; }
+.profile-1 { background-color: rgba(144, 202, 249, 0.1); }
+.profile-2 { background-color: rgba(128, 222, 234, 0.1); }
+.profile-3 { background-color: rgba(165, 214, 167, 0.1); }
 
 .team-member h4 {
   margin: 0;
   font-size: 1.2rem;
-  color: #1a2b3c;
+  color: var(--text-primary);
 }
 
 .team-member p {
   margin: 5px 0 0;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -182,7 +193,7 @@
 }
 
 .achievement-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
   padding: 25px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
@@ -191,6 +202,8 @@
   min-width: 250px;
   max-width: 300px;
   transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .achievement-card:hover {
@@ -201,20 +214,22 @@
   width: 60px;
   height: 60px;
   margin: 0 auto 15px;
-  background-color: #f0f7ff;
+  background-color: rgba(240, 247, 255, 0.1);
   border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .achievement-card h4 {
   font-size: 1.2rem;
   margin: 10px 0;
-  color: #1a2b3c;
+  color: var(--text-primary);
 }
 
 /* Call to Action */
 .cta-section {
   text-align: center;
-  background: linear-gradient(135deg, #f8fafc, #e8f5fe);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.1), rgba(232, 245, 254, 0.1));
 }
 
 .cta-buttons {
@@ -235,7 +250,7 @@
 }
 
 .primary {
-  background: linear-gradient(45deg, #3498db, #2980b9);
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-hover));
   color: white;
   box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
 }
@@ -246,13 +261,13 @@
 }
 
 .secondary {
-  background: white;
-  color: #3498db;
-  border: 2px solid #3498db;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
 }
 
 .secondary:hover {
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.1);
   transform: translateY(-2px);
 }
 
@@ -267,12 +282,14 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #f0f4f8;
+  background-color: rgba(240, 244, 248, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   text-indent: -9999px;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-icon:hover {

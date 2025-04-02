@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 export function Header() {
     return (
       <header className="header">
-        <h1 className="logo">EAGLE Labs.</h1>
+        <Link to="/">
+          <p><h1 className="logo">EAGLE Labs.</h1></p>
+        </Link>
         <button className="login-button">Login</button>
       </header>
     )
