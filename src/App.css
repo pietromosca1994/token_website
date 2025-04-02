@@ -24,6 +24,7 @@ html, body, #root {
   width: 100%;
   background-color: var(--background);
   color: var(--text-primary);
+  overflow: hidden;
 }
 
 /* Header Styles */
@@ -45,17 +46,17 @@ html, body, #root {
   font-size: 48px; /* Slightly larger for better visibility */
   font-family: 'Audiowide', cursive;
   font-weight: 500; /* Slightly bolder for a more defined look */
-  color: var(--text-primary);
+  color: rgba(178, 181, 244, 0.7); /* Solid color with rgba */
   letter-spacing: 3px; /* Increased spacing for better readability */
   margin: 0;
   
-  background: linear-gradient(90deg, rgba(100, 108, 255, 0.7), rgba(0, 255, 255, 0.3)); /* Enhanced gradient colors */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* Removed the gradient and background-clip for solid color */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
   
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3); /* Softer, more vibrant text shadow */
-  transition: text-shadow 0.3s ease-in-out, background 0.3s ease-in-out; /* Add a smooth transition on hover or focus */
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3); /* Optional: keep the text shadow */
+  transition: text-shadow 0.3s ease-in-out; /* Add a smooth transition on hover or focus */
 }
 
 .login-button {
@@ -169,6 +170,12 @@ html, body, #root {
   transform: perspective(1000px) rotateY(-5deg);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   max-width: 420px;
+  
+  /* Flexbox centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Ensures the content is centered */
 }
 
 .dimo-container:hover {
@@ -181,6 +188,7 @@ html, body, #root {
 /* Custom styling for the DIMO button */
 .dimo-button {
   width: 100%;
+  max-width: 300px; /* Optional: limits the max width of the button */
   padding: 1.2rem 1.8rem;
   background: linear-gradient(135deg, #0070f3, #00c3ff);
   color: white;

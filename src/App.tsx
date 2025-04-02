@@ -5,17 +5,9 @@ import SolanaWalletPage from './SolanaWalletPage'
 import GlobeVisualization from './components/GlobeVisualization'
 import {getAmountOfConnectedBatteries} from './utils'
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
-import {Footer} from './footer.tsx'
+import {Footer} from './Footer.tsx'
+import {Header} from './Header.tsx'
 import './App.css'
-
-function Header() {
-  return (
-    <header className="header">
-      <h1 className="logo">EAGLE Labs.</h1>
-      <button className="login-button">Login</button>
-    </header>
-  )
-}
 
 // Custom DIMO Button that wraps the ShareVehiclesWithDimo component
 function CustomDimoButton({ onSuccess, onError }) {
@@ -31,15 +23,12 @@ function CustomDimoButton({ onSuccess, onError }) {
         utm="utm_campaign=dimo"
         render={({ onClick }) => (
           <button className="dimo-button" onClick={onClick}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-            </svg>
             Share Vehicles with DIMO
           </button>
         )}
       />
     </div>
-  )
+  );
 }
 
 function Home() {

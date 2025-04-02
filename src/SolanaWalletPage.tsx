@@ -7,7 +7,7 @@ import {getVehiclesByDevLicenseAndOwner} from './utils'
 import './SolanaWalletPage.css';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
-import {Footer} from './footer.tsx'
+import {Footer} from './Footer.tsx'
 
 interface Vehicle {
   id: string;
