@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import "./Footer.css";
+
 export function Footer() {
   return (
     <footer className="footer">
@@ -5,7 +8,9 @@ export function Footer() {
         <div className="footer-sections">
           <section>
             <h4>Company</h4>
-            <p>About Us</p>
+            <Link to="/about-us">
+              <p>About Us</p>
+            </Link>
             <p>Press</p>
           </section>
           <section>
@@ -25,7 +30,8 @@ export function Footer() {
             <p>+1 (555) 123-4567</p>
           </section>
         </div>
+        <p>© 2024 EAGLE Labs. All rights reserved.</p>
       </div>
     </footer>
-  )
+  );
 }

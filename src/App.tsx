@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
 import SolanaWalletPage from './SolanaWalletPage'
+import AboutUs from "./AboutUs"; 
 import GlobeVisualization from './components/GlobeVisualization'
 import {getAmountOfConnectedBatteries} from './utils'
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
@@ -108,6 +109,7 @@ function App() {
             walletAddress={walletAddress}
           />
         } />
+        <Route path="/about-us" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   )
