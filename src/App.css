@@ -20,7 +20,7 @@
 }
 
 html, body, #root {
-  height: 100%;
+  height: auto;
   width: 100%;
   background-color: var(--background);
   color: var(--text-primary);
