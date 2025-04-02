@@ -82,18 +82,18 @@ function AboutUs() {
               <div className="team-profiles">
                 <div className="team-member">
                   <div className="member-photo profile-1"></div>
-                  <h4>Sarah Johnson</h4>
+                  <h4>Fabrizio Martini</h4>
                   <p>Chief Executive Officer</p>
                 </div>
                 <div className="team-member">
                   <div className="member-photo profile-2"></div>
-                  <h4>Michael Chen</h4>
-                  <p>Chief Technology Officer</p>
+                  <h4>Pietro Mosca</h4>
+                  <p>Blockchain Research Engineer</p>
                 </div>
                 <div className="team-member">
                   <div className="member-photo profile-3"></div>
-                  <h4>Elena Rodriguez</h4>
-                  <p>Head of Design</p>
+                  <h4>Giovanni Rossi</h4>
+                  <p>Head of Marketing</p>
                 </div>
               </div>
             </div>
