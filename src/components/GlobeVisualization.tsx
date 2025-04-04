@@ -8,6 +8,7 @@ type ThreeScene = {
   meshWave?: THREE.Mesh;
   clock?: THREE.Clock;
   stars?: THREE.Points;
+  orbitalParticles?: THREE.Points;
 };
 
 const GlobeVisualization = () => {
@@ -15,26 +16,17 @@ const GlobeVisualization = () => {
   const threeScene = useRef<ThreeScene | null>(null);
   const [documentHeight, setDocumentHeight] = useState<number>(0);
 
-  // Add this useEffect to set the body background color
   useEffect(() => {
-    // Save original background color to restore later if needed
     const originalBackground = document.body.style.backgroundColor;
-    
-    // Set the background color to match space theme
     document.body.style.backgroundColor = '#000000';
     document.documentElement.style.backgroundColor = '#000000';
-    
-    // Add overflow handling to ensure scrolling works properly
     document.body.style.overflow = 'auto';
-    
     return () => {
-      // Restore original styles when component unmounts
       document.body.style.backgroundColor = originalBackground;
     };
   }, []);
 
   useEffect(() => {
-    // Function to update document height state
     const updateDocumentHeight = () => {
       const height = Math.max(
         document.body.scrollHeight,
@@ -47,19 +39,10 @@ const GlobeVisualization = () => {
       setDocumentHeight(height);
     };
 
-    // Initial height measurement
     updateDocumentHeight();
-
-    // Setup resize observer to update height when content changes
-    const resizeObserver = new ResizeObserver(() => {
-      updateDocumentHeight();
-    });
-    
+    const resizeObserver = new ResizeObserver(updateDocumentHeight);
     resizeObserver.observe(document.body);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
+    return () => resizeObserver.disconnect();
   }, []);
 
   useEffect(() => {
@@ -73,6 +56,7 @@ const GlobeVisualization = () => {
     let meshWave: THREE.Mesh | undefined;
     let waveRadius: number;
     let stars: THREE.Points;
+    let orbitalParticles: THREE.Points;
     
     threeScene.current = { scene, camera, renderer, clock };
     mountRef.current.appendChild(renderer.domElement);
@@ -82,27 +66,21 @@ const GlobeVisualization = () => {
     const waveColor = 0x646CFF;
 
     const createStarField = () => {
-      // Calculate how many stars we need based on document height
       const contentRatio = documentHeight / window.innerHeight;
-      // Increase star count for denser field
       const starCount = Math.max(5000, Math.floor(1500 * contentRatio));
       
       const starGeometry = new THREE.BufferGeometry();
       const starVertices = [];
       
-      // Create stars distributed through the entire scrollable area
       for (let i = 0; i < starCount; i++) {
         const x = (Math.random() - 0.5) * 2000;
-        // Extend y-range based on document height (add extra padding)
-        const heightFactor = contentRatio * 2.0; // Increased from 1.5 for more stars
+        const heightFactor = contentRatio * 2.0;
         const y = (Math.random() - 0.5) * 2000 * heightFactor;
-        const z = -Math.random() * 1500 - 200; // Increased depth for more parallax
+        const z = -Math.random() * 1500 - 200;
         starVertices.push(x, y, z);
       }
       
       starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-      
-      // Varying star sizes for more realistic look
       const starSizes = new Float32Array(starCount);
       for (let i = 0; i < starCount; i++) {
         starSizes[i] = Math.random() * 2.0 + 0.5;
@@ -119,29 +97,155 @@ const GlobeVisualization = () => {
       
       stars = new THREE.Points(starGeometry, starMaterial);
       scene.add(stars);
-      
       return stars;
+    };
+
+    // Create orbital ring particles that behave like planet rings
+    const createOrbitalParticles = () => {
+      const particleCount = 1500;
+      const geometry = new THREE.BufferGeometry();
+      
+      const positions = new Float32Array(particleCount * 3);
+      const ringData = new Float32Array(particleCount * 4); // radius, phase, speed, size
+      const visibilityData = new Float32Array(particleCount * 2); // visible, entryTime
+      
+      const minRadius = waveRadius * 1.5;
+      const maxRadius = waveRadius * 3.0;
+    
+      for (let i = 0; i < particleCount; i++) {
+        // Spherical coordinates for more uniform distribution
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2.0 * Math.random() - 1.0); // Better spherical distribution
+        
+        // Random radius with slight clustering
+        const radius = minRadius + (maxRadius - minRadius) * Math.pow(Math.random(), 2);
+        
+        // Add noise for natural variation
+        const noiseFactor = 0.1;
+        const radiusNoise = radius * (1.0 + (Math.random() - 0.5) * noiseFactor);
+        
+        // Initial position
+        positions[i * 3] = radiusNoise * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = radiusNoise * Math.cos(phi);
+        positions[i * 3 + 2] = radiusNoise * Math.sin(phi) * Math.sin(theta);
+        
+        // Store orbital parameters
+        ringData[i * 4] = radius; // Target radius
+        ringData[i * 4 + 1] = theta; // Initial phase
+        ringData[i * 4 + 2] = 0.02 + Math.random() * 0.03; // Slower orbital speed
+        ringData[i * 4 + 3] = 0.6 + Math.random() * 0.3; // Particle size
+        
+        visibilityData[i * 2] = 1.0; // Start visible
+        visibilityData[i * 2 + 1] = 0.0; // No entry delay
+      }
+      
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('ringData', new THREE.BufferAttribute(ringData, 4));
+      geometry.setAttribute('visibilityData', new THREE.BufferAttribute(visibilityData, 2));
+      
+      const shaderMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+          time: { value: 0 },
+          baseColor: { value: new THREE.Color(0x88ccff) },
+          planetRadius: { value: waveRadius }
+        },
+        vertexShader: `
+          attribute vec4 ringData;
+          attribute vec2 visibilityData;
+          uniform float time;
+          uniform float planetRadius;
+          
+          varying float vOpacity;
+          varying float vSize;
+          varying vec3 vColor;
+          
+          void main() {
+            float radius = ringData.x;
+            float initialPhase = ringData.y;
+            float orbitSpeed = ringData.z;
+            float particleSize = ringData.w;
+            
+            // Calculate current orbital position
+            float currentPhase = initialPhase + time * orbitSpeed;
+            
+            // Add small perturbations for natural movement
+            float perturbation = sin(time * 0.1 + initialPhase) * 0.05;
+            vec3 orbitPos = vec3(
+              radius * cos(currentPhase) * (1.0 + perturbation),
+              radius * sin(time * 0.05 + initialPhase) * 0.1, // Small vertical oscillation
+              radius * sin(currentPhase) * (1.0 + perturbation)
+            );
+            
+            // Add subtle eccentricity
+            float eccentricity = 0.05 + sin(initialPhase) * 0.03;
+            orbitPos.x *= (1.0 + eccentricity);
+            orbitPos.z *= (1.0 - eccentricity);
+            
+            // Apply slight random tilt per particle
+            float tiltAngle = initialPhase * 0.1;
+            mat3 tiltMatrix = mat3(
+              cos(tiltAngle), 0.0, sin(tiltAngle),
+              0.0, 1.0, 0.0,
+              -sin(tiltAngle), 0.0, cos(tiltAngle)
+            );
+            vec3 newPos = tiltMatrix * orbitPos;
+            
+            vOpacity = 0.8 + sin(time * 0.1 + initialPhase) * 0.2;
+            vSize = particleSize * (0.8 + 0.2 * sin(currentPhase));
+            
+            float hue = 0.6 + (radius - planetRadius) * 0.03;
+            vColor = vec3(
+              0.5 + 0.1 * sin(hue * 10.0),
+              0.7 + 0.2 * sin(hue * 12.0),
+              1.0
+            );
+            
+            vec4 mvPosition = modelViewMatrix * vec4(newPos, 1.0);
+            gl_Position = projectionMatrix * mvPosition;
+            gl_PointSize = vSize * (300.0 / length(mvPosition.xyz));
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 baseColor;
+          varying float vOpacity;
+          varying float vSize;
+          varying vec3 vColor;
+          
+          void main() {
+            float r = length(gl_PointCoord - vec2(0.5));
+            if (r > 0.5) discard;
+            float alpha = smoothstep(0.5, 0.2, r) * vOpacity;
+            gl_FragColor = vec4(baseColor * vColor, alpha);
+          }
+        `,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+      
+      orbitalParticles = new THREE.Points(geometry, shaderMaterial);
+      scene.add(orbitalParticles);
+      return orbitalParticles;
     };
 
     const createResponsiveSphere = () => {
       const screenWidth = window.innerWidth;
-      // Increase waveRadius for a larger base size
-      waveRadius = screenWidth < 600 ? screenWidth / 20 : screenWidth / 120; // Increased from 40 and 130
-
-      // Create extended star field
+      waveRadius = screenWidth < 600 ? screenWidth / 20 : screenWidth / 160;
+      
       stars = createStarField();
       threeScene.current!.stars = stars;
+      
+      orbitalParticles = createOrbitalParticles();
+      threeScene.current!.orbitalParticles = orbitalParticles;
 
-      // Increase geometry size slightly for larger waves
-      const geometryWave = new THREE.IcosahedronGeometry(waveRadius * 1.2, 32); // Scaled up from waveRadius
-
+      const geometryWave = new THREE.IcosahedronGeometry(waveRadius * 1.2, 32);
       const waveMaterial = new THREE.ShaderMaterial({
         uniforms: {
           time: { value: 0.0 },
           color: { value: new THREE.Color(waveColor) },
           noiseScale: { value: 8.0 },
-          amplitude: { value: 0.4 }, // Increased from 0.2 for larger waves
-          frequency: { value: 0.6 }  // Increased from 0.4 for more dynamic motion
+          amplitude: { value: 0.4 },
+          frequency: { value: 0.6 }
         },
         vertexShader: `
           uniform float time;
@@ -233,7 +337,7 @@ const GlobeVisualization = () => {
             ));
             noise = mainNoise * 0.7 + flowNoise * 0.3;
             float gentleAmplitude = amplitude * (1.0 + 0.3 * sin(time * 0.2));
-            pos.x += noise * gentleAmplitude * 1.5; // Increased multiplier for larger waves
+            pos.x += noise * gentleAmplitude * 1.5;
             pos.y += noise * gentleAmplitude * 1.5;
             pos.z += noise * gentleAmplitude * 1.5;
             
@@ -273,7 +377,7 @@ const GlobeVisualization = () => {
       meshWave = new THREE.Mesh(geometryWave, waveMaterial);
       scene.add(meshWave);
       
-      const glowGeometry = new THREE.SphereGeometry(waveRadius * 1.25, 32, 32); // Increased from 1.15
+      const glowGeometry = new THREE.SphereGeometry(waveRadius * 1.25, 32, 32);
       const glowMaterial = new THREE.ShaderMaterial({
         uniforms: {
           color: { value: new THREE.Color(waveColor) },
@@ -313,42 +417,15 @@ const GlobeVisualization = () => {
       
       const glowMesh = new THREE.Mesh(glowGeometry, glowMaterial);
       scene.add(glowMesh);
-      
-      const particleGeometry = new THREE.BufferGeometry();
-      const particleCount = 80;
-      const particlePositions = new Float32Array(particleCount * 3);
-      
-      for (let i = 0; i < particleCount; i++) {
-        const radius = waveRadius * (1.2 + Math.random() * 0.4); // Adjusted for larger waves
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.random() * Math.PI;
-        
-        particlePositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-        particlePositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-        particlePositions[i * 3 + 2] = radius * Math.cos(phi);
-      }
-      
-      particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-      
-      const particleMaterial = new THREE.PointsMaterial({
-        color: 0x0073f3,
-        size: 0.15,
-        transparent: true,
-        opacity: 0.4,
-        blending: THREE.AdditiveBlending
-      });
-      
-      const particles = new THREE.Points(particleGeometry, particleMaterial);
-      scene.add(particles);
 
       meshWave.rotation.x = axialTilt;
       glowMesh.rotation.x = axialTilt;
-      particles.rotation.x = axialTilt;
+      orbitalParticles.rotation.x = axialTilt * 0.5; // Slightly less tilt for rings
     };
 
     const updateCameraPosition = () => {
       const screenWidth = window.innerWidth;
-      camera.position.z = screenWidth < 600 ? 35 : screenWidth / 50; // Adjusted for larger size
+      camera.position.z = screenWidth < 600 ? 35 : screenWidth / 50;
       camera.position.y = 3;
       camera.position.x = -2;
       camera.fov = 70;
@@ -363,37 +440,97 @@ const GlobeVisualization = () => {
       threeScene.current.camera.aspect = parentWidth / parentHeight;
       threeScene.current.camera.updateProjectionMatrix();
       
-      // Recreate stars when window is resized to adjust to new document height
       if (threeScene.current.stars) {
         scene.remove(threeScene.current.stars);
         threeScene.current.stars = createStarField();
       }
+      
+      if (threeScene.current.orbitalParticles) {
+        scene.remove(threeScene.current.orbitalParticles);
+        threeScene.current.orbitalParticles = createOrbitalParticles();
+      }
     };
 
-    // Handle scroll to parallax effect
     const handleScroll = () => {
-      if (!threeScene.current?.stars) return;
+      if (!threeScene.current?.stars || !threeScene.current?.meshWave) return;
       
-      // Calculate scroll position as percentage of page
       const scrollY = window.scrollY;
       const documentHeight = Math.max(
-        document.body.scrollHeight, 
+        document.body.scrollHeight,
         document.documentElement.scrollHeight
       );
       const windowHeight = window.innerHeight;
       const maxScroll = documentHeight - windowHeight;
       const scrollPercent = scrollY / maxScroll;
       
-      // Move stars slightly based on scroll position
-      // The camera stays fixed, but we move the stars to create parallax
-      const starsPositionY = scrollPercent * -50; // Adjust this value to control parallax intensity
-      threeScene.current.stars.position.y = starsPositionY;
+      // Move stars independently
+      threeScene.current.stars.position.y = scrollPercent * -50;
+      
+      // Keep particles and planet together
+      const planetGroupY = scrollPercent * -15;
+      threeScene.current.meshWave.position.y = planetGroupY;
+      if (threeScene.current.orbitalParticles) {
+        threeScene.current.orbitalParticles.position.y = planetGroupY;
+      }
+      scene.children.forEach(child => {
+        if (child instanceof THREE.Mesh && child !== threeScene.current.meshWave) {
+          child.position.y = planetGroupY;
+        }
+      });
+    };
+
+    // Create new particles to maintain the flow of orbital particles
+    const refreshOrbitalParticles = () => {
+      if (!threeScene.current?.orbitalParticles) return;
+      
+      const geometry = threeScene.current.orbitalParticles.geometry;
+      const positions = geometry.getAttribute('position');
+      const ringData = geometry.getAttribute('ringData');
+      const visibilityData = geometry.getAttribute('visibilityData');
+      const elapsedTime = clock.getElapsedTime();
+      
+      // Refresh a small number of particles each frame
+      const refreshCount = 3;
+      for (let i = 0; i < refreshCount; i++) {
+        // Select random particles to refresh
+        const index = Math.floor(Math.random() * positions.count);
+        
+        // Get current ring data
+        const ringRadius = ringData.getX(index);
+        
+        // Create new approach position (far outside)
+        const approachRadius = ringRadius * (5 + Math.random() * 5);
+        const theta = Math.random() * Math.PI * 2;
+        const phi = (Math.random() * 0.3 + 0.85) * Math.PI / 2;
+        
+        // Set new position and refresh timing
+        positions.setXYZ(
+          index,
+          approachRadius * Math.sin(phi) * Math.cos(theta),
+          approachRadius * Math.cos(phi) * 0.3,
+          approachRadius * Math.sin(phi) * Math.sin(theta)
+        );
+        
+        // Update orbit phase
+        ringData.setY(index, Math.random() * Math.PI * 2);
+        
+        // Reset visibility and entry timing
+        visibilityData.setX(index, 0);
+        visibilityData.setY(index, elapsedTime + Math.random() * 5);
+      }
+      
+      // Mark attributes for update
+      positions.needsUpdate = true;
+      ringData.needsUpdate = true;
+      visibilityData.needsUpdate = true;
     };
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
 
     const animate = () => {
+      if (!threeScene.current) return;
+      
       requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
@@ -405,34 +542,28 @@ const GlobeVisualization = () => {
         meshWave.rotation.x = axialTilt + Math.sin(elapsedTime * 0.07) * 0.02;
       }
       
+      if (threeScene.current.orbitalParticles) {
+        const material = threeScene.current.orbitalParticles.material as THREE.ShaderMaterial;
+        material.uniforms.time.value = elapsedTime;
+        
+        // Gently rotate the entire ring system
+        threeScene.current.orbitalParticles.rotation.y += rotationAngle * 0.2;
+        
+        // Add very slight wobble to rings
+        threeScene.current.orbitalParticles.rotation.z = Math.sin(elapsedTime * 0.02) * 0.01;
+        
+        // Periodically refresh particles to maintain continuous flow
+        if (Math.random() > 0.95) {
+          refreshOrbitalParticles();
+        }
+      }
+      
       scene.children.forEach(child => {
         if (child instanceof THREE.Mesh && child.material instanceof THREE.ShaderMaterial && 
             child.material !== meshWave?.material) {
           child.material.uniforms.time.value = elapsedTime;
           child.rotation.y += rotationAngle * 0.5;
           child.rotation.z = Math.sin(elapsedTime * 0.1) * 0.02;
-        }
-        
-        if (child instanceof THREE.Points && !(child.material instanceof THREE.ShaderMaterial) && child !== stars) {
-          child.rotation.y += rotationAngle * 0.2;
-          const scalePulse = 1.0 + 0.05 * Math.sin(elapsedTime * 0.3);
-          child.scale.set(scalePulse, scalePulse, scalePulse);
-          
-          if (Math.random() > 0.99) {
-            const positions = child.geometry.getAttribute('position');
-            const index = Math.floor(Math.random() * positions.count);
-            const radius = waveRadius * (1.2 + Math.random() * 0.3);
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.random() * Math.PI;
-            
-            positions.setXYZ(
-              index,
-              radius * Math.sin(phi) * Math.cos(theta),
-              radius * Math.sin(phi) * Math.sin(theta),
-              radius * Math.cos(phi)
-            );
-            positions.needsUpdate = true;
-          }
         }
       });
 

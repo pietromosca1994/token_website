@@ -26,7 +26,7 @@ html, body, #root {
   color: var(--text-primary);
 }
 
-/* Header Styles */
+/* Header Styles
 .header {
   display: flex;
   justify-content: space-between;
@@ -39,10 +39,10 @@ html, body, #root {
   position: sticky;
   top: 0;
   z-index: 10;
-}
+} */
 
 .logo {
-  font-size: 48px; /* Slightly larger for better visibility */
+  font-size: 40px; /* Slightly larger for better visibility */
   font-family: 'Audiowide', cursive;
   font-weight: 500; /* Slightly bolder for a more defined look */
   color: rgba(178, 181, 244, 0.7); /* Solid color with rgba */

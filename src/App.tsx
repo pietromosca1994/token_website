@@ -9,6 +9,7 @@ import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
 import {Footer} from './Footer.tsx'
 import {Header} from './Header.tsx'
 import './App.css'
+import './Header.css';
 
 // Custom DIMO Button that wraps the ShareVehiclesWithDimo component
 function CustomDimoButton({ onSuccess, onError }) {

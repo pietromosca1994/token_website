@@ -25,10 +25,6 @@ html, body, #root {
   color: var(--text-primary);
 }
 
-html, body{
-  /* overflow: hidden; */
-}
-
 .wallet-page {
   display: flex;
   flex-direction: column;
@@ -36,7 +32,7 @@ html, body{
   background-color: transparent;
 }
 
-/* Improved header with better alignment */
+/* Improved header with better alignment
 .header {
   display: flex;
   justify-content: space-between;
@@ -49,7 +45,7 @@ html, body{
   position: sticky;
   top: 0;
   z-index: 10;
-}
+} */
 
 /* Improved balance display */
 .balance-display {

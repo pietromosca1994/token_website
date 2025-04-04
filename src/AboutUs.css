@@ -167,9 +167,15 @@
 }
 
 /* Replace with actual images in production */
-.profile-1 { background-color: rgba(144, 202, 249, 0.1); }
-.profile-2 { background-color: rgba(128, 222, 234, 0.1); }
-.profile-3 { background-color: rgba(165, 214, 167, 0.1); }
+.profile-1 { 
+  background-image: url('./assets/images/fabrizio_martini.png');
+}
+.profile-2 { 
+  background-image: url('./assets/images/pietro_mosca.png'); 
+}
+.profile-3 { 
+  background-image: url('./assets/images/giovanni_rossi.png'); 
+}
 
 .team-member h4 {
   margin: 0;

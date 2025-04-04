@@ -15,14 +15,16 @@ function AboutUs() {
 
       <Header />
 
-<main className="main-content" style={{ overflowY: 'auto' }}>
+      <main className="main-content" style={{ overflowY: 'auto' }}>
         <div className="about-container">
+          
           {/* Headline & Introduction */}
           <section className="about-section hero-section">
-            <h1 className="headline">Transforming Ideas into Digital Reality</h1>
+            <h1 className="headline">Empowering Mobility & Energy Storage with Web3 Battery Intelligence</h1>
             <p className="intro-text">
-              We are a forward-thinking technology company dedicated to crafting innovative digital solutions 
-              that empower businesses to thrive in an ever-evolving digital landscape.
+              We leverage <strong>blockchain and AI-driven analytics</strong> to optimize <strong>battery performance, longevity, and compliance</strong>. 
+              Our platform provides real-time <strong>data-driven insights</strong> for <strong>mobility and Battery Energy Storage Systems (BESS)</strong>, 
+              ensuring efficiency, transparency, and alignment with <strong>the EU Battery Passport regulations</strong>.
             </p>
           </section>
 
@@ -31,13 +33,13 @@ function AboutUs() {
             <h2>Our Journey</h2>
             <div className="section-content">
               <p>
-                Founded in 2020, our journey began with a vision to bridge the gap between complex technology and practical business applications. 
-                What started as a small team of passionate developers has evolved into a comprehensive digital solutions provider 
-                trusted by businesses worldwide.
+                As the world transitions to <strong>electric mobility and renewable energy</strong>, battery management remains a challenge. 
+                Traditional analytics lack <strong>transparency, interoperability, and real-time efficiency</strong>.  
+                We founded our platform to bridge this gap using <strong>Web3 technologies, applied ML, and decentralized data governance</strong>.
               </p>
               <p>
-                Through our expertise and dedication, we've helped dozens of organizations overcome technological challenges 
-                and unlock new opportunities for growth and innovation.
+                Our solutions provide <strong>actionable insights for OEMs, fleet operators, and energy storage providers</strong>, 
+                enabling them to <strong>optimize battery health, predict failures, and comply with evolving regulations</strong>.
               </p>
             </div>
           </section>
@@ -48,83 +50,41 @@ function AboutUs() {
               <div className="mission-box">
                 <h3>Our Mission</h3>
                 <p>
-                  To deliver exceptional digital solutions that solve real-world problems and create measurable value 
-                  for our clients and their customers.
+                  To <strong>unlock the full potential of battery assets</strong> using <strong>AI and blockchain</strong> while ensuring 
+                  sustainability and regulatory compliance.
                 </p>
               </div>
               <div className="vision-box">
                 <h3>Our Vision</h3>
                 <p>
-                  To be at the forefront of digital innovation, creating technology that makes the complex simple 
-                  and the impossible achievable.
+                  To become the <strong>global leader</strong> in <strong>Web3-powered battery analytics</strong>, enabling a future where 
+                  <strong>energy storage is smarter, more efficient, and seamlessly connected</strong> across the mobility 
+                  and energy sectors.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Team & Culture */}
-          <section className="about-section team-section">
-            <h2>Our Team & Culture</h2>
+          {/* Key Features */}
+          <section className="about-section features-section">
+            <h2>Our Technology</h2>
             <div className="section-content">
-              <p>
-                Behind every successful project is our exceptional team of developers, designers, strategists, and problem solvers. 
-                United by a passion for excellence, we approach each challenge with creativity and technical precision.
-              </p>
-              <div className="core-values">
-                <h3>Our Core Values</h3>
-                <ul className="values-list">
-                  <li><span>Innovation</span> - We continuously explore new technologies and approaches</li>
-                  <li><span>Quality</span> - We deliver excellence in every line of code</li>
-                  <li><span>Collaboration</span> - We believe the best solutions emerge from teamwork</li>
-                  <li><span>Integrity</span> - We build relationships based on trust and transparency</li>
-                </ul>
-              </div>
-              <div className="team-profiles">
-                <div className="team-member">
-                  <div className="member-photo profile-1"></div>
-                  <h4>Fabrizio Martini</h4>
-                  <p>Chief Executive Officer</p>
-                </div>
-                <div className="team-member">
-                  <div className="member-photo profile-2"></div>
-                  <h4>Pietro Mosca</h4>
-                  <p>Blockchain Research Engineer</p>
-                </div>
-                <div className="team-member">
-                  <div className="member-photo profile-3"></div>
-                  <h4>Giovanni Rossi</h4>
-                  <p>Head of Marketing</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Achievements */}
-          <section className="about-section achievements-section">
-            <h2>Our Achievements</h2>
-            <div className="achievements-container">
-              <div className="achievement-card">
-                <div className="achievement-icon award-icon"></div>
-                <h4>Excellence in Innovation</h4>
-                <p>Recognized among Top 50 Tech Innovators, 2023</p>
-              </div>
-              <div className="achievement-card">
-                <div className="achievement-icon partnership-icon"></div>
-                <h4>Strategic Partnerships</h4>
-                <p>Official technology partner for leading enterprises</p>
-              </div>
-              <div className="achievement-card">
-                <div className="achievement-icon growth-icon"></div>
-                <h4>Global Reach</h4>
-                <p>Serving clients across 15+ countries worldwide</p>
-              </div>
+              <ul className="features-list">
+                <li><span>🔗 Blockchain-Powered Battery Passport</span> – Ensures <strong>traceability, security, and compliance</strong> with EU regulations.</li>
+                <li><span>📊 AI-Driven Performance Optimization</span> – Predicts <strong>battery degradation, usage patterns, and lifecycle management</strong>.</li>
+                <li><span>⚡ Real-Time Analytics for Mobility & BESS</span> – Provides actionable insights for <strong>EV fleets, grid operators, and energy providers</strong>.</li>
+                <li><span>🛡️ Decentralized & Secure Data Layer</span> – Empowers <strong>battery owners with data sovereignty and monetization models</strong>.</li>
+              </ul>
             </div>
           </section>
 
           {/* Call to Action */}
           <section className="about-section cta-section">
-            <h2>Join Our Journey</h2>
-            <p>Whether you're looking for a technology partner or interested in joining our team, we'd love to connect.</p>
+            <h2>Join the Future of Web3 Battery Analytics</h2>
+            <p>
+              Whether you're an <strong>EV manufacturer, fleet operator, energy provider, or blockchain developer</strong>, 
+              we invite you to <strong>partner with us</strong> in building the <strong>next-generation battery intelligence ecosystem</strong>.
+            </p>
             <div className="cta-buttons">
               <Link to="/contact" className="cta-button primary">Contact Us</Link>
               <Link to="/careers" className="cta-button secondary">Explore Careers</Link>
@@ -133,6 +93,7 @@ function AboutUs() {
               <a href="#" className="social-icon linkedin">LinkedIn</a>
               <a href="#" className="social-icon twitter">Twitter</a>
               <a href="#" className="social-icon github">GitHub</a>
+              <a href="#" className="social-icon discord">Discord</a>
             </div>
           </section>
         </div>

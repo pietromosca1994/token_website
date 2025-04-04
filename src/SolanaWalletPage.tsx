@@ -5,6 +5,7 @@ import { Connection } from '@solana/web3.js';
 import GlobeVisualization from './components/GlobeVisualization';
 import {getVehiclesByDevLicenseAndOwner} from './utils'
 import './SolanaWalletPage.css';
+import './Header.css';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
 import {Footer} from './Footer.tsx'
@@ -23,8 +24,6 @@ interface SolanaWalletPageProps {
   email: string | null;
   walletAddress: string | null;
 }
-
-
 
 export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletPageProps) {
   const { publicKey } = useWallet();
