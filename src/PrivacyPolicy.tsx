@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import GlobeVisualization from "./components/GlobeVisualization";
 import { Footer } from "./Footer";
 import { Header } from "./Header";

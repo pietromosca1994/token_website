@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
 import {getAmountOfConnectedBatteries} from './utils'
-import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
+import { DIMO_APP_CLIENT_ID} from './main.tsx';
 import {Footer} from './Footer.tsx'
 import {Header} from './Header.tsx'
 import SolanaWalletPage from './SolanaWalletPage'

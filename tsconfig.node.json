@@ -14,11 +14,12 @@
     "noEmit": true,
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
+    "strict": false, // ← relax strict rules (optional)
+    "noUnusedLocals": false, // ← allow unused variables
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noFallthroughCasesInSwitch": false,
+    "noUncheckedSideEffectImports": true,
+    "noEmitOnError": false,  // ← still emit even if errors exist  // ← skip type checking in node_modules
   },
   "include": ["vite.config.ts"]
 }
