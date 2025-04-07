@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import "./App.css";
 import "./HowItWorks.css";
 
-import batteryImg from './assets/images/battery.jpg';
+// import batteryImg from './assets/images/battery.jpg';
 
 // How It Works Page
 function HowItWorks() {
@@ -30,7 +30,8 @@ function HowItWorks() {
                 <div className="step-content">
                   <h2>Connect & Tokenize Your Battery</h2>
                   <div className="step-image-container">
-                    <img src={batteryImg} alt="Battery tokenization process" className="step-image" />
+                    {/* <img src={batteryImg} alt="Battery tokenization process" className="step-image" /> */}
+                    <img src="/api/placeholder/600/350" alt="Battery tokenization process" className="step-image" />
                   </div>
                   <div className="step-description">
                     <p>Start by signing in using DIMO, our currently supported authentication service. This seamless connection does more than just create an account:</p>
