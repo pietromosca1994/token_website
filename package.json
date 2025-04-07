@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "build_unchecked": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "wrangler pages deploy dist --project-name=token_website"
   },
   "dependencies": {
     "@dimo-network/login-with-dimo": "^0.0.20",
