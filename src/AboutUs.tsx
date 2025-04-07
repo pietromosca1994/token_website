@@ -20,26 +20,28 @@ function AboutUs() {
           
           {/* Headline & Introduction */}
           <section className="about-section hero-section">
-            <h1 className="headline">Empowering Mobility & Energy Storage with Web3 Battery Intelligence</h1>
+            <h1 className="headline">Web3-Powered Battery Analytics for Mobility and Energy Storage</h1>
             <p className="intro-text">
-              We leverage <strong>blockchain and AI-driven analytics</strong> to optimize <strong>battery performance, longevity, and compliance</strong>. 
-              Our platform provides real-time <strong>data-driven insights</strong> for <strong>mobility and Battery Energy Storage Systems (BESS)</strong>, 
-              ensuring efficiency, transparency, and alignment with <strong>the EU Battery Passport regulations</strong>.
+              We leverage <strong>blockchain technology and advanced machine learning</strong> to deliver 
+              <strong> actionable battery insights</strong>. Our platform optimizes <strong>battery performance, 
+              extends lifecycles, and ensures compliance</strong> with EU Battery Passport regulations for both 
+              <strong> mobility and Battery Energy Storage Systems (BESS)</strong>.
             </p>
           </section>
 
           {/* Company Story */}
           <section className="about-section story-section">
-            <h2>Our Journey</h2>
+            <h2>Our Purpose</h2>
             <div className="section-content">
               <p>
-                As the world transitions to <strong>electric mobility and renewable energy</strong>, battery management remains a challenge. 
-                Traditional analytics lack <strong>transparency, interoperability, and real-time efficiency</strong>.  
-                We founded our platform to bridge this gap using <strong>Web3 technologies, applied ML, and decentralized data governance</strong>.
+                The transition to <strong>electrified transport and renewable energy storage</strong> faces critical challenges 
+                in battery management and utilization. Traditional systems lack <strong>transparent data access, cross-platform 
+                compatibility, and real-time monitoring capabilities</strong>.
               </p>
               <p>
-                Our solutions provide <strong>actionable insights for OEMs, fleet operators, and energy storage providers</strong>, 
-                enabling them to <strong>optimize battery health, predict failures, and comply with evolving regulations</strong>.
+                We created our platform to address these challenges through <strong>decentralized data governance, applied machine 
+                learning, and Web3 interoperability</strong>. Our solutions empower <strong>fleet operators, OEMs, energy providers, 
+                and grid operators</strong> with the intelligence needed to maximize battery value throughout their lifecycle.
               </p>
             </div>
           </section>
@@ -50,17 +52,46 @@ function AboutUs() {
               <div className="mission-box">
                 <h3>Our Mission</h3>
                 <p>
-                  To <strong>unlock the full potential of battery assets</strong> using <strong>AI and blockchain</strong> while ensuring 
-                  sustainability and regulatory compliance.
+                  To <strong>transform battery asset management</strong> through <strong>data-driven intelligence and blockchain verification</strong>, 
+                  enabling optimal performance while ensuring complete regulatory compliance.
                 </p>
               </div>
               <div className="vision-box">
                 <h3>Our Vision</h3>
                 <p>
-                  To become the <strong>global leader</strong> in <strong>Web3-powered battery analytics</strong>, enabling a future where 
-                  <strong>energy storage is smarter, more efficient, and seamlessly connected</strong> across the mobility 
-                  and energy sectors.
+                  Creating an <strong>interconnected ecosystem</strong> where <strong>battery data flows securely</strong> between stakeholders, 
+                  enabling <strong>smarter decisions, longer battery life, and sustainable energy transitions</strong> across mobility and grid applications.
                 </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Team Profiles Section */}
+          <section className="about-section team-section">
+            <h2>Our Team</h2>
+            <div className="section-content">
+              <div className="team-profiles">
+                <div className="team-member">
+                  <div className="member-photo profile-1"></div>
+                  <h4><a href="https://www.linkedin.com/in/fabrizio-martini-39068320/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  Fabrizio Martini
+                  </a></h4>
+                  <p>Chief Executive Officer</p>
+                </div>
+                <div className="team-member">
+                  <div className="member-photo profile-2"></div>
+                  <h4><a href="https://www.linkedin.com/in/pietro-mosca/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  Pietro Mosca
+                  </a></h4>
+                  <p>Blockchain Research Engineer</p>
+                </div>
+                <div className="team-member">
+                  <div className="member-photo profile-3"></div>
+                  <h4><a href="https://www.linkedin.com/in/giovannirossi92/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                  Giovanni Rossi 
+                  </a></h4>
+                  <p>Head of Marketing</p>
+                </div>
               </div>
             </div>
           </section>
@@ -70,29 +101,51 @@ function AboutUs() {
             <h2>Our Technology</h2>
             <div className="section-content">
               <ul className="features-list">
-                <li><span>🔗 Blockchain-Powered Battery Passport</span> – Ensures <strong>traceability, security, and compliance</strong> with EU regulations.</li>
-                <li><span>📊 AI-Driven Performance Optimization</span> – Predicts <strong>battery degradation, usage patterns, and lifecycle management</strong>.</li>
-                <li><span>⚡ Real-Time Analytics for Mobility & BESS</span> – Provides actionable insights for <strong>EV fleets, grid operators, and energy providers</strong>.</li>
-                <li><span>🛡️ Decentralized & Secure Data Layer</span> – Empowers <strong>battery owners with data sovereignty and monetization models</strong>.</li>
+                <li><span>🔍 Advanced Battery Analytics</span> – Uses <strong>ML algorithms to analyze battery performance patterns</strong> and identify optimization opportunities.</li>
+                <li><span>🔗 EU Battery Passport Compliance</span> – Provides <strong>blockchain-verified documentation</strong> for regulatory requirements and sustainability tracking.</li>
+                <li><span>📊 Predictive Health Monitoring</span> – <strong>Forecasts degradation, alerts to potential failures</strong>, and recommends maintenance interventions.</li>
+                <li><span>⚡ Cross-Platform Optimization</span> – Delivers <strong>unified insights across EV fleets, stationary storage, and grid applications</strong>.</li>
+                <li><span>🛡️ Decentralized Data Architecture</span> – Ensures <strong>data sovereignty while enabling secure sharing</strong> between authorized stakeholders.</li>
               </ul>
+            </div>
+          </section>
+
+          {/* Applications Section */}
+          <section className="about-section applications-section">
+            <h2>Applications</h2>
+            <div className="section-content">
+              <div className="application-cards">
+                <div className="application-card">
+                  <h3>EV Fleet Management</h3>
+                  <p>Optimize charging strategies, predict range variations, and maximize battery longevity for commercial electric fleets.</p>
+                </div>
+                <div className="application-card">
+                  <h3>Grid-Scale BESS</h3>
+                  <p>Enhance energy arbitrage, frequency regulation, and power quality while extending battery lifecycle for utility-scale installations.</p>
+                </div>
+                <div className="application-card">
+                  <h3>OEM Integration</h3>
+                  <p>Provide manufacturers with battery performance insights to improve design, warranty management, and second-life applications.</p>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Call to Action */}
           <section className="about-section cta-section">
-            <h2>Join the Future of Web3 Battery Analytics</h2>
+            <h2>Transform Your Battery Management Strategy</h2>
             <p>
-              Whether you're an <strong>EV manufacturer, fleet operator, energy provider, or blockchain developer</strong>, 
-              we invite you to <strong>partner with us</strong> in building the <strong>next-generation battery intelligence ecosystem</strong>.
+              Whether you're a <strong>fleet operator looking to reduce TCO, a BESS provider maximizing ROI, or an OEM ensuring compliance</strong>, 
+              our platform delivers the <strong>insights and verification</strong> you need in today's evolving regulatory landscape.
             </p>
             <div className="cta-buttons">
-              <Link to="/contact" className="cta-button primary">Contact Us</Link>
-              <Link to="/careers" className="cta-button secondary">Explore Careers</Link>
+              <Link to="/contact" className="cta-button primary">Schedule a Demo</Link>
+              <Link to="/use-cases" className="cta-button secondary">Explore Use Cases</Link>
             </div>
             <div className="social-links">
               <a href="#" className="social-icon linkedin">LinkedIn</a>
               <a href="#" className="social-icon twitter">Twitter</a>
-              <a href="#" className="social-icon github">GitHub</a>
+              <a href="#" className="social-icon telegram">Telegram</a>
               <a href="#" className="social-icon discord">Discord</a>
             </div>
           </section>
