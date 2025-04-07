@@ -11,18 +11,28 @@ export function Footer() {
             <Link to="/about-us">
               <p>About Us</p>
             </Link>
-            <p>Press</p>
+            {/* <p>Press</p> */}
+            <Link to="/how-it-works">
+              <p>How It Works</p>
+            </Link>
           </section>
           <section>
             <h4>Legal</h4>
-            <p>Terms & Conditions</p>
-            <p>Privacy Policy</p>
+            <Link to="/terms-and-conditions">
+              <p>Terms & Conditions</p>
+            </Link>
+            <Link to="/privacy-policy">
+              <p>Privacy Policy</p>
+            </Link>
           </section>
           <section>
             <h4>Follow Us</h4>
-            <p>Twitter</p>
-            <p>LinkedIn</p>
-            <p>GitHub</p>
+            <p>X</p>
+            <a href="https://discord.gg/NTwGsGMg" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+              <p>Discord</p>
+            </a>
+            {/* <p>LinkedIn</p> */}
+            {/* <p>GitHub</p> */}
           </section>
           <section>
             <h4>Contact</h4>

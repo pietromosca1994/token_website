@@ -143,10 +143,8 @@ function AboutUs() {
               <Link to="/use-cases" className="cta-button secondary">Explore Use Cases</Link>
             </div>
             <div className="social-links">
-              <a href="#" className="social-icon linkedin">LinkedIn</a>
-              <a href="#" className="social-icon twitter">Twitter</a>
-              <a href="#" className="social-icon telegram">Telegram</a>
               <a href="#" className="social-icon discord">Discord</a>
+              <a href="#" className="social-icon X">X</a>
             </div>
           </section>
         </div>

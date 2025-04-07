@@ -1,5 +1,6 @@
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Connection } from '@solana/web3.js';
 import GlobeVisualization from './components/GlobeVisualization';
@@ -90,6 +91,9 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
       
       {/* // header component */}
       <header className="header">
+        <Link to="/">
+          <p><h1 className="logo">EAGLE Labs.</h1></p>
+        </Link>
         <div className="wallet-info">
           {publicKey && balance !== null && (
             <div className="balance-display">

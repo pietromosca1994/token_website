@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
-import SolanaWalletPage from './SolanaWalletPage'
-import AboutUs from "./AboutUs"; 
-import GlobeVisualization from './components/GlobeVisualization'
 import {getAmountOfConnectedBatteries} from './utils'
 import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
 import {Footer} from './Footer.tsx'
 import {Header} from './Header.tsx'
+import SolanaWalletPage from './SolanaWalletPage'
+import AboutUs from "./AboutUs"; 
+import PrivacyPolicy from "./PrivacyPolicy"; 
+import TermsAndConditions from "./TermsAndConditions"; 
+import HowItWorks from "./HowItWorks"; 
+import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';
 
@@ -111,6 +114,9 @@ function App() {
           />
         } />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path ="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path ="/how-it-works" element={<HowItWorks />} />
       </Routes>
     </BrowserRouter>
   )

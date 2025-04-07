@@ -303,6 +303,26 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.social-icon.discord {
+  background-image: url("./assets/images/discord_logo.png");
+  background-color: rgba(7, 8, 9, 0.1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.social-icon.X {
+  background-image: url("./assets/images/X_logo.png");
+  background-color: rgba(7, 8, 9, 0.1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .headline {
