@@ -1,0 +1,627 @@
+/* PrivateSale.css */
+
+/* Sale Hero Section */
+.sale-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.sale-title-container {
+  margin-bottom: 3rem;
+}
+
+.sale-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+}
+
+.sale-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.eagle-card {
+  background: rgba(30, 32, 40, 0.85);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-effect {
+  box-shadow: 0 0 30px rgba(100, 108, 255, 0.2);
+}
+
+.glow-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(100, 108, 255, 0.1) 0%, transparent 50%);
+  animation: rotate 15s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.eagle-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eagle-logo svg {
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.eagle-card h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.eagle-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Sale Grid Layout */
+.sale-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+.sale-section {
+  background: rgba(30, 32, 40, 0.8);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sale-section h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: white;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.sale-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 3px;
+}
+
+/* Countdown Timer */
+.countdown-container {
+  background: rgba(20, 22, 30, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.countdown-title {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.countdown-item {
+  flex: 1;
+  text-align: center;
+}
+
+.countdown-value {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  background: rgba(15, 17, 25, 0.8);
+  border-radius: 8px;
+  padding: 0.8rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(100, 108, 255, 0.2);
+}
+
+.countdown-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Sale Details */
+.sale-details {
+  margin-bottom: 2rem;
+}
+
+.sale-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sale-detail-item:last-child {
+  border-bottom: none;
+}
+
+.sale-detail-item span:first-child {
+  color: var(--text-secondary);
+}
+
+.sale-detail-item span:last-child {
+  color: white;
+  font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.progress-info span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  height: 12px;
+  background: rgba(20, 22, 30, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progress-stats {
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Buy Button */
+.buy-button {
+  width: 100%;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+}
+
+/* Tokenomics Section */
+.tokenomics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tokenomics-stats {
+  background: rgba(20, 22, 30, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.tokenomics-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Token Allocation */
+.token-allocation, .vesting-schedule {
+  background: rgba(20, 22, 30, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.token-allocation h3, .vesting-schedule h3 {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.token-allocation h3::after, .vesting-schedule h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+.allocation-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.allocation-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.allocation-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.private-sale { background: #646cff; }
+.public-sale { background: #bc61ff; }
+.ecosystem { background: #61dafb; }
+.team { background: #ff6b6b; }
+.marketing { background: #ffd166; }
+.reserves { background: #06d6a0; }
+
+.allocation-label {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.allocation-percent {
+  color: white;
+  font-weight: 600;
+}
+
+.allocation-item::after {
+  content: '';
+  height: 6px;
+  width: var(--percent);
+  background: linear-gradient(90deg, rgba(100, 108, 255, 0.8), rgba(100, 108, 255, 0.4));
+  border-radius: 3px;
+  margin-left: auto;
+}
+
+/* Vesting Table */
+.vesting-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vesting-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vesting-row.header {
+  font-weight: 600;
+  color: white;
+}
+
+.vesting-cell {
+  padding: 1rem 0.5rem;
+  color: var(--text-secondary);
+}
+
+.vesting-row.header .vesting-cell {
+  color: white;
+}
+
+/* Eagle Features */
+.eagle-features {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.eagle-features h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: rgba(30, 32, 40, 0.8);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(100, 108, 255, 0.3);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  background: rgba(100, 108, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 30px;
+  height: 30px;
+  color: var(--accent-color);
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Roadmap */
+.roadmap-section {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.roadmap-section h2 {
+  font-family: 'Audiowide', cursive;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.roadmap-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.roadmap-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15px;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+}
+
+.roadmap-item {
+  position: relative;
+  padding-left: 45px;
+  margin-bottom: 2.5rem;
+}
+
+.roadmap-item:last-child {
+  margin-bottom: 0;
+}
+
+.roadmap-dot {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(30, 32, 40, 0.8);
+  border: 2px solid var(--accent-color);
+  z-index: 1;
+}
+
+.roadmap-item.active .roadmap-dot {
+  background: var(--accent-color);
+  box-shadow: 0 0 15px rgba(100, 108, 255, 0.6);
+}
+
+.roadmap-content {
+  background: rgba(30, 32, 40, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.roadmap-content h3 {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.roadmap-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.roadmap-content li {
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.roadmap-content li::before {
+  content: '•';
+  margin-right: 0.8rem;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .sale-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sale-title {
+    font-size: 3rem;
+  }
+  
+  .vesting-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .vesting-row.header {
+    display: none;
+  }
+  
+  .vesting-cell {
+    position: relative;
+    padding-left: 40%;
+  }
+  
+  .vesting-cell::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    width: 40%;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .sale-hero {
+    padding: 3rem 1rem;
+  }
+  
+  .sale-title {
+    font-size: 2.5rem;
+  }
+  
+  .eagle-card {
+    padding: 2rem;
+  }
+  
+  .countdown-timer {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .countdown-item {
+    min-width: 45%;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sale-title {
+    font-size: 2rem;
+  }
+  
+  .countdown-item {
+    min-width: 100%;
+  }
+  
+  .sale-section {
+    padding: 1.5rem;
+  }
+  
+  .sale-detail-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .roadmap-dot {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .roadmap-item {
+    padding-left: 35px;
+  }
+}

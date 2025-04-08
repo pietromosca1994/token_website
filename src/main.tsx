@@ -13,6 +13,8 @@ const endpoint = clusterApiUrl('mainnet-beta')
 
 export const DIMO_APP_CLIENT_ID = '0x14C21aB21F1F186455B718B8629b9Ed5394A660a';
 export const QUICKNODE_ENDPOINT = 'https://light-floral-hill.solana-mainnet.quiknode.pro/2fd29795b25622ac9ecb92459cc49638f86a7c88/';
+export const DISCORD_CHANNEL = "https://discord.gg/NTwGsGMg";
+export const X_CHANNEL = "";
 
 initializeDimoSDK({
   clientId: '0x14C21aB21F1F186455B718B8629b9Ed5394A660a',

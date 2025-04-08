@@ -1,7 +1,15 @@
-/* Terms and Conditions specific styles */
-.terms-container {
-    max-width: 800px;
+/* TermsAndConditions.css */
+.terms-page-container {
+    display: flex;
+    max-width: 1200px;
     margin: 0 auto;
+    gap: 2rem;
+    position: relative;
+  }
+  
+  .terms-container {
+    max-width: 800px;
+    flex: 1;
     background: rgba(26, 31, 54, 0.7);
     border-radius: 16px;
     backdrop-filter: blur(12px);
@@ -10,33 +18,32 @@
                 0 0 15px rgba(100, 108, 255, 0.15);
     padding: 3rem;
     color: var(--text-primary);
+    margin-bottom: 3rem;
   }
   
   .terms-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    text-align: center;
-    margin-bottom: 2.5rem;
     color: white;
-    letter-spacing: 1px;
-    position: relative;
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
   }
   
-  .terms-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: var(--accent-color);
-    box-shadow: 0 0 15px rgba(100, 108, 255, 0.6);
+  .terms-last-updated {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+    font-style: italic;
   }
   
   .terms-section {
     margin-bottom: 2.5rem;
+    scroll-margin-top: 100px;
   }
   
   .terms-section h2 {
@@ -83,7 +90,74 @@
     margin-top: 0.5rem;
   }
   
+  /* Summary navigation styles */
+  .terms-summary {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    background: rgba(26, 31, 54, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 108, 255, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 
+                0 0 8px rgba(100, 108, 255, 0.1);
+    padding: 1.5rem;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+  }
+  
+  .summary-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(100, 108, 255, 0.3);
+    text-align: center;
+  }
+  
+  .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .summary-list li {
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+  
+  .summary-list li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .summary-list li a:hover {
+    color: white;
+    background: rgba(100, 108, 255, 0.15);
+  }
+  
+  .summary-list li.active a {
+    color: white;
+    background: rgba(100, 108, 255, 0.25);
+    border-left: 3px solid var(--accent-color);
+    box-shadow: 0 0 8px rgba(100, 108, 255, 0.2);
+  }
+  
   /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .terms-page-container {
+      padding: 0 1.5rem;
+    }
+  }
+  
   @media (max-width: 992px) {
     .terms-container {
       padding: 2.5rem;
@@ -92,12 +166,21 @@
     .terms-title {
       font-size: 2.2rem;
     }
+    
+    .terms-summary {
+      width: 220px;
+    }
   }
   
   @media (max-width: 768px) {
+    .terms-page-container {
+      flex-direction: column;
+    }
+    
     .terms-container {
       padding: 2rem;
-      margin: 0 1rem;
+      margin: 0;
+      order: 2;
     }
     
     .terms-title {
@@ -106,6 +189,32 @@
     
     .terms-section h2 {
       font-size: 1.4rem;
+    }
+    
+    .terms-summary {
+      width: 100%;
+      position: relative;
+      top: 0;
+      order: 1;
+      margin-bottom: 1.5rem;
+      max-height: none;
+      overflow-y: visible;
+    }
+    
+    .summary-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .summary-list li {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+    
+    .summary-list li a {
+      white-space: nowrap;
+      font-size: 0.85rem;
     }
   }
   
@@ -125,5 +234,13 @@
     
     .terms-section {
       margin-bottom: 2rem;
+    }
+    
+    .summary-list {
+      flex-direction: column;
+    }
+    
+    .summary-list li {
+      width: 100%;
     }
   }

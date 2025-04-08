@@ -1,7 +1,18 @@
-/* Privacy Policy specific styles */
-.policy-container {
-    max-width: 800px;
+/* Shared CSS for Terms and Privacy Policy pages */
+
+/* Page container styles */
+.legal-page-container {
+    display: flex;
+    max-width: 1200px;
     margin: 0 auto;
+    gap: 2rem;
+    position: relative;
+  }
+  
+  /* Main content container */
+  .legal-container {
+    max-width: 800px;
+    flex: 1;
     background: rgba(26, 31, 54, 0.7);
     border-radius: 16px;
     backdrop-filter: blur(12px);
@@ -10,36 +21,38 @@
                 0 0 15px rgba(100, 108, 255, 0.15);
     padding: 3rem;
     color: var(--text-primary);
+    margin-bottom: 3rem;
   }
   
-  .policy-title {
-    font-size: 2.5rem;
+  /* Title styles */
+  .legal-title {
+    font-size: 3.5rem;
     font-weight: 700;
-    text-align: center;
-    margin-bottom: 2.5rem;
     color: white;
-    letter-spacing: 1px;
-    position: relative;
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
   }
   
-  .policy-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: var(--accent-color);
-    box-shadow: 0 0 15px rgba(100, 108, 255, 0.6);
-  }
-  
-  .policy-section {
+  /* Last updated text */
+  .legal-last-updated {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     margin-bottom: 2.5rem;
+    font-style: italic;
   }
   
-  .policy-section h2 {
+  /* Content sections */
+  .legal-section {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: 100px;
+  }
+  
+  .legal-section h2 {
     font-size: 1.6rem;
     color: white;
     margin-bottom: 1rem;
@@ -48,7 +61,7 @@
     padding-bottom: 0.5rem;
   }
   
-  .policy-section h2::after {
+  .legal-section h2::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -59,19 +72,19 @@
     box-shadow: 0 0 8px rgba(100, 108, 255, 0.5);
   }
   
-  .policy-section p {
+  .legal-section p {
     margin-bottom: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
     font-size: 1rem;
   }
   
-  .policy-list {
+  .legal-list {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
   }
   
-  .policy-list li {
+  .legal-list li {
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
     line-height: 1.5;
@@ -83,47 +96,157 @@
     margin-top: 0.5rem;
   }
   
+  /* Summary navigation styles */
+  .legal-summary {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    background: rgba(26, 31, 54, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 108, 255, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 
+                0 0 8px rgba(100, 108, 255, 0.1);
+    padding: 1.5rem;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+  }
+  
+  .summary-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(100, 108, 255, 0.3);
+    text-align: center;
+  }
+  
+  .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .summary-list li {
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+  
+  .summary-list li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .summary-list li a:hover {
+    color: white;
+    background: rgba(100, 108, 255, 0.15);
+  }
+  
+  .summary-list li.active a {
+    color: white;
+    background: rgba(100, 108, 255, 0.25);
+    border-left: 3px solid var(--accent-color);
+    box-shadow: 0 0 8px rgba(100, 108, 255, 0.2);
+  }
+  
   /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .legal-page-container {
+      padding: 0 1.5rem;
+    }
+  }
+  
   @media (max-width: 992px) {
-    .policy-container {
+    .legal-container {
       padding: 2.5rem;
     }
     
-    .policy-title {
+    .legal-title {
       font-size: 2.2rem;
+    }
+    
+    .legal-summary {
+      width: 220px;
     }
   }
   
   @media (max-width: 768px) {
-    .policy-container {
-      padding: 2rem;
-      margin: 0 1rem;
+    .legal-page-container {
+      flex-direction: column;
     }
     
-    .policy-title {
+    .legal-container {
+      padding: 2rem;
+      margin: 0;
+      order: 2;
+    }
+    
+    .legal-title {
       font-size: 2rem;
     }
     
-    .policy-section h2 {
+    .legal-section h2 {
       font-size: 1.4rem;
+    }
+    
+    .legal-summary {
+      width: 100%;
+      position: relative;
+      top: 0;
+      order: 1;
+      margin-bottom: 1.5rem;
+      max-height: none;
+      overflow-y: visible;
+    }
+    
+    .summary-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .summary-list li {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+    
+    .summary-list li a {
+      white-space: nowrap;
+      font-size: 0.85rem;
     }
   }
   
   @media (max-width: 480px) {
-    .policy-container {
+    .legal-container {
       padding: 1.5rem;
     }
     
-    .policy-title {
+    .legal-title {
       font-size: 1.8rem;
       margin-bottom: 2rem;
     }
     
-    .policy-section h2 {
+    .legal-section h2 {
       font-size: 1.3rem;
     }
     
-    .policy-section {
+    .legal-section {
       margin-bottom: 2rem;
+    }
+    
+    .summary-list {
+      flex-direction: column;
+    }
+    
+    .summary-list li {
+      width: 100%;
     }
   }

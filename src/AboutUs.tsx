@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import "./App.css";
 import "./AboutUs.css";
+import { DISCORD_CHANNEL, X_CHANNEL } from "./main";
 
 // About Us Page
 function AboutUs() {
@@ -101,30 +102,30 @@ function AboutUs() {
             <h2>Our Technology</h2>
             <div className="section-content">
               <ul className="features-list">
-                <li><span>🔍 Advanced Battery Analytics</span> – Uses <strong>ML algorithms to analyze battery performance patterns</strong> and identify optimization opportunities.</li>
-                <li><span>🔗 EU Battery Passport Compliance</span> – Provides <strong>blockchain-verified documentation</strong> for regulatory requirements and sustainability tracking.</li>
-                <li><span>📊 Predictive Health Monitoring</span> – <strong>Forecasts degradation, alerts to potential failures</strong>, and recommends maintenance interventions.</li>
-                <li><span>⚡ Cross-Platform Optimization</span> – Delivers <strong>unified insights across EV fleets, stationary storage, and grid applications</strong>.</li>
-                <li><span>🛡️ Decentralized Data Architecture</span> – Ensures <strong>data sovereignty while enabling secure sharing</strong> between authorized stakeholders.</li>
+                <li><span>[🔍] Smart Battery Insights</span> – <strong>AI</strong> detects patterns & boosts <strong>performance</strong></li>
+                <li><span>[🔗] EU Compliance</span> – <strong>Blockchain-secured Battery Passport</strong></li>
+                <li><span>[📊] Predictive Monitoring</span> – <strong>Forecasts health & avoids failures</strong></li>
+                <li><span>[⚡] Unified Optimization</span> – One view across <strong>EVs, storage & grid.</strong></li>
+                <li><span>[🛡️] Decentralized Data Architecture</span> – Secure sharing with <strong>decentralization</strong></li>
               </ul>
             </div>
           </section>
 
           {/* Applications Section */}
           <section className="about-section applications-section">
-            <h2>Applications</h2>
+            <h2>📍 Applications</h2>
             <div className="section-content">
               <div className="application-cards">
                 <div className="application-card">
-                  <h3>EV Fleet Management</h3>
+                  <h3>🚚 EV Fleet Management</h3>
                   <p>Optimize charging strategies, predict range variations, and maximize battery longevity for commercial electric fleets.</p>
                 </div>
                 <div className="application-card">
-                  <h3>Grid-Scale BESS</h3>
+                  <h3>⚡ Grid-Scale BESS</h3>
                   <p>Enhance energy arbitrage, frequency regulation, and power quality while extending battery lifecycle for utility-scale installations.</p>
                 </div>
                 <div className="application-card">
-                  <h3>OEM Integration</h3>
+                  <h3>🏭 OEM Integration</h3>
                   <p>Provide manufacturers with battery performance insights to improve design, warranty management, and second-life applications.</p>
                 </div>
               </div>
@@ -139,12 +140,12 @@ function AboutUs() {
               our platform delivers the <strong>insights and verification</strong> you need in today's evolving regulatory landscape.
             </p>
             <div className="cta-buttons">
-              <Link to="/contact" className="cta-button primary">Schedule a Demo</Link>
-              <Link to="/use-cases" className="cta-button secondary">Explore Use Cases</Link>
+              <Link to="/contact" className="cta-button primary">Learn More</Link>
+              {/* <Link to="/use-cases" className="cta-button secondary">Explore Use Cases</Link> */}
             </div>
             <div className="social-links">
-              <a href="#" className="social-icon discord">Discord</a>
-              <a href="#" className="social-icon X">X</a>
+              <a href={DISCORD_CHANNEL} target="_blank" className="social-icon discord">Discord</a>
+              <a href={X_CHANNEL} target="_blank" className="social-icon X">X</a>
             </div>
           </section>
         </div>

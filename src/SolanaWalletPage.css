@@ -1,51 +1,27 @@
-:root {
-  --header-bg: #1a1c20;
-  --footer-bg: #1a1c20;
-  --primary-color: #4169e1;
-  --primary-hover: #0097a7;
-  --accent-color: #4af5ff;
-  --background: #f0f4f8;
-  --surface: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a5568;
-  --border-color: #e2e8f0;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-html, body, #root {
-  height: 100%;
+.header {
+  display: flex;
+  align-items: center; /* This centers items vertically */
+  justify-content: space-between; /* This pushes items to the edges */
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 10;
   width: 100%;
-  background-color: var(--background);
+}
+
+/* Logo styling - centered vertically */
+.logo {
+  margin: 0; /* Remove any default margins */
+  font-size: 1.8rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-.wallet-page {
+/* Right side wrapper for balance and wallet button */
+.wallet-info {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: transparent;
-}
-
-/* Improved header with better alignment
-.header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background-color: rgba(26, 31, 54, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-} */
+  gap: 1rem;
+}
 
 /* Improved balance display */
 .balance-display {
@@ -77,9 +53,9 @@ html, body, #root {
   background-color: var(--primary-color);
   color: var(--text-primary);
   border: none;
-  padding: 0.875rem 1.75rem;
+  padding: 0.75rem 1.5rem; /* Reduced padding for better visibility on small screens */
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size for better visibility on small screens */
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -100,7 +76,7 @@ html, body, #root {
   box-shadow: 0 0 10px rgba(74, 245, 255, 0.3);
 }
 
-.main-content {
+/* .main-content {
   flex: 1;
   padding: 2rem;
   overflow-y: auto;
@@ -110,7 +86,7 @@ html, body, #root {
   width: 100%;
   position: relative;
   z-index: 1;
-}
+} */
 
 /* Improved vehicle list */
 .vehicle-list {
@@ -222,10 +198,14 @@ html, body, #root {
 
 @media (max-width: 768px) {
   .header {
+    flex-direction: column;
     padding: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 1rem;
+  }
+  
+  .wallet-info {
+    order: 2; /* Change order for mobile view */
+    margin-top: 0.5rem;
   }
   
   .main-content {
