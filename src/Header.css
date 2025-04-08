@@ -1,7 +1,7 @@
 .header {
-  height: 60px; /* Decreased header height */
+  height: 60px;
   display: flex;
-  align-items: center; /* Middle align the logo */
+  align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
   background-color: rgba(26, 31, 54, 0.9);
@@ -12,10 +12,17 @@
   z-index: 10;
 }
 
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
 .logo {
-  height: 40px;
-  width: auto;
+  margin: 0;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .nav-links {
@@ -32,4 +39,19 @@
 
 .nav-link:hover {
   color: var(--text-primary);
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: var(--accent-color-hover);
 }
