@@ -10,7 +10,7 @@ import AboutUs from "./AboutUs";
 import PrivacyPolicy from "./PrivacyPolicy"; 
 import TermsAndConditions from "./TermsAndConditions"; 
 import HowItWorks from "./HowItWorks"; 
-import PrivateSale from "./PrivateSale"; 
+import PrivateSale from "./TokenPrivateSale.tsx"; 
 import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';

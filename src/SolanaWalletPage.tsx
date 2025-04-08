@@ -1,153 +1,138 @@
-import { useWallet } from '@solana/wallet-adapter-react'
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import { Connection } from '@solana/web3.js';
-import GlobeVisualization from './components/GlobeVisualization';
-import {getVehiclesByDevLicenseAndOwner} from './utils'
-import './SolanaWalletPage.css';
-import './Header.css';
-import '@solana/wallet-adapter-react-ui/styles.css';
-import { DIMO_APP_CLIENT_ID, QUICKNODE_ENDPOINT} from './main.tsx';
-import {Footer} from './Footer.tsx'
+import GlobeVisualization from "./components/GlobeVisualization";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import "./App.css";
 
-interface Vehicle {
-  id: string;
-  name: string;
-  make: string;
-  model: string;
-  year: number;
-  vin: string;
-  image: string;
-}
-
-interface SolanaWalletPageProps {
-  email: string | null;
-  walletAddress: string | null;
-}
-
-export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletPageProps) {
-  const { publicKey } = useWallet();
-  const [balance, setBalance] = useState<number | null>(null);
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [connection] = useState(new Connection(QUICKNODE_ENDPOINT));
-
-  useEffect(() => {
-    const fetchBalance = async () => {
-      if (publicKey) {
-        try {
-          const balance = await connection.getBalance(publicKey);
-          setBalance(balance / 1_000_000_000); // Convert lamports to SOL
-        } catch (error) {
-          console.error('Error fetching balance:', error);
-        }
-      }
-    };
-
-    const fetchVehicles = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const owner = walletAddress || '';
-        const data = await getVehiclesByDevLicenseAndOwner(DIMO_APP_CLIENT_ID, owner);
-
-        setVehicles(
-          data.map((vehicle: any) => {
-            const ipfsUrl = vehicle.image?.startsWith("ipfs://")
-              ? vehicle.image.replace("ipfs://", "https://ipfs.io/ipfs/")
-              : vehicle.image;
-
-            return {
-              id: vehicle.tokenId,
-              name: 'Unnamed Vehicle',
-              make: vehicle.definition?.make || 'Unknown',
-              model: vehicle.definition?.model || 'Unknown Model',
-              year: vehicle.definition?.year || null,
-              vin: 'Unknown VIN',
-              image: ipfsUrl || "https://via.placeholder.com/150" // Default image if none provided
-            };
-          })
-        );
-      } catch (error) {
-        console.error('Error fetching vehicles:', error);
-        setError('Failed to load vehicle data');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBalance();
-    fetchVehicles();
-  }, [publicKey, connection, walletAddress]);
-
+function TokenPrivateSale() {
   return (
-    <div className="wallet-page">
-      {/* // background */}
+    <div className="main-page">
       <div className="globe-background">
         <GlobeVisualization />
       </div>
       
-      {/* // header component */}
-      <header className="header">
-        <Link to="/">
-          <p><h1 className="logo">EAGLE Labs.</h1></p>
-        </Link>
-        <div className="wallet-info">
-          {publicKey && balance !== null && (
-            <div className="balance-display">
-              Balance: {balance !== null ? balance.toFixed(2) + " SOL" : "Fetching..."}
-            </div>
-          )}
-        </div>
-        
-        <WalletMultiButton className="wallet-connect-button" />
-      </header>
-      
-      {/* // main content */}
+      <Header />
+
       <main className="main-content">
         <div className="content-container">
-          <div className="auth-info">
-          {email && <p>Email: {email}</p>}
-          {walletAddress && <p>DIMO Wallet Address: {walletAddress}</p>}
-        </div>
+          {/* Hero Section */}
+          <section className="hero-section" style={{ textAlign: 'center', padding: '4rem 0' }}>
+            <h1 style={{ 
+              fontSize: '3rem', 
+              marginBottom: '1rem',
+              background: 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent'
+            }}>
+              [Project Name] Token Private Sale
+            </h1>
+            <p style={{ 
+              fontSize: '1.2rem', 
+              color: 'var(--text-secondary)',
+              maxWidth: '800px',
+              margin: '0 auto 2rem'
+            }}>
+              Join the future of [project focus] with our exclusive private sale opportunity
+            </p>
+            <button className="dimo-button">
+              Participate Now
+            </button>
+          </section>
 
-        <div className="vehicle-section">
-          <h2 className="section-title">Connected Vehicles</h2>
-          {loading ? (
-            <div className="loading-message">Loading vehicles...</div>
-          ) : error ? (
-            <div className="error-message">{error}</div>
-          ) : (
-            <div className="vehicle-list">
-              {vehicles.length > 0 ? (
-                vehicles.map((vehicle) => (
-                  <div key={vehicle.id} className="vehicle-card">
-                    <img 
-                      src={vehicle.image} 
-                      alt={`${vehicle.make} ${vehicle.model}`} 
-                      className="vehicle-image"
-                      onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/150")}
-                    />
-                    <div className="vehicle-text">
-                      <div className="vehicle-name">Token ID: {vehicle.id}</div>
-                      <div className="vehicle-details">
-                        {vehicle.year} {vehicle.make} {vehicle.model}
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div>No vehicles found</div>
-              )}
+          {/* Tokenomics Section */}
+          <section style={{ padding: '4rem 0' }}>
+            <h2 style={{ 
+              fontSize: '2rem', 
+              marginBottom: '2rem',
+              color: 'var(--text-primary)',
+              textAlign: 'center'
+            }}>
+              Tokenomics
+            </h2>
+            <div style={{ 
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '2rem',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            }}>
+              <div className="battery-card">
+                <h3>Total Supply</h3>
+                <p className="battery-count">1,000,000,000</p>
+                <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                  [Token Symbol]
+                </p>
+              </div>
+              
+              <div className="battery-card">
+                <h3>Private Sale Allocation</h3>
+                <p className="battery-count">200,000,000</p>
+                <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                  20% of total supply
+                </p>
+              </div>
+              
+              <div className="battery-card">
+                <h3>Token Price</h3>
+                <p className="battery-count">$0.05</p>
+                <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                  Per [Token Symbol]
+                </p>
+              </div>
             </div>
-          )}
-        </div>
+
+            {/* Additional Tokenomics Details */}
+            <div style={{ 
+              marginTop: '3rem',
+              background: 'rgba(255, 255, 255, 0.1)',
+              padding: '2rem',
+              borderRadius: '1rem',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              maxWidth: '800px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}>
+              <h3 style={{ marginBottom: '1.5rem' }}>Distribution Breakdown</h3>
+              <ul style={{ 
+                listStyle: 'none',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.8'
+              }}>
+                <li>Private Sale: 20%</li>
+                <li>Public Sale: 30%</li>
+                <li>Team: 15% (vested over 2 years)</li>
+                <li>Ecosystem Development: 25%</li>
+                <li>Marketing & Partnerships: 10%</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Call to Action */}
+          <section className="dimo-container" style={{ margin: '4rem auto' }}>
+            <div>
+              <h2 style={{ 
+                color: 'var(--text-primary)', 
+                marginBottom: '1rem' 
+              }}>
+                Join the Private Sale
+              </h2>
+              <p style={{ 
+                color: 'var(--text-secondary)', 
+                marginBottom: '1.5rem' 
+              }}>
+                Minimum investment: 0.5 ETH
+              </p>
+              <button className="dimo-button">
+                Connect Wallet
+              </button>
+            </div>
+          </section>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
 }
+
+export default TokenPrivateSale;
