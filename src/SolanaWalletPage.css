@@ -53,9 +53,9 @@
   background-color: var(--primary-color);
   color: var(--text-primary);
   border: none;
-  padding: 0.875rem 1.75rem;
+  padding: 0.75rem 1.5rem; /* Reduced padding for better visibility on small screens */
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size for better visibility on small screens */
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;

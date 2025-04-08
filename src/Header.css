@@ -1,15 +1,17 @@
 .header {
   height: 60px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
+  align-items: center; /* Vertical centering */
+  justify-content: space-between; /* Push items to left and right edges */
+  padding: 0 1.5rem; /* Increased horizontal padding for better spacing */
   background-color: rgba(26, 31, 54, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logo-link {
@@ -19,45 +21,34 @@
 }
 
 .logo {
-  font-size: 30px; /* Slightly larger for better visibility */
+  font-size: 24px;
   font-family: 'Audiowide', cursive;
-  font-weight: 500; /* Slightly bolder for a more defined look */
-  letter-spacing: 3px; /* Increased spacing for better readability */
+  font-weight: 500;
+  letter-spacing: 2px;
   margin: 0;
-  background: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3); /* Optional: keep the text shadow */
-  transition: text-shadow 0.3s ease-in-out; /* Add a smooth transition on hover or focus */
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-size: 0.95rem;
-}
-
-.nav-link:hover {
-  color: var(--text-primary);
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3);
+  transition: text-shadow 0.3s ease-in-out;
+  line-height: 1;
 }
 
 .login-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   background-color: var(--accent-color);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+  white-space: nowrap;
+  line-height: 1;
+  margin: 0;
 }
 
 .login-button:hover {
@@ -66,6 +57,19 @@
   box-shadow: 0 6px 15px rgba(100, 108, 255, 0.4);
 }
 
-.login-button:hover {
-  background-color: var(--accent-color-hover);
+/* Media queries for better responsiveness */
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .login-button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
 }

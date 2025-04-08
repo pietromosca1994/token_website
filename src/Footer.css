@@ -20,6 +20,13 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.footer-sections section {
+  flex: 1;
+  min-width: 0; /* This prevents flex items from overflowing */
+  padding: 0 10px; /* Add some padding between sections */
 }
 
 .footer-column {
@@ -91,6 +98,17 @@
     align-items: center;
     text-align: center;
     gap: 1.5rem;
+  }
+  
+  .footer-sections section {
+    flex: none;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .footer-sections h4::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .footer-column h4::after {
