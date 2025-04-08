@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DISCORD_CHANNEL, X_CHANNEL } from "./main";
 import "./Footer.css";
 
 export function Footer() {
@@ -27,8 +28,10 @@ export function Footer() {
           </section>
           <section>
             <h4>Follow Us</h4>
-            <p>X</p>
-            <a href="https://discord.gg/NTwGsGMg" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+            <a href={X_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+              <p>X</p>
+            </a>
+            <a href={DISCORD_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
               <p>Discord</p>
             </a>
             {/* <p>LinkedIn</p> */}
