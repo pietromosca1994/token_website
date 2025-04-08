@@ -230,7 +230,7 @@ const GlobeVisualization = () => {
 
     const createResponsiveSphere = () => {
       const screenWidth = window.innerWidth;
-      waveRadius = screenWidth < 600 ? screenWidth / 20 : screenWidth / 160;
+      waveRadius = screenWidth < 600 ? screenWidth / 60 : screenWidth / 160;
       
       stars = createStarField();
       threeScene.current!.stars = stars;
