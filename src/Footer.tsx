@@ -42,7 +42,7 @@ export function Footer() {
           </section>
           <section>
             <h4>Contact</h4>
-            <p>support@company.com</p>
+            <p>info@eaglelabs.com</p>
             <p>+1 (555) 123-4567</p>
           </section>
         </div>
