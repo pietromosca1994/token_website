@@ -12,7 +12,6 @@ export function Footer() {
             <Link to="/about-us">
               <p>About Us</p>
             </Link>
-            {/* <p>Press</p> */}
             <Link to="/how-it-works">
               <p>How It Works</p>
             </Link>
@@ -40,8 +39,6 @@ export function Footer() {
             <a href={DISCORD_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
               <p>Discord</p>
             </a>
-            {/* <p>LinkedIn</p> */}
-            {/* <p>GitHub</p> */}
           </section>
           <section>
             <h4>Contact</h4>
@@ -49,6 +46,8 @@ export function Footer() {
             <p>+1 (555) 123-4567</p>
           </section>
         </div>
+      </div>
+      <div className="copyright">
         <p>© 2024 EAGLE Labs. All rights reserved.</p>
       </div>
     </footer>
