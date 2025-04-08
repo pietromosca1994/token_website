@@ -1,8 +1,26 @@
-.wallet-page {
+.header {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: transparent;
+  align-items: center; /* This centers items vertically */
+  justify-content: space-between; /* This pushes items to the edges */
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Logo styling - centered vertically */
+.logo {
+  margin: 0; /* Remove any default margins */
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Right side wrapper for balance and wallet button */
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Improved balance display */
@@ -180,10 +198,14 @@
 
 @media (max-width: 768px) {
   .header {
+    flex-direction: column;
     padding: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 1rem;
+  }
+  
+  .wallet-info {
+    order: 2; /* Change order for mobile view */
+    margin-top: 0.5rem;
   }
   
   .main-content {

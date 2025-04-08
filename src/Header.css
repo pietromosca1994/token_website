@@ -24,8 +24,6 @@
   font-weight: 500; /* Slightly bolder for a more defined look */
   letter-spacing: 3px; /* Increased spacing for better readability */
   margin: 0;
-  
-  /* Removed the gradient and background-clip for solid color */
   background: none;
   -webkit-background-clip: unset;
   background-clip: unset;

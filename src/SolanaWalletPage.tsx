@@ -92,17 +92,17 @@ export default function SolanaWalletPage({ email, walletAddress }: SolanaWalletP
       {/* // header component */}
       <header className="header">
         <Link to="/">
-          <p><h1 className="logo">EAGLE Labs.</h1></p>
+          <h1 className="logo">EAGLE Labs.</h1>
         </Link>
+        
         <div className="wallet-info">
           {publicKey && balance !== null && (
             <div className="balance-display">
               Balance: {balance !== null ? balance.toFixed(2) + " SOL" : "Fetching..."}
             </div>
           )}
+          <WalletMultiButton className="wallet-connect-button" />
         </div>
-        
-        <WalletMultiButton className="wallet-connect-button" />
       </header>
       
       {/* // main content */}
