@@ -10,6 +10,8 @@
   --text-secondary: #d1d1d1;
   --button-bg: #2a2a2a;
   --button-hover-bg: #3a3a3a;
+  --gradient-start: #646cff;
+  --gradient-end: #bc61ff;
 }
 
 * {

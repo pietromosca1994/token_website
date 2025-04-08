@@ -18,6 +18,12 @@ export function Footer() {
             </Link>
           </section>
           <section>
+            <h4>Events</h4>
+            <Link to="/private-sale">
+              <p>Private Sale</p>
+            </Link>
+          </section>
+          <section>
             <h4>Legal</h4>
             <Link to="/terms-and-conditions">
               <p>Terms & Conditions</p>
