@@ -19,10 +19,18 @@
 }
 
 .logo {
+  font-size: 30px; /* Slightly larger for better visibility */
+  font-family: 'Audiowide', cursive;
+  font-weight: 500; /* Slightly bolder for a more defined look */
+  letter-spacing: 3px; /* Increased spacing for better readability */
   margin: 0;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-primary);
+  
+  /* Removed the gradient and background-clip for solid color */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3); /* Optional: keep the text shadow */
+  transition: text-shadow 0.3s ease-in-out; /* Add a smooth transition on hover or focus */
 }
 
 .nav-links {

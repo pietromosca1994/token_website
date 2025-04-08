@@ -29,23 +29,6 @@ html, body, #root {
   color: var(--text-primary);
 }
 
-.logo {
-  font-size: 40px; /* Slightly larger for better visibility */
-  font-family: 'Audiowide', cursive;
-  font-weight: 500; /* Slightly bolder for a more defined look */
-  color: rgba(178, 181, 244, 0.7); /* Solid color with rgba */
-  letter-spacing: 3px; /* Increased spacing for better readability */
-  margin: 0;
-  
-  /* Removed the gradient and background-clip for solid color */
-  background: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 25px rgba(255, 85, 255, 0.3); /* Optional: keep the text shadow */
-  transition: text-shadow 0.3s ease-in-out; /* Add a smooth transition on hover or focus */
-}
-
 /* Main Content */
 .main-content {
   flex: 1;
@@ -215,10 +198,6 @@ html, body, #root {
     max-width: 380px;
     padding: 2rem;
   }
-  
-  .logo {
-    font-size: 36px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -241,11 +220,7 @@ html, body, #root {
   }
 }
 
-@media (max-width: 480px) {
-  .logo {
-    font-size: 28px;
-  }
-  
+@media (max-width: 480px) {  
   .content-container {
     padding: 0 1rem;
   }
