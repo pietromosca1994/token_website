@@ -1,11 +1,10 @@
 import GlobeVisualization from "./components/GlobeVisualization";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { useState, useEffect } from "react";
 import "./App.css";
 import "./TokenPrivateSale.css";
-import { useState, useEffect } from "react";
 
-// Eagle Private Sale Page
 function PrivateSale() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -31,9 +30,7 @@ function PrivateSale() {
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -44,70 +41,57 @@ function PrivateSale() {
   }, []);
 
   return (
-    <div className="main-page">
+    <div className="private-sale-page">
       <div className="globe-background">
         <GlobeVisualization />
       </div>
 
       <Header />
 
-      <div className="main-content">
-        <div className="sale-hero">
-          <div className="sale-title-container">
-            <h1 className="sale-title">$EAGLE Private Sale</h1>
-            <p className="sale-subtitle">
-              Soar to new heights with Eagle Labs
-            </p>
+      <div className="container">
+        {/* Hero Section */}
+        <section className="hero-section">
+          <div className="hero-content">
+            <h1 className="gradient-text">$EAGLE Private Sale</h1>
+            <p className="hero-subtitle">Soar to new heights with Eagle Labs</p>
+            
+            <div className="hero-cta">
+              <button className="primary-button pulse-animation">Buy $EAGLE Now</button>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div className="sale-grid">
-          <section className="sale-section sale-info">
-            <h2>Private Sale</h2>
+        {/* Main Grid Layout */}
+        <div className="sale-content-grid">
+          {/* Sale Info Card */}
+          <section className="card sale-info-card">
+            <h2 className="section-title">Private Sale</h2>
 
-            <div className="countdown-container">
+            <div className="countdown-container glass-effect">
               <div className="countdown-title">Sale Ends In:</div>
               <div className="countdown-timer">
-                <div className="countdown-item">
-                  <div className="countdown-value">{timeLeft.days}</div>
-                  <div className="countdown-label">Days</div>
-                </div>
-                <div className="countdown-item">
-                  <div className="countdown-value">{timeLeft.hours}</div>
-                  <div className="countdown-label">Hours</div>
-                </div>
-                <div className="countdown-item">
-                  <div className="countdown-value">{timeLeft.minutes}</div>
-                  <div className="countdown-label">Mins</div>
-                </div>
-                <div className="countdown-item">
-                  <div className="countdown-value">{timeLeft.seconds}</div>
-                  <div className="countdown-label">Secs</div>
-                </div>
+                {Object.entries(timeLeft).map(([unit, value]) => (
+                  <div key={unit} className="countdown-item">
+                    <div className="countdown-value">{value}</div>
+                    <div className="countdown-label">{unit.charAt(0).toUpperCase() + unit.slice(1)}</div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="sale-details">
-              <div className="sale-detail-item">
-                <span>Token Price:</span>
-                <span>$0.08 USD</span>
-              </div>
-              <div className="sale-detail-item">
-                <span>Min. Purchase:</span>
-                <span>250 USD</span>
-              </div>
-              <div className="sale-detail-item">
-                <span>Max. Purchase:</span>
-                <span>25,000 USD</span>
-              </div>
-              <div className="sale-detail-item">
-                <span>Accept:</span>
-                <span>USDT, USDC, ETH</span>
-              </div>
-              <div className="sale-detail-item">
-                <span>Platform:</span>
-                <span>Ethereum</span>
-              </div>
+              {[
+                ["Token Price:", "$0.08 USD"],
+                ["Min. Purchase:", "250 USD"],
+                ["Max. Purchase:", "25,000 USD"],
+                ["Accept:", "USDT, USDC, ETH"],
+                ["Platform:", "Ethereum"]
+              ].map(([label, value], index) => (
+                <div key={index} className="sale-detail-item">
+                  <span>{label}</span>
+                  <span>{value}</span>
+                </div>
+              ))}
             </div>
 
             <div className="progress-container">
@@ -125,86 +109,50 @@ function PrivateSale() {
                 <span>Raised: $3,400,000 / $5,000,000</span>
               </div>
             </div>
-
-            <button className="dimo-button buy-button">
+            {/* <button className="primary-button buy-button">
               Buy $EAGLE Now
-            </button>
+            </button> */}
           </section>
 
-          <section className="sale-section tokenomics">
-            <h2>Tokenomics</h2>
+          {/* Tokenomics Card */}
+          <section className="card tokenomics-card">
+            <h2 className="section-title">Tokenomics</h2>
 
             <div className="tokenomics-container">
-              <div className="tokenomics-stats">
-                <div className="tokenomics-stat-item">
-                  <span className="stat-label">Total Supply</span>
-                  <span className="stat-value">100,000,000 $EAGLE</span>
-                </div>
-                <div className="tokenomics-stat-item">
-                  <span className="stat-label">Initial Circulating Supply</span>
-                  <span className="stat-value">12,500,000 $EAGLE</span>
-                </div>
-                <div className="tokenomics-stat-item">
-                  <span className="stat-label">Initial Market Cap</span>
-                  <span className="stat-value">$1,000,000 USD</span>
-                </div>
+              <div className="tokenomics-stats glass-effect">
+                {[
+                  ["Total Supply", "100,000,000 $EAGLE"],
+                  ["Initial Circulating Supply", "12,500,000 $EAGLE"],
+                  ["Initial Market Cap", "$1,000,000 USD"]
+                ].map(([label, value], index) => (
+                  <div key={index} className="tokenomics-stat-item">
+                    <span className="stat-label">{label}</span>
+                    <span className="stat-value">{value}</span>
+                  </div>
+                ))}
               </div>
 
-              <div className="token-allocation">
+              <div className="token-allocation glass-effect">
                 <h3>Token Allocation</h3>
                 <div className="allocation-chart">
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "20%" }}
-                  >
-                    <div className="allocation-color private-sale"></div>
-                    <div className="allocation-label">Private Sale</div>
-                    <div className="allocation-percent">20%</div>
-                  </div>
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "15%" }}
-                  >
-                    <div className="allocation-color public-sale"></div>
-                    <div className="allocation-label">Public Sale</div>
-                    <div className="allocation-percent">15%</div>
-                  </div>
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "25%" }}
-                  >
-                    <div className="allocation-color ecosystem"></div>
-                    <div className="allocation-label">Ecosystem</div>
-                    <div className="allocation-percent">25%</div>
-                  </div>
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "20%" }}
-                  >
-                    <div className="allocation-color team"></div>
-                    <div className="allocation-label">Team</div>
-                    <div className="allocation-percent">20%</div>
-                  </div>
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "10%" }}
-                  >
-                    <div className="allocation-color marketing"></div>
-                    <div className="allocation-label">Marketing</div>
-                    <div className="allocation-percent">10%</div>
-                  </div>
-                  <div
-                    className="allocation-item"
-                    style={{ "--percent": "10%" }}
-                  >
-                    <div className="allocation-color reserves"></div>
-                    <div className="allocation-label">Reserves</div>
-                    <div className="allocation-percent">10%</div>
-                  </div>
+                  {[
+                    ["Private Sale", "20%", "private-sale"],
+                    ["Public Sale", "15%", "public-sale"],
+                    ["Ecosystem", "25%", "ecosystem"],
+                    ["Team", "20%", "team"],
+                    ["Marketing", "10%", "marketing"],
+                    ["Reserves", "10%", "reserves"]
+                  ].map(([label, percent, colorClass], index) => (
+                    <div key={index} className="allocation-item" style={{ "--percent": percent }}>
+                      <div className={`allocation-color ${colorClass}`}></div>
+                      <div className="allocation-label">{label}</div>
+                      <div className="allocation-percent">{percent}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="vesting-schedule">
+              <div className="vesting-schedule glass-effect">
                 <h3>Vesting Schedule</h3>
                 <div className="vesting-table">
                   <div className="vesting-row header">
@@ -213,200 +161,118 @@ function PrivateSale() {
                     <div className="vesting-cell">Cliff</div>
                     <div className="vesting-cell">Vesting</div>
                   </div>
-                  <div className="vesting-row">
-                    <div className="vesting-cell">Private Sale</div>
-                    <div className="vesting-cell">10%</div>
-                    <div className="vesting-cell">1 month</div>
-                    <div className="vesting-cell">12 months</div>
-                  </div>
-                  <div className="vesting-row">
-                    <div className="vesting-cell">Public Sale</div>
-                    <div className="vesting-cell">25%</div>
-                    <div className="vesting-cell">None</div>
-                    <div className="vesting-cell">6 months</div>
-                  </div>
-                  <div className="vesting-row">
-                    <div className="vesting-cell">Team</div>
-                    <div className="vesting-cell">0%</div>
-                    <div className="vesting-cell">6 months</div>
-                    <div className="vesting-cell">24 months</div>
-                  </div>
-                  <div className="vesting-row">
-                    <div className="vesting-cell">Ecosystem</div>
-                    <div className="vesting-cell">5%</div>
-                    <div className="vesting-cell">3 months</div>
-                    <div className="vesting-cell">36 months</div>
-                  </div>
-                  <div className="vesting-row">
-                    <div className="vesting-cell">Marketing</div>
-                    <div className="vesting-cell">15%</div>
-                    <div className="vesting-cell">None</div>
-                    <div className="vesting-cell">18 months</div>
-                  </div>
+                  {[
+                    ["Private Sale", "10%", "1 month", "12 months"],
+                    ["Public Sale", "25%", "None", "6 months"],
+                    ["Team", "0%", "6 months", "24 months"],
+                    ["Ecosystem", "5%", "3 months", "36 months"],
+                    ["Marketing", "15%", "None", "18 months"]
+                  ].map(([allocation, tge, cliff, vesting], index) => (
+                    <div key={index} className="vesting-row">
+                      <div className="vesting-cell" data-label="Allocation">{allocation}</div>
+                      <div className="vesting-cell" data-label="TGE Unlock">{tge}</div>
+                      <div className="vesting-cell" data-label="Cliff">{cliff}</div>
+                      <div className="vesting-cell" data-label="Vesting">{vesting}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </section>
         </div>
 
-        <section className="eagle-features">
-          <h2>Why Invest in $EAGLE?</h2>
+        {/* Features Section */}
+        <section className="features-section">
+          <h2 className="section-title centered">Why Invest in $EAGLE?</h2>
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M8 14L12 10L16 14"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+            {[
+              {
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" />
+                    <path d="M8 14L12 10L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                title: "Governance",
+                description: "Participate in key protocol decisions through voting rights with $EAGLE tokens"
+              },
+              {
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 11L12 14L22 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                title: "Staking Rewards",
+                description: "Earn passive income by staking your $EAGLE tokens in our dedicated staking pools"
+              },
+              {
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                title: "Exclusive Access",
+                description: "Get early access to new features, products, and premium services in the Eagle Labs ecosystem"
+              },
+              {
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" strokeWidth="2" />
+                    <path d="M15 16L12 14V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                title: "Reduced Fees",
+                description: "Enjoy discounted transaction fees across the platform when using $EAGLE tokens"
+              }
+            ].map((feature, index) => (
+              <div key={index} className="feature-card glass-effect">
+                <div className="feature-icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
               </div>
-              <h3>Governance</h3>
-              <p>
-                Participate in key protocol decisions through voting rights with
-                $EAGLE tokens
-              </p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 11L12 14L22 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Staking Rewards</h3>
-              <p>
-                Earn passive income by staking your $EAGLE tokens in our
-                dedicated staking pools
-              </p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Exclusive Access</h3>
-              <p>
-                Get early access to new features, products, and premium
-                services in the Eagle Labs ecosystem
-              </p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M15 16L12 14V8"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Reduced Fees</h3>
-              <p>
-                Enjoy discounted transaction fees across the platform when
-                using $EAGLE tokens
-              </p>
-            </div>
+            ))}
           </div>
         </section>
 
+        {/* Roadmap Section */}
         <section className="roadmap-section">
-          <h2>Roadmap</h2>
+          <h2 className="section-title centered">Roadmap</h2>
           <div className="roadmap-timeline">
-            <div className="roadmap-item active">
-              <div className="roadmap-dot"></div>
-              <div className="roadmap-content">
-                <h3>Q2 2025</h3>
-                <ul>
-                  <li>Private Token Sale</li>
-                  <li>Initial Ecosystem Development</li>
-                  <li>Team Expansion</li>
-                </ul>
+            {[
+              {
+                period: "Q2 2025",
+                items: ["Private Token Sale", "Initial Ecosystem Development", "Team Expansion"],
+                active: true
+              },
+              {
+                period: "Q3 2025",
+                items: ["Public Token Sale", "DEX Listings", "Staking Platform Launch"],
+                active: false
+              },
+              {
+                period: "Q4 2025",
+                items: ["CEX Listings", "Governance Portal", "Mobile App Beta"],
+                active: false
+              },
+              {
+                period: "Q1 2026",
+                items: ["Cross-Chain Integration", "Partnerships Expansion", "Eagle Labs V2 Release"],
+                active: false
+              }
+            ].map((phase, index) => (
+              <div key={index} className={`roadmap-item ${phase.active ? "active" : ""}`}>
+                <div className="roadmap-dot"></div>
+                <div className="roadmap-content glass-effect">
+                  <h3>{phase.period}</h3>
+                  <ul>
+                    {phase.items.map((item, itemIndex) => (
+                      <li key={itemIndex}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="roadmap-item">
-              <div className="roadmap-dot"></div>
-              <div className="roadmap-content">
-                <h3>Q3 2025</h3>
-                <ul>
-                  <li>Public Token Sale</li>
-                  <li>DEX Listings</li>
-                  <li>Staking Platform Launch</li>
-                </ul>
-              </div>
-            </div>
-            <div className="roadmap-item">
-              <div className="roadmap-dot"></div>
-              <div className="roadmap-content">
-                <h3>Q4 2025</h3>
-                <ul>
-                  <li>CEX Listings</li>
-                  <li>Governance Portal</li>
-                  <li>Mobile App Beta</li>
-                </ul>
-              </div>
-            </div>
-            <div className="roadmap-item">
-              <div className="roadmap-dot"></div>
-              <div className="roadmap-content">
-                <h3>Q1 2026</h3>
-                <ul>
-                  <li>Cross-Chain Integration</li>
-                  <li>Partnerships Expansion</li>
-                  <li>Eagle Labs V2 Release</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </div>
