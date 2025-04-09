@@ -1,4 +1,4 @@
-/* PrivateSale.css */
+/* TokenPrivateSale.css */
 
 /* Sale Hero Section */
 .sale-hero {
@@ -52,7 +52,7 @@
 }
 
 .glow-effect::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -90,7 +90,6 @@
 }
 
 .eagle-card h2 {
-  font-family: 'Audiowide', cursive;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -123,7 +122,6 @@
 }
 
 .sale-section h2 {
-  font-family: 'Audiowide', cursive;
   font-size: 1.8rem;
   margin-bottom: 2rem;
   color: white;
@@ -132,7 +130,7 @@
 }
 
 .sale-section h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -170,7 +168,6 @@
 }
 
 .countdown-value {
-  font-family: 'Audiowide', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -289,13 +286,15 @@
 }
 
 /* Token Allocation */
-.token-allocation, .vesting-schedule {
+.token-allocation,
+.vesting-schedule {
   background: rgba(20, 22, 30, 0.8);
   border-radius: 12px;
   padding: 1.5rem;
 }
 
-.token-allocation h3, .vesting-schedule h3 {
+.token-allocation h3,
+.vesting-schedule h3 {
   font-size: 1.3rem;
   color: white;
   margin-bottom: 1.5rem;
@@ -303,8 +302,9 @@
   padding-bottom: 0.8rem;
 }
 
-.token-allocation h3::after, .vesting-schedule h3::after {
-  content: '';
+.token-allocation h3::after,
+.vesting-schedule h3::after {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -331,12 +331,24 @@
   border-radius: 4px;
 }
 
-.private-sale { background: #646cff; }
-.public-sale { background: #bc61ff; }
-.ecosystem { background: #61dafb; }
-.team { background: #ff6b6b; }
-.marketing { background: #ffd166; }
-.reserves { background: #06d6a0; }
+.private-sale {
+  background: #646cff;
+}
+.public-sale {
+  background: #bc61ff;
+}
+.ecosystem {
+  background: #61dafb;
+}
+.team {
+  background: #ff6b6b;
+}
+.marketing {
+  background: #ffd166;
+}
+.reserves {
+  background: #06d6a0;
+}
 
 .allocation-label {
   flex: 1;
@@ -349,7 +361,7 @@
 }
 
 .allocation-item::after {
-  content: '';
+  content: "";
   height: 6px;
   width: var(--percent);
   background: linear-gradient(90deg, rgba(100, 108, 255, 0.8), rgba(100, 108, 255, 0.4));
@@ -391,7 +403,6 @@
 }
 
 .eagle-features h2 {
-  font-family: 'Audiowide', cursive;
   font-size: 2.2rem;
   text-align: center;
   margin-bottom: 3rem;
@@ -456,7 +467,6 @@
 }
 
 .roadmap-section h2 {
-  font-family: 'Audiowide', cursive;
   font-size: 2.2rem;
   text-align: center;
   margin-bottom: 3rem;
@@ -470,7 +480,7 @@
 }
 
 .roadmap-timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 15px;
@@ -532,7 +542,7 @@
 }
 
 .roadmap-content li::before {
-  content: '•';
+  content: "•";
   margin-right: 0.8rem;
   color: var(--accent-color);
   font-size: 1.2rem;
@@ -543,24 +553,24 @@
   .sale-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .sale-title {
     font-size: 3rem;
   }
-  
+
   .vesting-row {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .vesting-row.header {
     display: none;
   }
-  
+
   .vesting-cell {
     position: relative;
     padding-left: 40%;
   }
-  
+
   .vesting-cell::before {
     content: attr(data-label);
     position: absolute;
@@ -575,24 +585,24 @@
   .sale-hero {
     padding: 3rem 1rem;
   }
-  
+
   .sale-title {
     font-size: 2.5rem;
   }
-  
+
   .eagle-card {
     padding: 2rem;
   }
-  
+
   .countdown-timer {
     flex-wrap: wrap;
     gap: 1rem;
   }
-  
+
   .countdown-item {
     min-width: 45%;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -602,25 +612,25 @@
   .sale-title {
     font-size: 2rem;
   }
-  
+
   .countdown-item {
     min-width: 100%;
   }
-  
+
   .sale-section {
     padding: 1.5rem;
   }
-  
+
   .sale-detail-item {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .roadmap-dot {
     width: 24px;
     height: 24px;
   }
-  
+
   .roadmap-item {
     padding-left: 35px;
   }

@@ -1,33 +1,30 @@
 :root {
-  --primary-color: #4169e1;
-  --primary-hover: #0097a7;
-  --accent-color: #4af5ff;
-  --background: #f0f4f8;
-  --surface: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a5568;
-  --border-color: #e2e8f0;
+  --header-bg: rgba(26, 31, 54, 0.8);
+  --footer-bg: rgba(26, 31, 54, 0.8);
+  --accent-color: #646cff;
+  --accent-hover: #535bf2;
+  --border-color: #4a4f5a;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d1d1;
+  --button-bg: #2a2a2a;
+  --button-hover-bg: #3a3a3a;
+  --gradient-start: #646cff;
+  --gradient-end: #bc61ff;
+  --background: #f5f8f0;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  color: var(--text-primary);
+}
+
+html, body, #root {
+  height: auto;
+  width: 100%;
   background-color: var(--background);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {

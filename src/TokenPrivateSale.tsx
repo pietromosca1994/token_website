@@ -11,56 +11,60 @@ function PrivateSale() {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
-  
+
   const [saleProgress, setSaleProgress] = useState(68);
-  
+
   useEffect(() => {
     // Sale end date (example: 2 weeks from now)
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 14);
-    
+
     const timer = setInterval(() => {
       const now = new Date();
       const difference = endDate.getTime() - now.getTime();
-      
+
       if (difference <= 0) {
         clearInterval(timer);
         return;
       }
-      
+
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-      
+
       setTimeLeft({ days, hours, minutes, seconds });
     }, 1000);
-    
+
     return () => clearInterval(timer);
   }, []);
-  
+
   return (
     <div className="main-page">
       <div className="globe-background">
         <GlobeVisualization />
       </div>
-      
+
       <Header />
-      
+
       <div className="main-content">
         <div className="sale-hero">
           <div className="sale-title-container">
             <h1 className="sale-title">$EAGLE Private Sale</h1>
-            <p className="sale-subtitle">Soar to new heights with Eagle Labs</p>
+            <p className="sale-subtitle">
+              Soar to new heights with Eagle Labs
+            </p>
           </div>
         </div>
-        
+
         <div className="sale-grid">
           <section className="sale-section sale-info">
             <h2>Private Sale</h2>
-            
+
             <div className="countdown-container">
               <div className="countdown-title">Sale Ends In:</div>
               <div className="countdown-timer">
@@ -82,7 +86,7 @@ function PrivateSale() {
                 </div>
               </div>
             </div>
-            
+
             <div className="sale-details">
               <div className="sale-detail-item">
                 <span>Token Price:</span>
@@ -105,15 +109,15 @@ function PrivateSale() {
                 <span>Ethereum</span>
               </div>
             </div>
-            
+
             <div className="progress-container">
               <div className="progress-info">
                 <span>Sale Progress</span>
                 <span>{saleProgress}%</span>
               </div>
               <div className="progress-bar">
-                <div 
-                  className="progress-fill" 
+                <div
+                  className="progress-fill"
                   style={{ width: `${saleProgress}%` }}
                 ></div>
               </div>
@@ -121,20 +125,35 @@ function PrivateSale() {
                 <span>Raised: $3,400,000 / $5,000,000</span>
               </div>
             </div>
-            
+
             <button className="dimo-button buy-button">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
-                <path d="M15 12H12V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M15 12H12V7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
               Buy $EAGLE Now
             </button>
           </section>
-          
+
           <section className="sale-section tokenomics">
             <h2>Tokenomics</h2>
-            
+
             <div className="tokenomics-container">
               <div className="tokenomics-stats">
                 <div className="tokenomics-stat-item">
@@ -150,43 +169,61 @@ function PrivateSale() {
                   <span className="stat-value">$1,000,000 USD</span>
                 </div>
               </div>
-              
+
               <div className="token-allocation">
                 <h3>Token Allocation</h3>
                 <div className="allocation-chart">
-                  <div className="allocation-item" style={{ "--percent": "20%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "20%" }}
+                  >
                     <div className="allocation-color private-sale"></div>
                     <div className="allocation-label">Private Sale</div>
                     <div className="allocation-percent">20%</div>
                   </div>
-                  <div className="allocation-item" style={{ "--percent": "15%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "15%" }}
+                  >
                     <div className="allocation-color public-sale"></div>
                     <div className="allocation-label">Public Sale</div>
                     <div className="allocation-percent">15%</div>
                   </div>
-                  <div className="allocation-item" style={{ "--percent": "25%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "25%" }}
+                  >
                     <div className="allocation-color ecosystem"></div>
                     <div className="allocation-label">Ecosystem</div>
                     <div className="allocation-percent">25%</div>
                   </div>
-                  <div className="allocation-item" style={{ "--percent": "20%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "20%" }}
+                  >
                     <div className="allocation-color team"></div>
                     <div className="allocation-label">Team</div>
                     <div className="allocation-percent">20%</div>
                   </div>
-                  <div className="allocation-item" style={{ "--percent": "10%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "10%" }}
+                  >
                     <div className="allocation-color marketing"></div>
                     <div className="allocation-label">Marketing</div>
                     <div className="allocation-percent">10%</div>
                   </div>
-                  <div className="allocation-item" style={{ "--percent": "10%" } as React.CSSProperties}>
+                  <div
+                    className="allocation-item"
+                    style={{ "--percent": "10%" }}
+                  >
                     <div className="allocation-color reserves"></div>
                     <div className="allocation-label">Reserves</div>
                     <div className="allocation-percent">10%</div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="vesting-schedule">
                 <h3>Vesting Schedule</h3>
                 <div className="vesting-table">
@@ -231,52 +268,118 @@ function PrivateSale() {
             </div>
           </section>
         </div>
-        
+
         <section className="eagle-features">
           <h2>Why Invest in $EAGLE?</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M8 14L12 10L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M8 14L12 10L16 14"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
               <h3>Governance</h3>
-              <p>Participate in key protocol decisions through voting rights with $EAGLE tokens</p>
+              <p>
+                Participate in key protocol decisions through voting rights with
+                $EAGLE tokens
+              </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 11L12 14L22 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 11L12 14L22 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
               <h3>Staking Rewards</h3>
-              <p>Earn passive income by staking your $EAGLE tokens in our dedicated staking pools</p>
+              <p>
+                Earn passive income by staking your $EAGLE tokens in our
+                dedicated staking pools
+              </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
               <h3>Exclusive Access</h3>
-              <p>Get early access to new features, products, and premium services in the Eagle Labs ecosystem</p>
+              <p>
+                Get early access to new features, products, and premium
+                services in the Eagle Labs ecosystem
+              </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M15 16L12 14V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M15 16L12 14V8"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
               <h3>Reduced Fees</h3>
-              <p>Enjoy discounted transaction fees across the platform when using $EAGLE tokens</p>
+              <p>
+                Enjoy discounted transaction fees across the platform when
+                using $EAGLE tokens
+              </p>
             </div>
           </div>
         </section>
-        
+
         <section className="roadmap-section">
           <h2>Roadmap</h2>
           <div className="roadmap-timeline">
@@ -327,7 +430,7 @@ function PrivateSale() {
           </div>
         </section>
       </div>
-      
+
       <Footer />
     </div>
   );

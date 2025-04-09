@@ -6,7 +6,9 @@ export function Header() {
       <Link to="/" className="logo-link">
         <h1 className="logo">EAGLE Labs.</h1>
       </Link>
-      <button className="login-button">Login</button>
+      <button className="login-button" disabled={false}>
+        Sign In
+      </button>
     </header>
   );
 }
