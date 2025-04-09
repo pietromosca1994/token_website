@@ -419,9 +419,8 @@
   background: rgba(30, 32, 40, 0.8);
   border-radius: 16px;
   padding: 2rem;
-  text-align: center;
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
