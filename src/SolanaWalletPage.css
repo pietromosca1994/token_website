@@ -71,16 +71,6 @@
   box-shadow: 0 0 20px rgba(74, 245, 255, 0.4) !important;
 }
 
-/* Main content area */
-.main-content {
-  flex: 1;
-  padding: 2rem;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-}
-
 .content-container {
   max-width: 1400px;
   width: 100%;
