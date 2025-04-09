@@ -1,129 +1,41 @@
-/* PrivateSale.css */
-
-/* Sale Hero Section */
-.sale-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 4rem 2rem;
+/* Base Layout */
+.private-sale-page {
   position: relative;
-}
-
-.sale-title-container {
-  margin-bottom: 3rem;
-}
-
-.sale-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
-}
-
-.sale-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.eagle-card {
-  background: rgba(30, 32, 40, 0.85);
-  border-radius: 16px;
-  padding: 2.5rem;
-  margin-bottom: 3rem;
+  min-height: 100vh;
   width: 100%;
-  max-width: 450px;
-  text-align: center;
-  border: 1px solid rgba(100, 108, 255, 0.2);
-  position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-.glow-effect {
-  box-shadow: 0 0 30px rgba(100, 108, 255, 0.2);
-}
-
-.glow-effect::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, rgba(100, 108, 255, 0.1) 0%, transparent 50%);
-  animation: rotate 15s linear infinite;
-  z-index: -1;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.eagle-logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.eagle-logo svg {
-  width: 50px;
-  height: 50px;
-  color: white;
-}
-
-.eagle-card h2 {
-  font-family: 'Audiowide', cursive;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white;
-}
-
-.eagle-card p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-/* Sale Grid Layout */
-.sale-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 0 2rem;
+.container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto 4rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.sale-section {
+/* Common Components */
+.card {
   background: rgba(30, 32, 40, 0.8);
   border-radius: 16px;
   padding: 2rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sale-section h2 {
-  font-family: 'Audiowide', cursive;
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.glass-effect {
+  background: rgba(20, 22, 30, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
   font-size: 1.8rem;
   margin-bottom: 2rem;
   color: white;
@@ -131,8 +43,8 @@
   padding-bottom: 0.8rem;
 }
 
-.sale-section h2::after {
-  content: '';
+.section-title::after {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -142,13 +54,105 @@
   border-radius: 3px;
 }
 
+.section-title.centered {
+  text-align: center;
+}
+
+.section-title.centered::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.1);
+}
+
+/* Hero Section */
+.hero-section {
+  background: rgba(30, 32, 40, 0.8);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  margin-top: 2rem;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 108, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(100, 108, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 108, 255, 0);
+  }
+}
+
+/* Sale Content Grid */
+.sale-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0 4rem;
+}
+
+/* Sale Info Card */
+.sale-info-card {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Countdown Timer */
 .countdown-container {
-  background: rgba(20, 22, 30, 0.8);
-  border-radius: 12px;
-  padding: 1.5rem;
   margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .countdown-title {
@@ -170,7 +174,6 @@
 }
 
 .countdown-value {
-  font-family: 'Audiowide', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -248,14 +251,17 @@
   color: var(--text-secondary);
 }
 
-/* Buy Button */
 .buy-button {
+  margin-top: auto;
   width: 100%;
-  margin-top: 1rem;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
 }
 
 /* Tokenomics Section */
+.tokenomics-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .tokenomics-container {
   display: flex;
   flex-direction: column;
@@ -263,11 +269,8 @@
 }
 
 .tokenomics-stats {
-  background: rgba(20, 22, 30, 0.8);
-  border-radius: 12px;
-  padding: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 
@@ -289,13 +292,8 @@
 }
 
 /* Token Allocation */
-.token-allocation, .vesting-schedule {
-  background: rgba(20, 22, 30, 0.8);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.token-allocation h3, .vesting-schedule h3 {
+.token-allocation h3,
+.vesting-schedule h3 {
   font-size: 1.3rem;
   color: white;
   margin-bottom: 1.5rem;
@@ -303,8 +301,9 @@
   padding-bottom: 0.8rem;
 }
 
-.token-allocation h3::after, .vesting-schedule h3::after {
-  content: '';
+.token-allocation h3::after,
+.vesting-schedule h3::after {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -349,7 +348,7 @@
 }
 
 .allocation-item::after {
-  content: '';
+  content: "";
   height: 6px;
   width: var(--percent);
   background: linear-gradient(90deg, rgba(100, 108, 255, 0.8), rgba(100, 108, 255, 0.4));
@@ -360,7 +359,6 @@
 /* Vesting Table */
 .vesting-table {
   width: 100%;
-  border-collapse: collapse;
 }
 
 .vesting-row {
@@ -383,34 +381,23 @@
   color: white;
 }
 
-/* Eagle Features */
-.eagle-features {
-  max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 0 2rem;
-}
-
-.eagle-features h2 {
-  font-family: 'Audiowide', cursive;
-  font-size: 2.2rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: white;
+/* Features Section */
+.features-section {
+  margin: 4rem 0;
 }
 
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .feature-card {
-  background: rgba(30, 32, 40, 0.8);
-  border-radius: 16px;
   padding: 2rem;
+  border-radius: 16px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .feature-card:hover {
@@ -428,6 +415,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+  background: rgba(100, 108, 255, 0.2);
 }
 
 .feature-icon svg {
@@ -450,27 +443,17 @@
 
 /* Roadmap */
 .roadmap-section {
-  max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 0 2rem;
-}
-
-.roadmap-section h2 {
-  font-family: 'Audiowide', cursive;
-  font-size: 2.2rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: white;
+  margin: 4rem 0;
 }
 
 .roadmap-timeline {
   position: relative;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
 }
 
 .roadmap-timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 15px;
@@ -499,6 +482,7 @@
   background: rgba(30, 32, 40, 0.8);
   border: 2px solid var(--accent-color);
   z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .roadmap-item.active .roadmap-dot {
@@ -507,10 +491,13 @@
 }
 
 .roadmap-content {
-  background: rgba(30, 32, 40, 0.8);
   border-radius: 12px;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.roadmap-item:hover .roadmap-content {
+  transform: translateX(5px);
 }
 
 .roadmap-content h3 {
@@ -532,7 +519,7 @@
 }
 
 .roadmap-content li::before {
-  content: '•';
+  content: "•";
   margin-right: 0.8rem;
   color: var(--accent-color);
   font-size: 1.2rem;
@@ -540,27 +527,27 @@
 
 /* Responsive Styles */
 @media (max-width: 992px) {
-  .sale-grid {
+  .sale-content-grid {
     grid-template-columns: 1fr;
   }
-  
-  .sale-title {
+
+  .hero-section h1 {
     font-size: 3rem;
   }
-  
+
   .vesting-row {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .vesting-row.header {
     display: none;
   }
-  
+
   .vesting-cell {
     position: relative;
     padding-left: 40%;
   }
-  
+
   .vesting-cell::before {
     content: attr(data-label);
     position: absolute;
@@ -572,55 +559,59 @@
 }
 
 @media (max-width: 768px) {
-  .sale-hero {
-    padding: 3rem 1rem;
+  .container {
+    padding: 0 1rem;
   }
-  
-  .sale-title {
+
+  .hero-section {
+    padding: 3rem 0 2rem;
+  }
+
+  .hero-section h1 {
     font-size: 2.5rem;
   }
-  
-  .eagle-card {
-    padding: 2rem;
-  }
-  
+
   .countdown-timer {
     flex-wrap: wrap;
     gap: 1rem;
   }
-  
+
   .countdown-item {
     min-width: 45%;
   }
-  
+
   .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sale-detail-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tokenomics-stats {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .sale-title {
+  .hero-section h1 {
     font-size: 2rem;
   }
-  
+
   .countdown-item {
     min-width: 100%;
   }
-  
-  .sale-section {
+
+  .card {
     padding: 1.5rem;
   }
-  
-  .sale-detail-item {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
+
   .roadmap-dot {
     width: 24px;
     height: 24px;
   }
-  
+
   .roadmap-item {
     padding-left: 35px;
   }

@@ -71,19 +71,40 @@ const GlobeVisualization = () => {
       
       const starGeometry = new THREE.BufferGeometry();
       const starVertices = [];
+      const starParallaxData = []; // Add new array for parallax data
+      
+      // Divide stars into layers for parallax effect
+      const maxDepth = 1500;
+      const numLayers = 5; // Create several depth layers for parallax
       
       for (let i = 0; i < starCount; i++) {
+        // Determine which layer this star belongs to (0 = closest, numLayers-1 = farthest)
+        const layerIndex = Math.floor(Math.random() * numLayers);
+        // Calculate z-depth based on layer (closer stars = stronger parallax)
+        const depth = -Math.random() * (maxDepth / numLayers) - (maxDepth * layerIndex / numLayers) - 200;
+        
         const x = (Math.random() - 0.5) * 2000;
         const heightFactor = contentRatio * 2.0;
         const y = (Math.random() - 0.5) * 2000 * heightFactor;
-        const z = -Math.random() * 1500 - 200;
+        const z = depth;
+        
+        // Store original position and parallax factor based on depth
+        // Parallax factor will determine how much each star moves when scrolling
+        // Closer stars (higher z values) should move more than distant ones
+        const parallaxFactor = 1.0 - (Math.abs(z) / maxDepth); // 0-1 range, higher = more movement
+        
         starVertices.push(x, y, z);
+        starParallaxData.push(x, y, parallaxFactor); // Store original x,y and parallax factor
       }
       
       starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+      starGeometry.setAttribute('originalPosition', new THREE.Float32BufferAttribute(starParallaxData, 3));
+      
       const starSizes = new Float32Array(starCount);
       for (let i = 0; i < starCount; i++) {
-        starSizes[i] = Math.random() * 2.0 + 0.5;
+        // Make closer stars (with higher parallax factors) slightly larger
+        const parallaxFactor = starParallaxData[i * 3 + 2];
+        starSizes[i] = Math.random() * 2.0 + 0.5 + parallaxFactor * 1.0;
       }
       starGeometry.setAttribute('size', new THREE.Float32BufferAttribute(starSizes, 1));
       
@@ -463,21 +484,57 @@ const GlobeVisualization = () => {
       const maxScroll = documentHeight - windowHeight;
       const scrollPercent = scrollY / maxScroll;
       
-      // Move stars independently
-      threeScene.current.stars.position.y = scrollPercent * -50;
+      // Apply parallax effect to stars
+      const starsGeometry = threeScene.current.stars.geometry;
+      const positions = starsGeometry.getAttribute('position');
+      const originalPositions = starsGeometry.getAttribute('originalPosition');
       
-      // Keep particles and planet together
+      // Get mouse position for horizontal parallax (optional)
+      // This adds subtle horizontal movement to stars based on mouse position
+      const mouseX = (window.innerWidth / 2 - (window.mouseX || 0)) * 0.001;
+      
+      for (let i = 0; i < positions.count; i++) {
+        const originalX = originalPositions.getX(i);
+        const originalY = originalPositions.getY(i);
+        const parallaxFactor = originalPositions.getZ(i); // 0-1 value
+        
+        // Calculate parallax offsets based on scroll position and parallax factor
+        // Closer stars (higher parallaxFactor) move more
+        const verticalOffset = -scrollPercent * 120 * parallaxFactor; // Vertical parallax
+        const horizontalOffset = mouseX * 30 * parallaxFactor; // Optional horizontal parallax
+        
+        // Apply the parallax offset to the star positions
+        positions.setXYZ(
+          i,
+          originalX + horizontalOffset,
+          originalY + verticalOffset,
+          positions.getZ(i) // Keep Z depth unchanged
+        );
+      }
+      
+      positions.needsUpdate = true;
+      
+      // Keep planet group positioned consistently
       const planetGroupY = scrollPercent * -15;
       threeScene.current.meshWave.position.y = planetGroupY;
       if (threeScene.current.orbitalParticles) {
         threeScene.current.orbitalParticles.position.y = planetGroupY;
       }
+      
+      // Make other meshes follow the planet
       scene.children.forEach(child => {
         if (child instanceof THREE.Mesh && child !== threeScene.current.meshWave) {
           child.position.y = planetGroupY;
         }
       });
     };
+    
+    // Add mouse move tracking for horizontal parallax
+    const handleMouseMove = (event) => {
+      window.mouseX = event.clientX;
+      window.mouseY = event.clientY;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
 
     // Create new particles to maintain the flow of orbital particles
     const refreshOrbitalParticles = () => {
@@ -534,6 +591,13 @@ const GlobeVisualization = () => {
       requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
+      // Add subtle drift to stars for more dynamic feel
+      if (threeScene.current.stars) {
+        // Very slow rotation to add subtle movement to the star field
+        threeScene.current.stars.rotation.y += 0.0001;
+        threeScene.current.stars.rotation.x += 0.00005;
+      }
+
       if (meshWave) {
         const material = meshWave.material as THREE.ShaderMaterial;
         material.uniforms.time.value = elapsedTime;
@@ -586,6 +650,7 @@ const GlobeVisualization = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
       if (threeScene.current?.renderer && mountRef.current) {
         mountRef.current.removeChild(threeScene.current.renderer.domElement);
       }

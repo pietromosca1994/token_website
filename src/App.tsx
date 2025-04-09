@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
-import {getAmountOfConnectedBatteries} from './utils'
-import { DIMO_APP_CLIENT_ID} from './main.tsx';
-import {Footer} from './Footer.tsx'
-import {Header} from './Header.tsx'
+import { getAmountOfConnectedBatteries } from './utils'
+import { DIMO_APP_CLIENT_ID } from './main.tsx';
+import { Footer } from './Footer.tsx'
+import { Header } from './Header.tsx'
 import SolanaWalletPage from './SolanaWalletPage'
 import AboutUs from "./AboutUs"; 
 import PrivacyPolicy from "./PrivacyPolicy"; 
@@ -16,72 +16,97 @@ import './App.css'
 import './Header.css';
 
 // Custom DIMO Button that wraps the ShareVehiclesWithDimo component
-function CustomDimoButton({ onSuccess, onError }) {
-  // This is a styled button that will trigger the DIMO component
+function ConnectDimoButton({ onSuccess, onError }) {
   return (
-    <div className="dimo-container">
-      <ShareVehiclesWithDimo
-        mode="popup"
-        onSuccess={onSuccess}
-        onError={onError}
-        permissionTemplateId={"1"}
-        expirationDate="2062-12-12T18:51:00Z"
-        utm="utm_campaign=dimo"
-        render={({ onClick }) => (
-          <button className="dimo-button" onClick={onClick}>
-            Share Vehicles with DIMO
-          </button>
-        )}
-      />
-    </div>
+    <ShareVehiclesWithDimo
+      mode="popup"
+      onSuccess={onSuccess}
+      onError={onError}
+      permissionTemplateId={"1"}
+      expirationDate="2062-12-12T18:51:00Z"
+      utm="utm_campaign=dimo"
+      render={({ onClick }) => (
+        <button className="connect-dimo-button" onClick={onClick}>
+          Connect with DIMO
+        </button>
+      )}
+    />
   );
 }
 
 function Home() {
   const navigate = useNavigate();
   const [batteryCount, setBatteryCount] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleDimoSuccess = (authData: any) => {
+  const handleDimoSuccess = (authData) => {
     console.log("Success:", authData);
     navigate('/wallet');
   };
 
-  const handleDimoError = (error: any) => {
+  const handleDimoError = (error) => {
     console.error("Error:", error);
   };
 
   useEffect(() => {
     const fetchBatteryCount = async () => {
       try {
-        const count = await getAmountOfConnectedBatteries(DIMO_APP_CLIENT_ID); // Assuming DIMO_APP_CLIENT_ID is available
-        setBatteryCount(count); // Set the fetched battery count in state
+        setIsLoading(true);
+        const count = await getAmountOfConnectedBatteries(DIMO_APP_CLIENT_ID);
+        setBatteryCount(count);
       } catch (error) {
         console.error("Failed to fetch battery count:", error);
+        setBatteryCount(0); // Fallback value
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchBatteryCount(); // Call the async function to fetch data
-  }, []); // Empty dependency array to run only once on mount
+    fetchBatteryCount();
+  }, []);
 
   return (
     <div className="main-page">
       <div className="globe-background">
-          <GlobeVisualization />
+        <GlobeVisualization />
       </div>
       
       <Header />
       
-      <main className="main-content">
-        <div className="content-container">
-          <div className="cards-stack">
-            <CustomDimoButton 
-              onSuccess={handleDimoSuccess} 
-              onError={handleDimoError} 
-            />
-            <div className="battery-card">
-              <h3>Batteries Connected</h3>
-              <div className="battery-count">
-                {batteryCount === null ? 'Loading...' : batteryCount} {/* Show loading until battery count is fetched */}
+      <main className="dashboard-content">
+        <div className="connect-button-container">
+          <ConnectDimoButton 
+            onSuccess={handleDimoSuccess} 
+            onError={handleDimoError} 
+          />
+        </div>
+        
+        <div className="battery-stats-container">
+          <div className="battery-stats-content">
+            <div className="stats-header">
+              <h2>Network Statistics</h2>
+              <p>Real-time monitoring of connected devices</p>
+            </div>
+            
+            <div className="stats-cards">
+              <div className="stat-card batteries">
+                <div className="stat-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="7" y="2" width="10" height="20" rx="2" ry="2"/>
+                    <line x1="12" y1="6" x2="12" y2="10"/>
+                    <line x1="12" y1="14" x2="12" y2="18"/>
+                  </svg>
+                </div>
+                <div className="stat-info">
+                  <h3>Batteries Connected</h3>
+                  <div className="stat-value">
+                    {isLoading ? (
+                      <span className="loading-pulse">Loading...</span>
+                    ) : (
+                      <>{batteryCount}</>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -116,9 +141,9 @@ function App() {
         } />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path ="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path ="/how-it-works" element={<HowItWorks />} />
-        <Route path ="/private-sale" element={<PrivateSale />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/private-sale" element={<PrivateSale />} />
       </Routes>
     </BrowserRouter>
   )
