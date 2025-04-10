@@ -16,39 +16,47 @@ function AboutUs() {
 
       <Header />
 
-      <main className="main-content" style={{ overflowY: 'auto' }}>
+      <main className="main-content">
         <div className="about-container">
           
-          {/* Headline & Introduction */}
+          {/* Hero Section with Interactive Elements */}
           <section className="about-section hero-section">
-            <h1 className="headline">Web3-Powered Battery Analytics for Mobility and Energy Storage</h1>
-            <p className="intro-text">
-              We leverage <strong>blockchain technology and advanced machine learning</strong> to deliver 
-              <strong> actionable battery insights</strong>. Our platform optimizes <strong>battery performance, 
-              extends lifecycles, and ensures compliance</strong> with EU Battery Passport regulations for both 
-              <strong> mobility and Battery Energy Storage Systems (BESS)</strong>.
-            </p>
-          </section>
-
-          {/* Company Story */}
-          <section className="about-section story-section">
-            <h2>Our Purpose</h2>
-            <div className="section-content">
-              <p>
-                The transition to <strong>electrified transport and renewable energy storage</strong> faces critical challenges 
-                in battery management and utilization. Traditional systems lack <strong>transparent data access, cross-platform 
-                compatibility, and real-time monitoring capabilities</strong>.
-              </p>
-              <p>
-                We created our platform to address these challenges through <strong>decentralized data governance, applied machine 
-                learning, and Web3 interoperability</strong>. Our solutions empower <strong>fleet operators, OEMs, energy providers, 
-                and grid operators</strong> with the intelligence needed to maximize battery value throughout their lifecycle.
-              </p>
+            <div className="hero-content">
+              <h1 className="headline">Revolutionizing Battery Intelligence with Web3</h1>
+              <p className="tagline">Transforming Mobility & Energy Storage with Blockchain-Verified Analytics</p>
+              <div className="hero-cta">
+                <Link to="/how-it-works" className="hero-button">Discover Our Solutions</Link>
+              </div>
             </div>
           </section>
 
-          {/* Mission & Vision */}
+          {/* Value Proposition Cards */}
+          <section className="about-section value-prop-section">
+            <div className="value-cards">
+              <div className="value-card">
+                <div className="card-icon">🔍</div>
+                <h3>Advanced Analytics</h3>
+                <p>Machine learning algorithms deliver actionable insights for optimal battery performance</p>
+              </div>
+              <div className="value-card">
+                <div className="card-icon">🔗</div>
+                <h3>Blockchain Secured</h3>
+                <p>Tamper-proof battery data compliance with EU Battery Passport regulations</p>
+              </div>
+              <div className="value-card">
+                <div className="card-icon">📊</div>
+                <h3>Lifecycle Optimization</h3>
+                <p>Extend battery lifespan and maximize value across mobility and energy storage</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Mission & Vision Section with Visual Split */}
           <section className="about-section mission-vision-section">
+            <div className="section-header">
+              <h2>Our Purpose</h2>
+              <div className="section-divider"></div>
+            </div>
             <div className="mission-vision-container">
               <div className="mission-box">
                 <h3>Our Mission</h3>
@@ -67,87 +75,157 @@ function AboutUs() {
             </div>
           </section>
 
-          {/* Team Profiles Section */}
-          <section className="about-section team-section">
-            <h2>Our Team</h2>
-            <div className="section-content">
-              <div className="team-profiles">
-                <div className="team-member">
-                  <div className="member-photo profile-1"></div>
-                  <h4><a href="https://www.linkedin.com/in/fabrizio-martini-39068320/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-                  Fabrizio Martini
-                  </a></h4>
-                  <p>Chief Executive Officer</p>
-                </div>
-                <div className="team-member">
-                  <div className="member-photo profile-2"></div>
-                  <h4><a href="https://www.linkedin.com/in/pietro-mosca/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-                  Pietro Mosca
-                  </a></h4>
-                  <p>Blockchain Research Engineer</p>
-                </div>
-                <div className="team-member">
-                  <div className="member-photo profile-3"></div>
-                  <h4><a href="https://www.linkedin.com/in/giovannirossi92/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-                  Giovanni Rossi 
-                  </a></h4>
-                  <p>Head of Marketing</p>
-                </div>
+          {/* Technology Features with Interactive Hover */}
+          <section className="about-section tech-features-section">
+            <div className="section-header">
+              <h2>Our Technology</h2>
+              <div className="section-divider"></div>
+            </div>
+            <div className="tech-features-grid">
+              <div className="tech-feature">
+                <div className="feature-icon">🔍</div>
+                <h3>Smart Battery Insights</h3>
+                <p>Advanced AI algorithms detect patterns and optimize performance across battery lifecycle</p>
+              </div>
+              <div className="tech-feature">
+                <div className="feature-icon">🔗</div>
+                <h3>EU Compliance</h3>
+                <p>Blockchain-secured Battery Passport ensuring regulatory adherence and transparency</p>
+              </div>
+              <div className="tech-feature">
+                <div className="feature-icon">📊</div>
+                <h3>Predictive Monitoring</h3>
+                <p>Real-time health forecasting preventing failures and extending operational lifespan</p>
+              </div>
+              <div className="tech-feature">
+                <div className="feature-icon">⚡</div>
+                <h3>Unified Optimization</h3>
+                <p>Comprehensive management across electric vehicles, energy storage and grid systems</p>
+              </div>
+              <div className="tech-feature">
+                <div className="feature-icon">🛡️</div>
+                <h3>Decentralized Architecture</h3>
+                <p>Secure data sharing with stakeholders through decentralized governance protocols</p>
+              </div>
+              <div className="tech-feature">
+                <div className="feature-icon">🔄</div>
+                <h3>Circular Economy</h3>
+                <p>Supporting battery reuse, recycling and second-life applications with verified data</p>
               </div>
             </div>
           </section>
 
-          {/* Key Features */}
-          <section className="about-section features-section">
-            <h2>Our Technology</h2>
-            <div className="section-content">
-              <ul className="features-list">
-                <li><span>[🔍] Smart Battery Insights</span> – <strong>AI</strong> detects patterns & boosts <strong>performance</strong></li>
-                <li><span>[🔗] EU Compliance</span> – <strong>Blockchain-secured Battery Passport</strong></li>
-                <li><span>[📊] Predictive Monitoring</span> – <strong>Forecasts health & avoids failures</strong></li>
-                <li><span>[⚡] Unified Optimization</span> – One view across <strong>EVs, storage & grid.</strong></li>
-                <li><span>[🛡️] Decentralized Data Architecture</span> – Secure sharing with <strong>decentralization</strong></li>
-              </ul>
+          {/* Problem-Solution Section */}
+          <section className="about-section problem-solution-section">
+            <div className="section-header">
+              <h2>Addressing Critical Challenges</h2>
+              <div className="section-divider"></div>
+            </div>
+            <div className="problem-solution-container">
+              <div className="problem-box">
+                <h3>Industry Challenges</h3>
+                <ul className="challenge-list">
+                  <li>Lack of transparent battery performance data</li>
+                  <li>Cross-platform compatibility issues</li>
+                  <li>Limited real-time monitoring capabilities</li>
+                  <li>Complex regulatory compliance requirements</li>
+                  <li>Inefficient battery lifecycle management</li>
+                </ul>
+              </div>
+              <div className="solution-box">
+                <h3>Our Approach</h3>
+                <ul className="solution-list">
+                  <li>Decentralized data governance protocols</li>
+                  <li>Applied machine learning for performance optimization</li>
+                  <li>Web3 interoperability across platforms</li>
+                  <li>Blockchain-verified compliance documentation</li>
+                  <li>End-to-end lifecycle intelligence</li>
+                </ul>
+              </div>
             </div>
           </section>
 
-          {/* Applications Section */}
+          {/* Applications Carousel */}
           <section className="about-section applications-section">
-            <h2>📍 Applications</h2>
-            <div className="section-content">
-              <div className="application-cards">
-                <div className="application-card">
-                  <h3>🚚 EV Fleet Management</h3>
-                  <p>Optimize charging strategies, predict range variations, and maximize battery longevity for commercial electric fleets.</p>
+            <div className="section-header">
+              <h2>Application Areas</h2>
+              <div className="section-divider"></div>
+            </div>
+            <div className="application-cards">
+              <div className="application-card">
+                <div className="app-icon">🚚</div>
+                <h3>EV Fleet Management</h3>
+                <p>Optimize charging strategies, predict range variations, and maximize battery longevity for commercial electric fleets.</p>
+              </div>
+              <div className="application-card">
+                <div className="app-icon">⚡</div>
+                <h3>Grid-Scale BESS</h3>
+                <p>Enhance energy arbitrage, frequency regulation, and power quality while extending battery lifecycle for utility-scale installations.</p>
+              </div>
+              <div className="application-card">
+                <div className="app-icon">🏭</div>
+                <h3>OEM Integration</h3>
+                <p>Provide manufacturers with battery performance insights to improve design, warranty management, and second-life applications.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Team Section with Enhanced Styling */}
+          <section className="about-section team-section">
+            <div className="section-header">
+              <h2>Our Leadership Team</h2>
+              <div className="section-divider"></div>
+            </div>
+            <div className="team-profiles">
+              <div className="team-member">
+                <div className="member-photo profile-1"></div>
+                <div className="member-info">
+                  <h4><a href="https://www.linkedin.com/in/fabrizio-martini-39068320/" target="_blank" rel="noopener noreferrer">
+                    Fabrizio Martini
+                  </a></h4>
+                  <p className="member-title">Chief Executive Officer</p>
+                  <p className="member-description">Battery technology expert with 15+ years in energy storage solutions</p>
                 </div>
-                <div className="application-card">
-                  <h3>⚡ Grid-Scale BESS</h3>
-                  <p>Enhance energy arbitrage, frequency regulation, and power quality while extending battery lifecycle for utility-scale installations.</p>
+              </div>
+              <div className="team-member">
+                <div className="member-photo profile-2"></div>
+                <div className="member-info">
+                  <h4><a href="https://www.linkedin.com/in/pietro-mosca/" target="_blank" rel="noopener noreferrer">
+                    Pietro Mosca
+                  </a></h4>
+                  <p className="member-title">Blockchain Research Engineer</p>
+                  <p className="member-description">Web3 specialist focused on decentralized data solutions</p>
                 </div>
-                <div className="application-card">
-                  <h3>🏭 OEM Integration</h3>
-                  <p>Provide manufacturers with battery performance insights to improve design, warranty management, and second-life applications.</p>
+              </div>
+              <div className="team-member">
+                <div className="member-photo profile-3"></div>
+                <div className="member-info">
+                  <h4><a href="https://www.linkedin.com/in/giovannirossi92/" target="_blank" rel="noopener noreferrer">
+                    Giovanni Rossi
+                  </a></h4>
+                  <p className="member-title">Head of Marketing</p>
+                  <p className="member-description">Strategic communications expert for tech innovation</p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Call to Action */}
+          {/* Enhanced Call to Action */}
           <section className="about-section cta-section">
-            <h2>Transform Your Battery Management Strategy</h2>
-            <p>
-              Whether you're a <strong>fleet operator looking to reduce TCO, a BESS provider maximizing ROI, or an OEM ensuring compliance</strong>, 
-              our platform delivers the <strong>insights and verification</strong> you need in today's evolving regulatory landscape.
-            </p>
-            <div className="cta-buttons">
-              <Link to="/contact" className="cta-button primary">Learn More</Link>
-              {/* <Link to="/use-cases" className="cta-button secondary">Explore Use Cases</Link> */}
-            </div>
-            <div className="social-links">
-              <a href={DISCORD_CHANNEL} target="_blank" className="social-icon discord">Discord</a>
-              <a href={X_CHANNEL} target="_blank" className="social-icon X">X</a>
+            <div className="cta-content">
+              <h2>Transform Your Battery Management Strategy</h2>
+              <p>Join forward-thinking organizations already leveraging our Web3-powered analytics platform</p>
+              <div className="cta-buttons">
+                {/* <Link to="/contact" className="cta-button primary">Schedule a Demo</Link>
+                <Link to="/platform" className="cta-button secondary">Explore Platform</Link> */}
+              </div>
+              <div className="social-links">
+                <a href={DISCORD_CHANNEL} target="_blank" className="social-icon discord">Discord</a>
+                <a href={X_CHANNEL} target="_blank" className="social-icon X">X</a>
+              </div>
             </div>
           </section>
+          
         </div>
       </main>
 
