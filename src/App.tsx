@@ -11,7 +11,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import TermsAndConditions from "./TermsAndConditions"; 
 import HowItWorks from "./HowItWorks"; 
 import PrivateSale from "./TokenPrivateSale.tsx"; 
-import Payment from "./Payment1.tsx"; 
+import Payment from "./Payment.tsx"; 
 import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';

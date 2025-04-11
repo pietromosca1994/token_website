@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import PaymentComponent from "./components/PaymentComponent";
 import "./App.css";
 import "./TermsAndConditions.css";
-import "./Payment1.css"; // Add new CSS
+import "./Payment.css"; // Add new CSS
 import { useState, useEffect, useRef } from "react";
 
 function Payment() {
