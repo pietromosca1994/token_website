@@ -1,0 +1,66 @@
+/* src/Payment.css */
+
+/* Payment container styles */
+.payment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  min-height: calc(100vh - 200px); /* Adjust based on Header/Footer height */
+}
+
+/* Payment content container */
+.payment-content {
+  max-width: 500px; /* Slightly wider than PaymentComponent's max-w-md */
+  width: 100%;
+  background: rgba(26, 31, 54, 0.7);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(100, 108, 255, 0.15);
+  padding: 2rem;
+  color: #e0e7ff; /* Light text color for contrast */
+}
+
+/* Title styles */
+.payment-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #646cff, #a3bffa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 1.5rem;
+  }
+
+  .payment-content {
+    padding: 1.5rem;
+  }
+
+  .payment-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-content {
+    padding: 1rem;
+  }
+
+  .payment-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}

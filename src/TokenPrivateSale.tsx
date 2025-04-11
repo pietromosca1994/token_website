@@ -98,7 +98,7 @@ function PrivateSale() {
             <p className="hero-subtitle">Soar to new heights with Eagle Labs</p>
             
             <div className="hero-cta">
-              <Link to="https://hubs.ly/Q03gYrG_0" className="primary-button pulse-animation">Buy $EAGLE Now</Link>
+              <Link to="/payment" className="primary-button pulse-animation">Buy $EAGLE Now</Link>
             </div>
           </div>
         </section>
