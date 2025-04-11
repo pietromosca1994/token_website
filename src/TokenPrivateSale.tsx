@@ -7,7 +7,7 @@ import "./App.css";
 import "./TokenPrivateSale.css";
 
 // parameters 
-const endDate = new Date('2025-12-31T23:59:59Z'); // Set your end date here
+const endDate = new Date('2025-06-31T23:59:59Z'); // Set your end date here
 const progress = 0; // Example sale progress percentage
 const tokenSalePrice = 0.000058; // Example token price in USD
 const tokenTGEPrice = 0.00011764;
