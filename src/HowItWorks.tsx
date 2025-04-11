@@ -456,8 +456,8 @@ function HowItWorks() {
               <h2>Join the Battery Revolution</h2>
               <p>Connect your battery today and unlock its full potential in our ecosystem</p>
               <div className="cta-buttons">
-                <Link to="/connect" className="hiw-cta-button">Connect Battery <span>→</span></Link>
-                <Link to="/learn-more" className="hiw-secondary-button">Learn More</Link>
+                {/* <Link to="/" className="hiw-cta-button">Connect Battery <span>→</span></Link> */}
+                <Link to="/about-us" className="hiw-secondary-button">Learn More</Link>
               </div>
               <div className="cta-stats">
                 <div className="cta-stat">
