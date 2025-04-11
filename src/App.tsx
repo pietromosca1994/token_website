@@ -145,7 +145,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/private-sale" element={<PrivateSale />} />
-        <Route path="/payments" element={<Payments />} />
+        {/* <Route path="/payments" element={<Payments />} /> */}
       </Routes>
     </BrowserRouter>
   )
