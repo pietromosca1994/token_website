@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
 import { getAmountOfConnectedBatteries } from './utils'
 import { DIMO_APP_CLIENT_ID } from './main.tsx';
@@ -15,6 +15,16 @@ import Payments from "./Payments.tsx";
 import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 // Custom DIMO Button that wraps the ShareVehiclesWithDimo component
 function ConnectDimoButton({ onSuccess, onError }) {
@@ -132,21 +142,22 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/wallet" element={
-          <SolanaWalletPage 
-            email={email}
-            walletAddress={walletAddress}
-          />
-        } />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/private-sale" element={<PrivateSale />} />
-        {/* <Route path="/payments" element={<Payments />} /> */}
-      </Routes>
+      <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/wallet" element={
+            <SolanaWalletPage 
+              email={email}
+              walletAddress={walletAddress}
+            />
+          } />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/private-sale" element={<PrivateSale />} />
+          {/* <Route path="/payments" element={<Payments />} /> */}
+        </Routes>
     </BrowserRouter>
   )
 }
