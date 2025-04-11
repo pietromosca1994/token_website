@@ -11,6 +11,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import TermsAndConditions from "./TermsAndConditions"; 
 import HowItWorks from "./HowItWorks"; 
 import PrivateSale from "./TokenPrivateSale.tsx"; 
+import Payments from "./Payments.tsx"; 
 import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';
@@ -144,6 +145,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/private-sale" element={<PrivateSale />} />
+        <Route path="/payments" element={<Payments />} />
       </Routes>
     </BrowserRouter>
   )

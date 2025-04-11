@@ -1,9 +1,51 @@
+import { Link } from "react-router-dom";
 import GlobeVisualization from "./components/GlobeVisualization";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { useState, useEffect } from "react";
 import "./App.css";
 import "./TokenPrivateSale.css";
+
+// parameters 
+const endDate = new Date('2025-12-31T23:59:59Z'); // Set your end date here
+const progress = 0; // Example sale progress percentage
+const tokenSalePrice = 0.000058; // Example token price in USD
+const tokenTGEPrice = 0.00011764;
+const discount = 50;
+const minPurchase = 1000; // Example minimum purchase in USD
+const maxPurchase = 100000; // Example maximum purchase in USD
+const accept = ["BTC", "ETH", "SOL", "USDT", "USDC"]; // Accepted currencies
+const platforms = ["Bitcoin", "Ethereum", "Solana", "SUI"]; // Supported platforms
+const totalSupply = 85000000000; // Total supply of tokens
+const initialCirculatingSupply = 12750000000; // Initial circulating supply
+const initialMarketCap = 1500000; // Initial market cap in USD
+
+// token allocation 
+const tokenAllocation =[
+  ["Private Sale", "11.35%", "private-sale"],
+  ["Public Sale", "3.65%", "public-sale"],
+  ["Ecosystem", "40%", "ecosystem"],
+  ["Community", "15%", "community"],
+  ["Team", "13%", "team"],
+  ["Advisors", "5%", "advisors"],
+  ["Investors", "5%", "investors"],
+  ["Market", "5%", "market"],
+  ["Aidrop", "2%", "airdrop"],
+]
+
+// veting schedule
+const vestingSchedule = [
+  // TGE Unlock, Cliff, Vesting
+  ["Private Sale", "10%", "3 months", "12 months"],
+  ["Public Sale", "10%", "3 months", "12 months"],
+  ["Ecosystem", "10%", "0 months", "24 months"],
+  ["Community", "5%", "6 months", "18 months"],
+  ["Team", "0%", "6 months", "36 months"],
+  ["Advisors", "0%", "6 months", "12 months"],
+  ["Investors", "0%", "12 months", "24 months"],
+  ["Market", "100%", "0 months", "0 months"],
+  ["Aidrop", "100%", "0 months", "0 months"]
+]
 
 function PrivateSale() {
   const [timeLeft, setTimeLeft] = useState({
@@ -13,12 +55,12 @@ function PrivateSale() {
     seconds: 0,
   });
 
-  const [saleProgress, setSaleProgress] = useState(68);
+  const [saleProgress, setSaleProgress] = useState(progress);
 
   useEffect(() => {
     // Sale end date (example: 2 weeks from now)
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 14);
+    // const endDate = new Date();
+    // endDate.setDate(endDate.getDate() + 14);
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -56,7 +98,7 @@ function PrivateSale() {
             <p className="hero-subtitle">Soar to new heights with Eagle Labs</p>
             
             <div className="hero-cta">
-              <button className="primary-button pulse-animation">Buy $EAGLE Now</button>
+              <Link to="/Payments" className="primary-button pulse-animation">Buy $EAGLE Now</Link>
             </div>
           </div>
         </section>
@@ -81,11 +123,12 @@ function PrivateSale() {
 
             <div className="sale-details">
               {[
-                ["Token Price:", "$0.08 USD"],
-                ["Min. Purchase:", "250 USD"],
-                ["Max. Purchase:", "25,000 USD"],
-                ["Accept:", "USDT, USDC, ETH"],
-                ["Platform:", "Ethereum"]
+                ["Token Price:", `${tokenSalePrice} USD`],
+                ["Token Price at TGE:", `${tokenTGEPrice} USD`],
+                ["Min. Purchase:", `${minPurchase} USD`],
+                ["Max. Purchase:", `${maxPurchase} USD`],
+                ["Accept:", `${accept}`],
+                ["Platform:", `${platforms}`]
               ].map(([label, value], index) => (
                 <div key={index} className="sale-detail-item">
                   <span>{label}</span>
@@ -121,9 +164,9 @@ function PrivateSale() {
             <div className="tokenomics-container">
               <div className="tokenomics-stats glass-effect">
                 {[
-                  ["Total Supply", "100,000,000 $EAGLE"],
-                  ["Initial Circulating Supply", "12,500,000 $EAGLE"],
-                  ["Initial Market Cap", "$1,000,000 USD"]
+                  ["Total Supply", `${totalSupply.toLocaleString()} EAGLE`],
+                  ["Initial Circulating Supply", `${initialCirculatingSupply.toLocaleString()} EAGLE`],
+                  ["Initial Market Cap", `${initialMarketCap.toLocaleString()} EAGLE`]
                 ].map(([label, value], index) => (
                   <div key={index} className="tokenomics-stat-item">
                     <span className="stat-label">{label}</span>
@@ -135,14 +178,7 @@ function PrivateSale() {
               <div className="token-allocation glass-effect">
                 <h3>Token Allocation</h3>
                 <div className="allocation-chart">
-                  {[
-                    ["Private Sale", "20%", "private-sale"],
-                    ["Public Sale", "15%", "public-sale"],
-                    ["Ecosystem", "25%", "ecosystem"],
-                    ["Team", "20%", "team"],
-                    ["Marketing", "10%", "marketing"],
-                    ["Reserves", "10%", "reserves"]
-                  ].map(([label, percent, colorClass], index) => (
+                  {tokenAllocation.map(([label, percent, colorClass], index) => (
                     <div key={index} className="allocation-item" style={{ "--percent": percent }}>
                       <div className={`allocation-color ${colorClass}`}></div>
                       <div className="allocation-label">{label}</div>
@@ -161,13 +197,7 @@ function PrivateSale() {
                     <div className="vesting-cell">Cliff</div>
                     <div className="vesting-cell">Vesting</div>
                   </div>
-                  {[
-                    ["Private Sale", "10%", "1 month", "12 months"],
-                    ["Public Sale", "25%", "None", "6 months"],
-                    ["Team", "0%", "6 months", "24 months"],
-                    ["Ecosystem", "5%", "3 months", "36 months"],
-                    ["Marketing", "15%", "None", "18 months"]
-                  ].map(([allocation, tge, cliff, vesting], index) => (
+                  {vestingSchedule.map(([allocation, tge, cliff, vesting], index) => (
                     <div key={index} className="vesting-row">
                       <div className="vesting-cell" data-label="Allocation">{allocation}</div>
                       <div className="vesting-cell" data-label="TGE Unlock">{tge}</div>
@@ -242,22 +272,36 @@ function PrivateSale() {
             {[
               {
                 period: "Q2 2025",
-                items: ["Private Token Sale", "Initial Ecosystem Development", "Team Expansion"],
+                items: [
+                  "Private Token Sale", 
+                  "Initial Ecosystem Development", 
+                  "Team Expansion"],
                 active: true
               },
               {
                 period: "Q3 2025",
-                items: ["Public Token Sale", "DEX Listings", "Staking Platform Launch"],
+                items: [
+                  "Public Token Sale", 
+                  "DEX Listings", 
+                  "Staking Platform Launch"],
                 active: false
               },
               {
                 period: "Q4 2025",
-                items: ["CEX Listings", "Governance Portal", "Mobile App Beta"],
+                items: [
+                  "Protocol Development",
+                  "Partnerships", 
+                  "Community Engagement"
+                ],
                 active: false
               },
               {
                 period: "Q1 2026",
-                items: ["Cross-Chain Integration", "Partnerships Expansion", "Eagle Labs V2 Release"],
+                items: [
+                  "Protocol development",
+                  "Cross-Chain Integration", 
+                  "Partnerships Expansion", 
+                  "Eagle Labs V2 Release"],
                 active: false
               }
             ].map((phase, index) => (

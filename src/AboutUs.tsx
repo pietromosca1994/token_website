@@ -115,7 +115,7 @@ function AboutUs() {
             </div>
           </section>
 
-          {/* Problem-Solution Section */}
+          {/* Problem-Solution Section
           <section className="about-section problem-solution-section">
             <div className="section-header">
               <h2>Addressing Critical Challenges</h2>
@@ -143,7 +143,7 @@ function AboutUs() {
                 </ul>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Applications Carousel */}
           <section className="about-section applications-section">
