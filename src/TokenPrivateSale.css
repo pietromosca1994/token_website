@@ -330,12 +330,15 @@
   border-radius: 4px;
 }
 
-.private-sale { background: #646cff; }
-.public-sale { background: #bc61ff; }
-.ecosystem { background: #61dafb; }
-.team { background: #ff6b6b; }
-.marketing { background: #ffd166; }
-.reserves { background: #06d6a0; }
+.private-sale { background: #4C6EF5; } /* A deeper, more vibrant blue for contrast */
+.public-sale { background: #9A4BFF; } /* A more vibrant and balanced purple */
+.ecosystem { background: #56C7D9; } /* A softer yet still bright cyan */
+.community { background: #56C7D9; } /* Consistent with Ecosystem but lighter */
+.team { background: #F75C5C; } /* A softer red with good contrast */
+.advisors { background: #F75C5C; } /* Consistent with Team but balanced */
+.investors { background: #F75C5C; } /* Consistent red with team/advisors */
+.market { background: #FFB21F; } /* A bright, warm yellow for better attention */
+.airdrop { background: #00D4A2; } /* A deeper, richer teal for contrast */
 
 .allocation-label {
   flex: 1;
