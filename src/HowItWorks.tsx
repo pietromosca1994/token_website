@@ -5,6 +5,13 @@ import { Header } from "./Header";
 import "./App.css";
 import "./HowItWorks.css";
 
+import ecosystemImg from './assets/images/ecosystem.jpg';
+import tokenizationImg from"/src/assets/images/tokenization.png"
+import tokenStakingImg from "/src/assets/images/token_staking.jpg";
+import analyticsImg from "/src/assets/images/analytics.jpg";
+import optimizationImg from "/src/assets/images/optimization.jpg";
+
+
 function HowItWorks() {
   return (
     <div className="main-page">
@@ -31,7 +38,7 @@ function HowItWorks() {
               </div>
               <div className="token-hero-visual">
                 <div className="token-hero-image-container">
-                  <img src="/src/assets/images/ecosystem.jpg" alt="Battery token visualization" className="token-hero-image" />
+                  <img src={ecosystemImg} alt="Battery token visualization" className="token-hero-image" />
                   <div className="token-hero-glow"></div>
                 </div>
               </div>
@@ -105,7 +112,7 @@ function HowItWorks() {
                   
                   <div className="feature-details">
                     <div className="feature-image-container">
-                      <img src="/src/assets/images/tokenization.png" alt="Tokenization process" className="feature-image" />
+                      <img src={tokenizationImg} alt="Tokenization process" className="feature-image" />
                       <div className="feature-highlight">EU COMPLIANT</div>
                     </div>
                     
@@ -187,7 +194,7 @@ function HowItWorks() {
                   
                   <div className="staking-container">
                     <div className="feature-image-container">
-                      <img src="/src/assets/images/token_staking.jpg" alt="Token staking" className="feature-image" />
+                      <img src={tokenStakingImg} alt="Token staking" className="feature-image" />
                     </div>
                     
                     <div className="staking-benefits">
@@ -266,7 +273,7 @@ function HowItWorks() {
                             <path d="M12 2a10 10 0 0 1 10 10" stroke="url(#analyzeGradient)" strokeWidth="2" />
                           </svg>
                         </div>
-                        <img src="/src/assets/images/analytics.jpg" alt="Health prediction" className="analytics-image" />
+                        <img src={analyticsImg} alt="Health prediction" className="analytics-image" />
                         <h4>Predictive Health</h4>
                         <p>Forecast remaining useful life with 94% accuracy</p>
                       </div>
@@ -282,7 +289,7 @@ function HowItWorks() {
                             <path d="M14 11V7l2 2" stroke="url(#analyzeGradient)" strokeWidth="2" strokeLinecap="round" />
                           </svg>
                         </div>
-                        <img src="/src/assets/images/optimization.jpg" alt="Usage optimization" className="analytics-image" />
+                        <img src={optimizationImg} alt="Usage optimization" className="analytics-image" />
                         <h4>Usage Optimization</h4>
                         <p>Increase battery efficiency by up to 25%</p>
                       </div>
@@ -296,7 +303,7 @@ function HowItWorks() {
                             <path d="M15 4l-2 2" stroke="#646cff" strokeWidth="2" strokeLinecap="round" />
                           </svg>
                         </div>
-                        <img src="/src/assets/images/analytics.jpg" alt="Historical tracking" className="analytics-image" />
+                        <img src={analyticsImg} alt="Historical tracking" className="analytics-image" />
                         <h4>Historical Tracking</h4>
                         <p>View performance over lifetime with detailed metrics</p>
                       </div>
