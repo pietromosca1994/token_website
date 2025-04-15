@@ -64,6 +64,47 @@ function PrivacyPolicy() {
           <div className="policy-container terms-container">
             <h1 className="policy-title terms-title">Privacy Policy</h1>
             <div className="terms-last-updated">Last Updated: April 8, 2025</div>
+            <div className="terms-summary">
+            <div className="summary-title">Contents</div>
+              <ul className="summary-list">
+                <li className={activeSection === "introduction" ? "active" : ""}>
+                  <a href="#introduction" onClick={(e) => {e.preventDefault(); scrollToSection("introduction")}}>1. Introduction</a>
+                </li>
+                <li className={activeSection === "collection" ? "active" : ""}>
+                  <a href="#collection" onClick={(e) => {e.preventDefault(); scrollToSection("collection")}}>2. Information We Collect</a>
+                </li>
+                <li className={activeSection === "usage" ? "active" : ""}>
+                  <a href="#usage" onClick={(e) => {e.preventDefault(); scrollToSection("usage")}}>3. How We Use Your Information</a>
+                </li>
+                <li className={activeSection === "sharing" ? "active" : ""}>
+                  <a href="#sharing" onClick={(e) => {e.preventDefault(); scrollToSection("sharing")}}>4. Data Sharing</a>
+                </li>
+                <li className={activeSection === "international" ? "active" : ""}>
+                  <a href="#international" onClick={(e) => {e.preventDefault(); scrollToSection("international")}}>5. International Transfers</a>
+                </li>
+                <li className={activeSection === "security" ? "active" : ""}>
+                  <a href="#security" onClick={(e) => {e.preventDefault(); scrollToSection("security")}}>6. Data Security</a>
+                </li>
+                <li className={activeSection === "cookies" ? "active" : ""}>
+                  <a href="#cookies" onClick={(e) => {e.preventDefault(); scrollToSection("cookies")}}>7. Cookie Policy</a>
+                </li>
+                <li className={activeSection === "rights" ? "active" : ""}>
+                  <a href="#rights" onClick={(e) => {e.preventDefault(); scrollToSection("rights")}}>8. Your Rights</a>
+                </li>
+                <li className={activeSection === "children" ? "active" : ""}>
+                  <a href="#children" onClick={(e) => {e.preventDefault(); scrollToSection("children")}}>9. Children's Privacy</a>
+                </li>
+                <li className={activeSection === "changes" ? "active" : ""}>
+                  <a href="#changes" onClick={(e) => {e.preventDefault(); scrollToSection("changes")}}>10. Changes to Policy</a>
+                </li>
+                <li className={activeSection === "jurisdiction" ? "active" : ""}>
+                  <a href="#jurisdiction" onClick={(e) => {e.preventDefault(); scrollToSection("jurisdiction")}}>11. Legal Jurisdiction</a>
+                </li>
+                <li className={activeSection === "contact" ? "active" : ""}>
+                  <a href="#contact" onClick={(e) => {e.preventDefault(); scrollToSection("contact")}}>12. Contact Us</a>
+                </li>
+              </ul>
+            </div>
             
             <div className="policy-section terms-section" ref={(el) => registerRef("introduction", el)} id="introduction">
               <h2>1. Introduction</h2>
@@ -206,48 +247,6 @@ function PrivacyPolicy() {
                 British Virgin Islands
               </p>
             </div>
-          </div>
-          
-          <div className="terms-summary">
-            <div className="summary-title">Contents</div>
-            <ul className="summary-list">
-              <li className={activeSection === "introduction" ? "active" : ""}>
-                <a href="#introduction" onClick={(e) => {e.preventDefault(); scrollToSection("introduction")}}>1. Introduction</a>
-              </li>
-              <li className={activeSection === "collection" ? "active" : ""}>
-                <a href="#collection" onClick={(e) => {e.preventDefault(); scrollToSection("collection")}}>2. Information We Collect</a>
-              </li>
-              <li className={activeSection === "usage" ? "active" : ""}>
-                <a href="#usage" onClick={(e) => {e.preventDefault(); scrollToSection("usage")}}>3. How We Use Your Information</a>
-              </li>
-              <li className={activeSection === "sharing" ? "active" : ""}>
-                <a href="#sharing" onClick={(e) => {e.preventDefault(); scrollToSection("sharing")}}>4. Data Sharing</a>
-              </li>
-              <li className={activeSection === "international" ? "active" : ""}>
-                <a href="#international" onClick={(e) => {e.preventDefault(); scrollToSection("international")}}>5. International Transfers</a>
-              </li>
-              <li className={activeSection === "security" ? "active" : ""}>
-                <a href="#security" onClick={(e) => {e.preventDefault(); scrollToSection("security")}}>6. Data Security</a>
-              </li>
-              <li className={activeSection === "cookies" ? "active" : ""}>
-                <a href="#cookies" onClick={(e) => {e.preventDefault(); scrollToSection("cookies")}}>7. Cookie Policy</a>
-              </li>
-              <li className={activeSection === "rights" ? "active" : ""}>
-                <a href="#rights" onClick={(e) => {e.preventDefault(); scrollToSection("rights")}}>8. Your Rights</a>
-              </li>
-              <li className={activeSection === "children" ? "active" : ""}>
-                <a href="#children" onClick={(e) => {e.preventDefault(); scrollToSection("children")}}>9. Children's Privacy</a>
-              </li>
-              <li className={activeSection === "changes" ? "active" : ""}>
-                <a href="#changes" onClick={(e) => {e.preventDefault(); scrollToSection("changes")}}>10. Changes to Policy</a>
-              </li>
-              <li className={activeSection === "jurisdiction" ? "active" : ""}>
-                <a href="#jurisdiction" onClick={(e) => {e.preventDefault(); scrollToSection("jurisdiction")}}>11. Legal Jurisdiction</a>
-              </li>
-              <li className={activeSection === "contact" ? "active" : ""}>
-                <a href="#contact" onClick={(e) => {e.preventDefault(); scrollToSection("contact")}}>12. Contact Us</a>
-              </li>
-            </ul>
           </div>
         </div>
       </main>

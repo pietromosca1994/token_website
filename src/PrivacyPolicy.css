@@ -1,11 +1,11 @@
 /* Shared CSS for Terms and Privacy Policy pages */
 
 /* Page container styles */
-.legal-page-container {
+.legal-page-container,
+.terms-page-container {
     display: flex;
     max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem;
+    margin: 2rem auto; /* Add margin top and bottom */
     position: relative;
   }
   
@@ -24,6 +24,10 @@
     margin-bottom: 3rem;
   }
   
+  .legal-container p {
+    font-size: 1.1rem; /* Increase font size for readability */
+  }
+  
   /* Title styles */
   .legal-title {
     font-size: 3.5rem;
@@ -35,7 +39,7 @@
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
-    text-align: center; /* Center text */
+    text-align: center;
   }
   
   /* Last updated text */
@@ -56,6 +60,7 @@
   .legal-section h2 {
     font-size: 1.6rem;
     color: white;
+    text-align: center;
     margin-bottom: 1rem;
     font-weight: 600;
     position: relative;
@@ -75,7 +80,7 @@
   
   .legal-section p {
     margin-bottom: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-secondary);
     font-size: 1rem;
   }
@@ -99,7 +104,6 @@
   
   /* Summary navigation styles */
   .legal-summary {
-    width: 250px;
     flex-shrink: 0;
     position: sticky;
     top: 100px;
@@ -111,7 +115,7 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 
                 0 0 8px rgba(100, 108, 255, 0.1);
     padding: 1.5rem;
-    max-height: calc(100vh - 140px);
+    max-height: calc(100vh - 4rem); /* Adjust based on the top margin of the container */
     overflow-y: auto;
   }
   
@@ -122,7 +126,7 @@
     margin-bottom: 1.2rem;
     padding-bottom: 0.8rem;
     border-bottom: 1px solid rgba(100, 108, 255, 0.3);
-    text-align: center;
+    text-align: center; /* Ensure title is centered */
   }
   
   .summary-list {
@@ -142,7 +146,7 @@
     text-decoration: none;
     display: block;
     padding: 0.4rem 0.6rem;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.2s ease;
   }
   
@@ -158,6 +162,16 @@
     box-shadow: 0 0 8px rgba(100, 108, 255, 0.2);
   }
   
+  /* General content improvements */
+  .legal-container h2,
+  .legal-container p,
+  .legal-container li {
+    text-align: left; /* Align text to the left for better readability */
+  }
+  
+  .legal-container ul {
+    padding-left: 20px; /* Add some padding to the left for lists */
+  }
   /* Responsive adjustments */
   @media (max-width: 1024px) {
     .legal-page-container {
@@ -167,11 +181,16 @@
   
   @media (max-width: 992px) {
     .legal-container {
-      padding: 2.5rem;
+      padding: 2rem;
     }
     
     .legal-title {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
+    }
+    
+    .legal-section h2 {
+      font-size: 1.5rem;
+      text-align: center;
     }
     
     .legal-summary {
@@ -181,7 +200,7 @@
   
   @media (max-width: 768px) {
     .legal-page-container {
-      flex-direction: column;
+      flex-direction: column; /* Stack content vertically */
     }
     
     .legal-container {
@@ -190,17 +209,19 @@
       order: 2;
     }
     
-    .legal-title {
-      font-size: 2rem;
-    }
-    
-    .legal-section h2 {
-      font-size: 1.4rem;
-    }
-    
     .legal-summary {
       width: 100%;
-      position: relative;
+      position: sticky; /* Keep summary sticky at the top */
+      top: 6rem;
+      max-height: calc(50vh - 4rem);
+      overflow-y: auto;
+      z-index: 10;
+      margin-bottom: 1rem;
+    }
+    
+    .legal-title {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
       top: 0;
       order: 1;
       margin-bottom: 1.5rem;
@@ -228,19 +249,26 @@
   @media (max-width: 480px) {
     .legal-container {
       padding: 1.5rem;
+      margin-bottom: 2rem;
     }
     
     .legal-title {
       font-size: 1.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     
     .legal-section h2 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      text-align: center;
     }
     
     .legal-section {
       margin-bottom: 2rem;
+    }
+    
+    .legal-section p,
+    .legal-section li {
+      font-size: 1rem; /* Ensure consistent font size */
     }
     
     .summary-list {
