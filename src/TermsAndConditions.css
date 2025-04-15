@@ -1,9 +1,10 @@
 /* TermsAndConditions.css */
 .terms-page-container {
     display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem;
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    max-width: 1100px;
+    margin: 2rem auto; /* Add margin around the container */
+    padding: 1rem;
     position: relative;
   }
   
@@ -30,10 +31,10 @@
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
-    text-align: center; /* Center text */
+    text-align: center;
   }
   
-  .terms-last-updated {
+  .terms-last-updated { /* Updated class name */
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -43,13 +44,13 @@
   
   .terms-section {
     margin-bottom: 2.5rem;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px; /* Adjust for header */
   }
   
   .terms-section h2 {
     font-size: 1.6rem;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-weight: 600;
     position: relative;
     padding-bottom: 0.5rem;
@@ -66,13 +67,14 @@
     box-shadow: 0 0 8px rgba(100, 108, 255, 0.5);
   }
   
-  .terms-section p {
+  .terms-section p,
+  .terms-section li { /* Added list items */
     margin-bottom: 1rem;
     line-height: 1.6;
     color: var(--text-secondary);
     font-size: 1rem;
   }
-  
+
   .terms-list {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
@@ -90,131 +92,63 @@
     margin-top: 0.5rem;
   }
   
-  /* Summary navigation styles */
-  .terms-summary {
-    width: 250px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 100px;
-    align-self: flex-start;
-    background: rgba(26, 31, 54, 0.8);
-    border-radius: 12px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(100, 108, 255, 0.2);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 
-                0 0 8px rgba(100, 108, 255, 0.1);
-    padding: 1.5rem;
-    max-height: calc(100vh - 140px);
-    overflow-y: auto;
-  }
-  
-  .summary-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(100, 108, 255, 0.3);
-    text-align: center;
-  }
-  
-  .summary-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .summary-list li {
-    margin-bottom: 0.7rem;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-  }
-  
-  .summary-list li a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    display: block;
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-  }
-  
-  .summary-list li a:hover {
-    color: white;
-    background: rgba(100, 108, 255, 0.15);
-  }
-  
-  .summary-list li.active a {
-    color: white;
-    background: rgba(100, 108, 255, 0.25);
-    border-left: 3px solid var(--accent-color);
-    box-shadow: 0 0 8px rgba(100, 108, 255, 0.2);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1024px) {
-    .terms-page-container {
-      padding: 0 1.5rem;
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .terms-container {
-      padding: 2.5rem;
-    }
-    
-    .terms-title {
-      font-size: 2.2rem;
-    }
-    
-    .terms-summary {
-      width: 220px;
-    }
-  }
-  
   @media (max-width: 768px) {
     .terms-page-container {
-      flex-direction: column;
+      padding: 1rem;
     }
     
     .terms-container {
       padding: 2rem;
-      margin: 0;
-      order: 2;
+      width: 95%;
+      margin: 0 auto; /* Center content */
+      padding: 1.5rem; /* Adjust padding for smaller screens */
     }
     
     .terms-title {
       font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .terms-last-updated { /* Updated class name */
+      margin-bottom: 2rem;
     }
     
     .terms-section h2 {
       font-size: 1.4rem;
     }
-    
-    .terms-summary {
-      width: 100%;
-      position: relative;
-      top: 0;
-      order: 1;
+  
+    .terms-section p,
+    .terms-section li {
+      font-size: 0.95rem;
+    }
+  
+    .terms-list {
+      margin-left: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .terms-container {
+      padding: 1rem;
+    }
+  
+    .terms-title {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+  
+    .terms-last-updated { /* Updated class name */
       margin-bottom: 1.5rem;
-      max-height: none;
-      overflow-y: visible;
     }
-    
-    .summary-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+  
+    .terms-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
     }
-    
-    .summary-list li {
-      margin-bottom: 0;
-      flex: 0 0 auto;
-    }
-    
-    .summary-list li a {
-      white-space: nowrap;
-      font-size: 0.85rem;
+  
+    .terms-section p,
+    .terms-section li {
+      font-size: 0.9rem;
     }
   }
   
