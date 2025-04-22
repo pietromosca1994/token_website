@@ -66,6 +66,53 @@ function TermsAndConditions() {
           <div className="terms-container">
             <h1 className="terms-title">Terms and Conditions</h1>
             <div className="terms-last-updated">Last Updated: April 8, 2025</div>
+              <div className="terms-summary">
+              <div className="summary-title">Contents</div>
+                <ul className="summary-list">
+                  <li className={activeSection === "introduction" ? "active" : ""}>
+                    <a href="#introduction" onClick={(e) => {e.preventDefault(); scrollToSection("introduction")}}>1. Introduction</a>
+                  </li>
+                  <li className={activeSection === "services" ? "active" : ""}>
+                    <a href="#services" onClick={(e) => {e.preventDefault(); scrollToSection("services")}}>2. Services Description</a>
+                  </li>
+                  <li className={activeSection === "eligibility" ? "active" : ""}>
+                    <a href="#eligibility" onClick={(e) => {e.preventDefault(); scrollToSection("eligibility")}}>3. User Eligibility</a>
+                  </li>
+                  <li className={activeSection === "account" ? "active" : ""}>
+                    <a href="#account" onClick={(e) => {e.preventDefault(); scrollToSection("account")}}>4. Account Security</a>
+                  </li>
+                  <li className={activeSection === "usage" ? "active" : ""}>
+                    <a href="#usage" onClick={(e) => {e.preventDefault(); scrollToSection("usage")}}>5. Acceptable Use</a>
+                  </li>
+                  <li className={activeSection === "data" ? "active" : ""}>
+                    <a href="#data" onClick={(e) => {e.preventDefault(); scrollToSection("data")}}>6. Data Usage</a>
+                  </li>
+                  <li className={activeSection === "ip" ? "active" : ""}>
+                    <a href="#ip" onClick={(e) => {e.preventDefault(); scrollToSection("ip")}}>7. Intellectual Property</a>
+                  </li>
+                  <li className={activeSection === "thirdparty" ? "active" : ""}>
+                    <a href="#thirdparty" onClick={(e) => {e.preventDefault(); scrollToSection("thirdparty")}}>8. Third-Party Services</a>
+                  </li>
+                  <li className={activeSection === "liability" ? "active" : ""}>
+                    <a href="#liability" onClick={(e) => {e.preventDefault(); scrollToSection("liability")}}>9. Limitation of Liability</a>
+                  </li>
+                  <li className={activeSection === "disclaimers" ? "active" : ""}>
+                    <a href="#disclaimers" onClick={(e) => {e.preventDefault(); scrollToSection("disclaimers")}}>10. Disclaimers</a>
+                  </li>
+                  <li className={activeSection === "modifications" ? "active" : ""}>
+                    <a href="#modifications" onClick={(e) => {e.preventDefault(); scrollToSection("modifications")}}>11. Modifications</a>
+                  </li>
+                  <li className={activeSection === "governing" ? "active" : ""}>
+                    <a href="#governing" onClick={(e) => {e.preventDefault(); scrollToSection("governing")}}>12. Governing Law</a>
+                  </li>
+                  <li className={activeSection === "compliance" ? "active" : ""}>
+                    <a href="#compliance" onClick={(e) => {e.preventDefault(); scrollToSection("compliance")}}>13. International Use</a>
+                  </li>
+                  <li className={activeSection === "contact" ? "active" : ""}>
+                    <a href="#contact" onClick={(e) => {e.preventDefault(); scrollToSection("contact")}}>14. Contact Information</a>
+                  </li>
+                </ul>
+              </div>
             
             <div className="terms-section" ref={(el) => registerRef("introduction", el)} id="introduction">
               <h2>1. Introduction</h2>
@@ -231,54 +278,6 @@ function TermsAndConditions() {
                 British Virgin Islands
               </p>
             </div>
-          </div>
-          
-          <div className="terms-summary">
-            <div className="summary-title">Contents</div>
-            <ul className="summary-list">
-              <li className={activeSection === "introduction" ? "active" : ""}>
-                <a href="#introduction" onClick={(e) => {e.preventDefault(); scrollToSection("introduction")}}>1. Introduction</a>
-              </li>
-              <li className={activeSection === "services" ? "active" : ""}>
-                <a href="#services" onClick={(e) => {e.preventDefault(); scrollToSection("services")}}>2. Services Description</a>
-              </li>
-              <li className={activeSection === "eligibility" ? "active" : ""}>
-                <a href="#eligibility" onClick={(e) => {e.preventDefault(); scrollToSection("eligibility")}}>3. User Eligibility</a>
-              </li>
-              <li className={activeSection === "account" ? "active" : ""}>
-                <a href="#account" onClick={(e) => {e.preventDefault(); scrollToSection("account")}}>4. Account Security</a>
-              </li>
-              <li className={activeSection === "usage" ? "active" : ""}>
-                <a href="#usage" onClick={(e) => {e.preventDefault(); scrollToSection("usage")}}>5. Acceptable Use</a>
-              </li>
-              <li className={activeSection === "data" ? "active" : ""}>
-                <a href="#data" onClick={(e) => {e.preventDefault(); scrollToSection("data")}}>6. Data Usage</a>
-              </li>
-              <li className={activeSection === "ip" ? "active" : ""}>
-                <a href="#ip" onClick={(e) => {e.preventDefault(); scrollToSection("ip")}}>7. Intellectual Property</a>
-              </li>
-              <li className={activeSection === "thirdparty" ? "active" : ""}>
-                <a href="#thirdparty" onClick={(e) => {e.preventDefault(); scrollToSection("thirdparty")}}>8. Third-Party Services</a>
-              </li>
-              <li className={activeSection === "liability" ? "active" : ""}>
-                <a href="#liability" onClick={(e) => {e.preventDefault(); scrollToSection("liability")}}>9. Limitation of Liability</a>
-              </li>
-              <li className={activeSection === "disclaimers" ? "active" : ""}>
-                <a href="#disclaimers" onClick={(e) => {e.preventDefault(); scrollToSection("disclaimers")}}>10. Disclaimers</a>
-              </li>
-              <li className={activeSection === "modifications" ? "active" : ""}>
-                <a href="#modifications" onClick={(e) => {e.preventDefault(); scrollToSection("modifications")}}>11. Modifications</a>
-              </li>
-              <li className={activeSection === "governing" ? "active" : ""}>
-                <a href="#governing" onClick={(e) => {e.preventDefault(); scrollToSection("governing")}}>12. Governing Law</a>
-              </li>
-              <li className={activeSection === "compliance" ? "active" : ""}>
-                <a href="#compliance" onClick={(e) => {e.preventDefault(); scrollToSection("compliance")}}>13. International Use</a>
-              </li>
-              <li className={activeSection === "contact" ? "active" : ""}>
-                <a href="#contact" onClick={(e) => {e.preventDefault(); scrollToSection("contact")}}>14. Contact Information</a>
-              </li>
-            </ul>
           </div>
         </div>
       </main>
