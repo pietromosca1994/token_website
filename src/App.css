@@ -109,11 +109,6 @@
   transition: var(--transition-smooth);
 }
 
-.battery-stats-content:hover {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  border-color: var(--border-glow);
-}
-
 /* Stats Header */
 .stats-header {
   text-align: center;
