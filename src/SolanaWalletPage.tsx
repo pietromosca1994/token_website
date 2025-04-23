@@ -57,7 +57,7 @@ const AuthInfo = ({ email, walletAddress }) => {
     if (walletAddress) {
       navigator.clipboard.writeText(walletAddress);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 500);
     }
   };
 
@@ -93,11 +93,15 @@ const AuthInfo = ({ email, walletAddress }) => {
                 </span>
                 <span className="full-address">{walletAddress}</span>
                 <button
-                  className={copied ? 'Copied!' : 'Copy'}
                   onClick={handleCopy}
-                  aria-label="Copy wallet address"
+                  aria-label={copied ? "Copied!" : "Copy wallet address"}
+                  className={`copy-button ${copied ? 'copied' : ''}`}
                 >
-                  {copied ? 'Copied!' : <Copy size={16} />}
+                  {copied ? (
+                    <span className="copied-check">✔</span>
+                  ) : (
+                    <Copy size={14} />
+                  )}
                 </button>
               </div>
             </div>
