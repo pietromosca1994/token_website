@@ -34,9 +34,9 @@
     transition: transform 0.3s ease;
   }
   
-  .vehicle-card:hover .vehicle-image {
+  /* .vehicle-card:hover .vehicle-image {
     transform: scale(1.03);
-  }
+  } */
   
   .vehicle-id {
     position: absolute;
