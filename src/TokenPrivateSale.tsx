@@ -8,7 +8,6 @@ import "./TokenPrivateSale.css";
 
 // parameters 
 const endDate = new Date('2025-06-31T23:59:59Z'); // Set your end date here
-const progress = 0; // Example sale progress percentage
 const tokenSalePrice = 0.000058; // Example token price in USD
 const tokenTGEPrice = 0.00011764;
 const discount = 50;
@@ -19,6 +18,9 @@ const platforms = ["Bitcoin", "Ethereum", "Solana", "SUI"]; // Supported platfor
 const totalSupply = 85000000000; // Total supply of tokens
 const initialCirculatingSupply = 12750000000; // Initial circulating supply
 const initialMarketCap = 1500000; // Initial market cap in USD
+const targetAmount = 2000000; // Target amount in USD
+const committedAmount = 650000; // Committed amount in USD
+const progress = Math.floor((committedAmount / targetAmount) * 100); // sale progress percentage
 
 // token allocation 
 const tokenAllocation =[
@@ -149,7 +151,7 @@ function PrivateSale() {
                 ></div>
               </div>
               <div className="progress-stats">
-                <span>Raised: $3,400,000 / $5,000,000</span>
+                <span>Committed: {committedAmount.toLocaleString()} $ / {targetAmount.toLocaleString()} $</span>
               </div>
             </div>
             {/* <button className="primary-button buy-button">
