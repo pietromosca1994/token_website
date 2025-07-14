@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { ShareVehiclesWithDimo, useDimoAuthState } from '@dimo-network/login-with-dimo'
-import { getAmountOfConnectedBatteries } from './utils'
+import { getAmountOfConnectedBatteries } from './api/utils'
 import { DIMO_APP_CLIENT_ID } from './main.tsx';
 import { Footer } from './Footer.tsx'
 import { Header } from './Header.tsx'
+import Loading from './Loading.tsx'
 import SolanaWalletPage from './SolanaWalletPage'
 import AboutUs from "./AboutUs"; 
 import PrivacyPolicy from "./PrivacyPolicy"; 
 import TermsAndConditions from "./TermsAndConditions"; 
 import HowItWorks from "./HowItWorks"; 
 import PrivateSale from "./TokenPrivateSale.tsx"; 
-import Payments from "./Payments.tsx"; 
+// import Payments from "./Payments.tsx"; 
 import GlobeVisualization from './components/GlobeVisualization'
 import './App.css'
 import './Header.css';
@@ -50,9 +51,9 @@ function Home() {
   const [batteryCount, setBatteryCount] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleDimoSuccess = (authData) => {
+  const handleDimoSuccess = (authData: any) => {
     console.log("Success:", authData);
-    navigate('/wallet');
+    navigate('/loading');
   };
 
   const handleDimoError = (error) => {
@@ -137,8 +138,6 @@ function App() {
     walletAddress,
     getEmail
   } = useDimoAuthState();
-  
-  console.log({ isAuthenticated, getValidJWT, email, walletAddress, getEmail });
 
   return (
     <BrowserRouter>
@@ -147,6 +146,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={
             <SolanaWalletPage 
+              email={email}
+              walletAddress={walletAddress}
+            />
+          } />
+          <Route path="/loading" element={
+            <Loading 
               email={email}
               walletAddress={walletAddress}
             />

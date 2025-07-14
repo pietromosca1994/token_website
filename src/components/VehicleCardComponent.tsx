@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import {getNFTCore} from '../api/utils';
 import axios from 'axios';
 import './VehicleCardComponent.css';
 import {Vehicle} from '../SolanaWalletPage'
+import { get } from 'lodash';
 
 const SolscanLogo = () => (
   <svg viewBox="0 0 24 24" className="solscan-logo">
@@ -22,11 +24,13 @@ interface VehicleCardProps {
   vehicle: Vehicle;
 }
 
-const displayAttributes: { key: string; label: string }[] = [
-  { key: 'Rated capacity [Ah]', label: 'Capacity [Ah]' },
-  { key: 'Battery chemistry', label: 'Chemistry' },
-  { key: 'Nominal voltage [V]', label: 'Nominal Voltage [V]' },
-  { key: 'Certified usable battery energy [kWh]', label: 'Usable Energy [kWh]' },
+const displayAttributes = [
+  { key: 'manufacturer', label: 'Manufacturer' },
+  { key: 'battery_cathegory', label: 'Battery Category' }
+];
+
+const displayProperties = [
+  { key: 'f6.7.2.3', label: 'Available Capacity [kWh]' },
 ];
 
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
@@ -35,19 +39,18 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchNFTCoreData = async () => {
+    const fetchNFTCoreData = async (vehicle: Vehicle) => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.post('http://localhost:3000/api/getNFTCore', {
-          name: 'Clarios',
-        });
-        if (response.status === 200 && response.data) {
-          const data = response.data;
+        const response = await getNFTCore(String(`DIMO_vehicle_${vehicle.id}`))
+        
+        if (response && response.data) {
+          console.log(`data : ${response.attributes}`)
           setNftCoreData({
-            tokenAddress: data.data?.publicKey,
-            attributes: data.attributes || {},
-            properties: data.properties || {},
+            tokenAddress: response.publicKey,
+            attributes: response.attributes || {},
+            properties: response.properties || {},
           });
         } else {
           setError('Failed to fetch NFT data');
@@ -59,7 +62,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
         setLoading(false);
       }
     };
-    fetchNFTCoreData();
+    fetchNFTCoreData(vehicle);
   }, [vehicle.id]);
 
   const getSolscanUrl = () => {
@@ -106,6 +109,19 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
                 ) : null
               )}
             </div>
+            
+            <h4 className="specs-title">Battery Properties</h4>
+            <div className="specs-grid">
+              {displayProperties.map(({ key, label }) =>
+                nftCoreData.properties[key] ? (
+                  <div key={key} className="spec-item">
+                    <span className="spec-label">{label}:</span>
+                    <span className="spec-value">{nftCoreData.properties[key]}</span>
+                  </div>
+                ) : null
+              )}
+            </div>
+
           </div>
         )}
         {nftCoreData?.tokenAddress && (

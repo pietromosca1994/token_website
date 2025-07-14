@@ -8,16 +8,28 @@ import { clusterApiUrl } from '@solana/web3.js'
 import './index.css'
 import App from './App.tsx'
 
+// load env variables (overwriting in case)
+// require('dotenv').config({ override: true });
+
 const wallets = [new PhantomWalletAdapter()]
 const endpoint = clusterApiUrl('mainnet-beta')
 
-export const DIMO_APP_CLIENT_ID = '0x14C21aB21F1F186455B718B8629b9Ed5394A660a';
-export const QUICKNODE_ENDPOINT = 'https://light-floral-hill.solana-mainnet.quiknode.pro/2fd29795b25622ac9ecb92459cc49638f86a7c88/';
+// fetch secrets
+// export const DIMO_APP_CLIENT_ID = process.env.DIMO_APP_CLIENT_ID || 'my-dimo-app-client-id';
+// export const QUICKNODE_API_KEY = process.env.QUICKNODE_API_KEY || 'my-quicknode-api-key';
+// export const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || 'my-wallet-private-key';
+
+export const DIMO_APP_CLIENT_ID = import.meta.env.VITE_DIMO_APP_CLIENT_ID;
+export const QUICKNODE_API_KEY = import.meta.env.VITE_QUICKNODE_API_KEY;
+export const WALLET_PRIVATE_KEY = import.meta.env.VITE_WALLET_PRIVATE_KEY;
+
+export const QUICKNODE_ENDPOINT = `https://light-floral-hill.solana-mainnet.quiknode.pro/${QUICKNODE_API_KEY}/`;
+
 export const DISCORD_CHANNEL = "https://discord.gg/aDmTPDUsnj";
 export const X_CHANNEL = "https://x.com/labs_eagle64585";
 
 initializeDimoSDK({
-  clientId: '0x14C21aB21F1F186455B718B8629b9Ed5394A660a',
+  clientId: DIMO_APP_CLIENT_ID,
   redirectUri: 'http://localhost:5173',
   environment: 'production'
 })
